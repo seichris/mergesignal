@@ -91,12 +91,14 @@ export async function acceptGitHubDelivery(
       ${envelope.action},
       ${input.bodyDigest},
       ${envelope.installation.id}::bigint,
-      ${envelope.installation.accountNodeId},
-      ${envelope.installation.accountLogin},
-      ${envelope.installation.accountType},
+      ${envelope.installation.accountNodeId ?? null},
+      ${envelope.installation.accountLogin ?? null},
+      ${envelope.installation.accountType ?? null},
       ${envelope.installation.repositorySelection ?? null},
-      ${JSON.stringify(envelope.installation.permissions)}::jsonb,
-      ${envelope.installation.events}::text[],
+      ${envelope.installation.permissions === undefined
+        ? null
+        : JSON.stringify(envelope.installation.permissions)}::jsonb,
+      ${envelope.installation.events ?? null}::text[],
       ${JSON.stringify(envelope)}::jsonb
     )
   `.execute(database);
@@ -127,15 +129,31 @@ async function updateInstallation(
     }
   }
 
+  const installationUpdates = {
+    ...(envelope.installation.accountNodeId === undefined
+      ? {}
+      : { account_node_id: envelope.installation.accountNodeId }),
+    ...(envelope.installation.accountLogin === undefined
+      ? {}
+      : { account_login: envelope.installation.accountLogin }),
+    ...(envelope.installation.accountType === undefined
+      ? {}
+      : { account_type: envelope.installation.accountType }),
+    ...(envelope.installation.repositorySelection === undefined
+      ? {}
+      : { repository_selection: envelope.installation.repositorySelection }),
+    ...(envelope.installation.permissions === undefined
+      ? {}
+      : { permissions: envelope.installation.permissions }),
+    ...(envelope.installation.events === undefined
+      ? {}
+      : { subscribed_events: envelope.installation.events })
+  };
+
   await transaction
     .updateTable("app.github_installation_profiles")
     .set({
-      account_node_id: envelope.installation.accountNodeId,
-      account_login: envelope.installation.accountLogin,
-      account_type: envelope.installation.accountType,
-      repository_selection: envelope.installation.repositorySelection ?? null,
-      permissions: envelope.installation.permissions,
-      subscribed_events: envelope.installation.events,
+      ...installationUpdates,
       last_delivery_id: deliveryId,
       ...(state === undefined ? {} : { state }),
       updated_at: new Date()

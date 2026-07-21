@@ -44,4 +44,32 @@ describe("parseGitHubWebhookEnvelope", () => {
   it("rejects unsupported event headers", () => {
     expect(() => parseGitHubWebhookEnvelope("push", "{}")).toThrow();
   });
+
+  it("accepts the compact installation reference used by pull request webhooks", () => {
+    const raw = JSON.stringify({
+      action: "opened",
+      installation: { id: 41, node_id: "I_1" },
+      repository: {
+        id: 51,
+        node_id: "R_1",
+        full_name: "example/repository",
+        private: false
+      },
+      pull_request: {
+        id: 61,
+        node_id: "PR_1",
+        number: 7,
+        state: "open",
+        draft: false,
+        updated_at: "2026-07-21T00:00:00Z",
+        head: { sha: "a".repeat(40) },
+        base: { sha: "b".repeat(40) },
+        user: { node_id: "U_1", login: "contributor", type: "User" }
+      }
+    });
+
+    const envelope = parseGitHubWebhookEnvelope("pull_request", raw);
+    expect(envelope.installation).toEqual({ id: 41 });
+    expect(envelope.pullRequest?.number).toBe(7);
+  });
 });

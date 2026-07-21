@@ -11,13 +11,15 @@ export type SupportedGitHubEvent = (typeof supportedGitHubEvents)[number];
 
 const installationSchema = z.object({
   id: z.number().int().positive(),
-  account: z.object({
-    node_id: z.string().min(1),
-    login: z.string().min(1),
-    type: z.string().min(1)
-  }),
-  permissions: z.record(z.string(), z.string()).default({}),
-  events: z.array(z.string()).default([]),
+  account: z
+    .object({
+      node_id: z.string().min(1),
+      login: z.string().min(1),
+      type: z.string().min(1)
+    })
+    .optional(),
+  permissions: z.record(z.string(), z.string()).optional(),
+  events: z.array(z.string()).optional(),
   repository_selection: z.enum(["all", "selected"]).optional()
 });
 
@@ -71,11 +73,11 @@ export interface GitHubWebhookEnvelope {
   action: string;
   installation: {
     id: number;
-    accountNodeId: string;
-    accountLogin: string;
-    accountType: string;
-    permissions: Record<string, string>;
-    events: string[];
+    accountNodeId?: string;
+    accountLogin?: string;
+    accountType?: string;
+    permissions?: Record<string, string>;
+    events?: string[];
     repositorySelection?: "all" | "selected";
   };
   repository?: {
@@ -128,11 +130,17 @@ export function parseGitHubWebhookEnvelope(
   const payload = webhookPayloadSchema.parse(JSON.parse(rawBody));
   const installation = {
     id: payload.installation.id,
-    accountNodeId: payload.installation.account.node_id,
-    accountLogin: payload.installation.account.login,
-    accountType: payload.installation.account.type,
-    permissions: payload.installation.permissions,
-    events: payload.installation.events,
+    ...(payload.installation.account === undefined
+      ? {}
+      : {
+          accountNodeId: payload.installation.account.node_id,
+          accountLogin: payload.installation.account.login,
+          accountType: payload.installation.account.type
+        }),
+    ...(payload.installation.permissions === undefined
+      ? {}
+      : { permissions: payload.installation.permissions }),
+    ...(payload.installation.events === undefined ? {} : { events: payload.installation.events }),
     ...(payload.installation.repository_selection === undefined
       ? {}
       : { repositorySelection: payload.installation.repository_selection })
