@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/version-registry-v1.json",
+  "title": "MergeSignal immutable version registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "version", "entries"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "version": { "const": "1.0.0" },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "version", "artifactDigest", "artifactPath", "effectiveFrom", "effectiveUntil", "status"],
+        "properties": {
+          "kind": { "enum": ["engine", "policy", "evidence", "features", "scoring", "prompt", "model"] },
+          "version": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+          "artifactDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "artifactPath": { "type": "string", "pattern": "^(contracts|docs)/[A-Za-z0-9._/-]+$" },
+          "effectiveFrom": { "type": "string", "format": "date-time" },
+          "effectiveUntil": { "type": ["string", "null"], "format": "date-time" },
+          "status": { "enum": ["active", "retired"] }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/routing-policy-artifact-v1.json",
+  "title": "MergeSignal contextualization routing policy artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "version", "candidateOwnership", "selectionMode", "maximumClaims", "freeTextAllowed", "toolsAllowed", "failureMode"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "version": { "const": "quality-critical-relevance-v1" },
+    "candidateOwnership": { "const": "deterministic_application" },
+    "selectionMode": { "const": "rank_and_select_registered_claims" },
+    "maximumClaims": { "const": 3 },
+    "freeTextAllowed": { "const": false },
+    "toolsAllowed": { "const": false },
+    "failureMode": { "const": "deterministic_fallback" }
+  }
+}

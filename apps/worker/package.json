@@ -1,0 +1,35 @@
+{
+  "name": "@mergesignal/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/main.js",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "test": "vitest run src --passWithNoTests",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@mergesignal/config": "workspace:*",
+    "@mergesignal/database": "workspace:*",
+    "@mergesignal/github": "workspace:*",
+    "@mergesignal/github-output": "workspace:*",
+    "@mergesignal/observability": "workspace:*",
+    "@mergesignal/reputation": "workspace:*",
+    "@mergesignal/workflows": "workspace:*",
+    "@temporalio/client": "catalog:",
+    "@temporalio/common": "catalog:",
+    "@temporalio/worker": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "esbuild": "0.28.1",
+    "tsx": "4.23.1",
+    "typescript": "catalog:",
+    "vitest": "4.1.10"
+  }
+}

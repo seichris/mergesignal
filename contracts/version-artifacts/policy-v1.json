@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "policy-v1",
+  "githubApp": {
+    "appId": 424242,
+    "slug": "mergesignal",
+    "ownershipObservationMaxAgeSeconds": 240
+  },
+  "surfaces": {
+    "githubShowsNumericScores": false,
+    "authenticatedDetailShowsNumericScores": true
+  },
+  "reviewPriority": {
+    "default": "standard",
+    "advisory": true,
+    "patchQualifiedLimitedHistoryAllowed": true,
+    "patchQualifiedActorTypes": ["User"],
+    "reputationRequiredRelevantExperienceStates": ["moderate", "strong"],
+    "reputationAndPatchRequiredFacts": {
+      "ciState": "passing",
+      "allowedScopes": [
+        "small",
+        "medium"
+      ],
+      "allowedTestPathStates": [
+        "changed",
+        "unchanged"
+      ],
+      "sensitivePathState": "unchanged"
+    },
+    "patchOnlyRequiredFacts": {
+      "ciState": "passing",
+      "scope": "small",
+      "testPathState": "changed",
+      "sensitivePathState": "unchanged"
+    },
+    "forbiddenPatchFacts": [
+      "CI_FAILING",
+      "LARGE_PATCH_SCOPE",
+      "PATCH_INVENTORY_INCOMPLETE",
+      "SENSITIVE_PATH_CHANGED"
+    ]
+  },
+  "streamIdentity": {
+    "publication": ["installationId", "repositoryNodeId", "pullRequestNodeId", "generation"],
+    "retention": ["assessmentId"],
+    "commentRemoval": ["retentionTransitionId", "publicationId", "commentId"],
+    "outputCursor": ["installationId", "repositoryNodeId", "pullRequestNodeId"]
+  },
+  "publicationTransitions": {
+    "queued": ["publishing", "retrying", "action_required", "stale", "failed"],
+    "publishing": ["published", "retrying", "repair_queued", "action_required", "stale", "failed"],
+    "published": ["repair_queued", "stale"],
+    "retrying": ["publishing", "repair_queued", "action_required", "stale", "failed"],
+    "repair_queued": ["publishing", "retrying", "action_required", "stale", "failed"],
+    "action_required": ["publishing", "retrying", "stale", "failed"],
+    "stale": [],
+    "failed": []
+  }
+}

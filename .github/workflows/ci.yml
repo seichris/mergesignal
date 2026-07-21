@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.34.5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.17.0
+          cache: pnpm
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run ci
+      - run: terraform fmt -check -recursive infra/terraform
+      - run: |
+          for environment in development staging production; do
+            terraform -chdir="infra/terraform/environments/$environment" init -backend=false -lockfile=readonly
+            terraform -chdir="infra/terraform/environments/$environment" validate
+          done
+
+  foundation-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.34.5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.17.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: docker compose up -d --wait
+      - run: pnpm test:phase1:integration
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+          TEMPORAL_ADDRESS: 127.0.0.1:7233
+      - if: always()
+        run: docker compose logs --no-color --tail=200
+      - if: always()
+        run: docker compose down -v
+
+  mvp-reputation-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.34.5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.17.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: docker compose up -d --wait
+      - run: pnpm test:phase2:integration
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+          TEMPORAL_ADDRESS: 127.0.0.1:7233
+      - if: always()
+        run: docker compose logs --no-color --tail=200
+      - if: always()
+        run: docker compose down -v
+
+  worker-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --file apps/worker/Dockerfile --tag mergesignal-worker:ci .

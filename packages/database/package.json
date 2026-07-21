@@ -1,0 +1,38 @@
+{
+  "name": "@mergesignal/database",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./migrations": {
+      "types": "./dist/migrations.d.ts",
+      "default": "./dist/migrations.js"
+    }
+  },
+  "files": ["dist", "migrations"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "migrate": "tsx src/migrate.ts",
+    "test": "vitest run src --passWithNoTests",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@mergesignal/config": "workspace:*",
+    "@mergesignal/github": "workspace:*",
+    "@mergesignal/reputation": "workspace:*",
+    "kysely": "catalog:",
+    "pg": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/pg": "8.20.0",
+    "esbuild": "0.28.1",
+    "tsx": "4.23.1",
+    "typescript": "catalog:",
+    "vitest": "4.1.10"
+  }
+}

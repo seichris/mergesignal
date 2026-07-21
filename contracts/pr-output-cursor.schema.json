@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/pr-output-cursor-v1.json",
+  "title": "MergeSignal authoritative PR output cursor",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "cursorId", "cursorRevision", "transitionKind", "previousCursorDigest", "installationId", "repositoryNodeId", "pullRequestNodeId", "pullRequestNumber", "activeGeneration", "activeHeadSha", "canonicalCommentId", "canonicalCheckRunId", "state", "databaseSnapshotToken", "observedAt", "cursorDigest"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "cursorId": { "type": "string", "format": "uuid" },
+    "cursorRevision": { "type": "integer", "minimum": 1 },
+    "transitionKind": { "enum": ["initialize", "publish_same_generation", "advance_generation"] },
+    "previousCursorDigest": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "installationId": { "type": "integer", "minimum": 1 },
+    "repositoryNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNumber": { "type": "integer", "minimum": 1 },
+    "activeGeneration": { "type": "integer", "minimum": 1 },
+    "activeHeadSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "canonicalCommentId": { "type": ["integer", "null"], "minimum": 1 },
+    "canonicalCheckRunId": { "type": ["integer", "null"], "minimum": 1 },
+    "state": { "enum": ["active", "repairing", "superseded"] },
+    "databaseSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "cursorDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

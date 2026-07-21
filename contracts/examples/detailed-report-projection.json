@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "1.0.0",
+  "reportId": "73737373-7373-4373-8373-737373737373",
+  "assessmentId": "11111111-1111-4111-8111-111111111111",
+  "assessmentDigest": "3f4384158b9044f81070c120ec4fa9a3fc37e1f4543b8fe6293e1ce742878418",
+  "authorizationId": "71717171-7171-4171-8171-717171717171",
+  "contributor": {
+    "availability": "available",
+    "loginAtAssessment": "established-contributor",
+    "actorType": "User",
+    "historySupport": "full"
+  },
+  "target": {
+    "repositoryNodeId": "R_fixture_target",
+    "pullRequestNumber": 42,
+    "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "generation": 7
+  },
+  "summaryState": "established_evidence",
+  "overallConfidence": {
+    "value": 0.91,
+    "label": "high",
+    "reasonCodes": []
+  },
+  "reviewPriority": "prioritize",
+  "dimensions": {
+    "tenure_continuity": {
+      "score": 86,
+      "confidence": 0.95,
+      "state": "strong",
+      "reasonCodes": [
+        "ACCOUNT_TENURE_ESTABLISHED",
+        "SUSTAINED_ACTIVITY",
+        "MULTI_YEAR_CONTINUITY"
+      ],
+      "evidenceCount": 7
+    },
+    "independent_open_source_record": {
+      "score": 88,
+      "confidence": 0.9,
+      "state": "strong",
+      "reasonCodes": [
+        "INDEPENDENT_MERGES",
+        "MULTI_REPOSITORY_VALIDATION"
+      ],
+      "evidenceCount": 6
+    },
+    "merge_follow_through": {
+      "score": 81,
+      "confidence": 0.87,
+      "state": "strong",
+      "reasonCodes": [
+        "MERGE_FOLLOW_THROUGH"
+      ],
+      "evidenceCount": 4
+    },
+    "collaboration": {
+      "score": 80,
+      "confidence": 0.84,
+      "state": "strong",
+      "reasonCodes": [
+        "REVIEW_FOLLOW_THROUGH",
+        "REVIEWS_CONTRIBUTED"
+      ],
+      "evidenceCount": 3
+    },
+    "relevant_experience": {
+      "score": 83,
+      "confidence": 0.82,
+      "state": "strong",
+      "reasonCodes": [
+        "RELEVANT_LANGUAGE_HISTORY",
+        "RELEVANT_DOMAIN_HISTORY",
+        "RELEVANT_PATH_HISTORY"
+      ],
+      "evidenceCount": 8
+    },
+    "integrity_gaming_resistance": {
+      "score": null,
+      "confidence": 0.86,
+      "state": "uncertain",
+      "reasonCodes": [],
+      "evidenceCount": 4
+    }
+  },
+  "coverage": {
+    "requestedWindowYears": 5,
+    "completeYears": 5,
+    "freshAsOf": "2026-07-21T00:00:00Z",
+    "freshness": "current",
+    "attribution": "complete",
+    "confidence": 1,
+    "reasonCodes": []
+  },
+  "generatedAt": "2026-07-21T00:00:01.200Z",
+  "projectionDigest": "74b12866436ee9f9c0dd44a709e324bcbbc5073a28c8839958f814e95a5f54af"
+}

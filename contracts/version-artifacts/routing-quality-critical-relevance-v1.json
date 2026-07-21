@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "quality-critical-relevance-v1",
+  "candidateOwnership": "deterministic_application",
+  "selectionMode": "rank_and_select_registered_claims",
+  "maximumClaims": 3,
+  "freeTextAllowed": false,
+  "toolsAllowed": false,
+  "failureMode": "deterministic_fallback"
+}

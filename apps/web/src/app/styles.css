@@ -1,0 +1,81 @@
+:root {
+  color-scheme: dark;
+  font-family: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  background: #090b0d;
+  color: #f4f5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  width: min(760px, calc(100% - 40px));
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  gap: 24px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #68d7a1;
+  font: 600 0.8rem/1 ui-monospace, monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 680px;
+  margin: 0;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+}
+
+.summary {
+  max-width: 620px;
+  margin: 0;
+  color: #aab1b5;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  line-height: 1.55;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 16px 0 0;
+  overflow: hidden;
+  border: 1px solid #23282c;
+  border-radius: 16px;
+  background: #23282c;
+}
+
+dl div {
+  padding: 18px;
+  background: #111518;
+}
+
+dt {
+  color: #858e93;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 8px 0 0;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  dl {
+    grid-template-columns: 1fr;
+  }
+}

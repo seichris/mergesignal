@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "replay-node22-v1",
+  "nodeVersion": "22.17.0",
+  "v8Version": "12.4.254.21-node.26",
+  "icuVersion": "76.1",
+  "operatingSystem": "linux",
+  "architecture": "x64",
+  "libcVersion": "glibc-2.36",
+  "baseImage": "node:22.17.0-bookworm-slim",
+  "ociImage": "ghcr.io/mergesignal/replay-runtime",
+  "requiredOciManifestDigest": "sha256:911c37d1cb070f04f4b6b7c35647c3bdc92b2159b5bfe659662b1a339a445615",
+  "requiredSignatureBundleDigest": "ee97bafa947bb58afa5739688c6f6685181ad9ce145fe78e5f060038bbf201fd",
+  "provenanceState": "promotion_required",
+  "requireExactRuntime": true
+}

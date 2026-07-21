@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/evidence-artifact-v1.json",
+  "title": "MergeSignal evidence contract artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "version", "components", "artifacts"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "version": { "type": "string", "pattern": "^evidence-v[1-9][0-9]*$" },
+    "components": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidenceRegistry", "evidenceRegistrySchema", "payloadSchema", "manifestSchema", "reasonCodeSchema", "reasonRegistry", "reasonRegistrySchema"],
+      "properties": {
+        "evidenceRegistry": { "$ref": "#/$defs/artifactPath" },
+        "evidenceRegistrySchema": { "$ref": "#/$defs/artifactPath" },
+        "payloadSchema": { "$ref": "#/$defs/artifactPath" },
+        "manifestSchema": { "$ref": "#/$defs/artifactPath" },
+        "reasonCodeSchema": { "$ref": "#/$defs/artifactPath" },
+        "reasonRegistry": { "$ref": "#/$defs/artifactPath" },
+        "reasonRegistrySchema": { "$ref": "#/$defs/artifactPath" },
+        "reasonMessages": { "$ref": "#/$defs/artifactPath" }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^contracts/[A-Za-z0-9._/-]+$" },
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    }
+  },
+  "$defs": {
+    "artifactPath": { "type": "string", "pattern": "^contracts/[A-Za-z0-9._/-]+$" }
+  }
+}

@@ -1,58 +1,63 @@
 # MergeSignal
 
-**Trust for every pull request.**
+**Contributor reputation for every pull request.**
 
-MergeSignal is a GitHub-native contributor and pull-request rating system for maintainers. It uses evidence from the current patch, repository context, and public contribution history to help maintainers prioritize credible work and filter low-quality, mass-produced PR spam.
+AI agents can create plausible pull requests much faster than maintainers can verify them. The scarce resource is no longer code generation; it is informed human review. MergeSignal helps a maintainer answer a narrower question before spending that time:
 
-## Why
+> What does the submitting GitHub actor's history tell us, how complete is that evidence, and which parts are relevant here?
 
-AI coding agents have made it dramatically easier to submit a pull request, but they have not reduced the cost of reviewing one. Maintainers increasingly receive polished-looking changes that ignore project architecture, duplicate existing work, fail basic tests, or show little understanding of the repository.
+## Product direction
 
-Existing reputation signals such as follower counts, account age, and total contributions are too shallow. MergeSignal is designed to answer a narrower and more useful question:
+MergeSignal is a GitHub App centered on contributor reputation, not another general code-review bot. It evaluates:
 
-> Should a maintainer spend time reviewing this contributor's pull request for this repository?
+- Sustained public open-source activity over time.
+- Pull requests merged by independent maintainers.
+- Follow-through after reviews and contributions to other people's reviews.
+- Experience relevant to the target repository.
+- Evidence coverage, attribution quality, freshness, and possible gaming patterns.
 
-## What it will evaluate
+Patch context stays separate and deliberately small: current-head CI, scope, linked issues, changed tests, and configured sensitive paths. Existing CI, security tools, repository review agents, and maintainers continue to own code correctness.
 
-MergeSignal keeps the patch and the contributor separate:
+## GitHub experience
 
-- **Patch quality:** test results, scope, issue alignment, repository conventions, risk, and demonstrated understanding.
-- **Contributor fit:** relevant public contributions, review behavior, responsiveness, and experience related to the repository.
-- **Confidence:** how much evidence is available and where the system remains uncertain.
+After analysis completes, the MVP creates one PR conversation comment and updates
+it in place. The comment shows a deterministic `0-100` public GitHub history score,
+its descriptive band, evidence confidence, account age, 24-month contribution
+volume, active weeks, independently merged PR history, and repository breadth.
+It contains no private evidence and clearly states that reputation is not a code,
+security, identity, or trust verdict.
 
-The result is an evidence-backed signal with concise reasoning and links to its sources—not an unexplained global reputation score.
+An operational GitHub Check shows queued, successful, failed, or superseded lifecycle state. Reputation itself never becomes a failing CI conclusion.
 
 ## Principles
 
-- **Evaluate quality, not AI authorship.** Responsible AI-assisted work should be judged by the same standards as any other contribution.
-- **Do not punish newcomers.** Limited history means insufficient evidence, not low trust; a strong current patch can still earn a strong signal.
-- **Keep maintainers in control.** MergeSignal assists triage and never makes merge decisions.
-- **Make every signal inspectable.** Findings should include confidence, reasoning, and supporting evidence.
-- **Use only appropriate GitHub data.** The initial version focuses on repository context and public contribution evidence.
+- Limited history means limited evidence, not low trust.
+- Account age is weak and cannot outweigh sustained independent validation.
+- Private evidence is restricted to the exact target repository.
+- GitHub facts, relevance candidates, scores, states, and confidence are deterministic.
+- A model may select exact structured claim tuples only from a closed public-evidence packet. Stable GitHub target and evidence identifiers stay local behind per-request HMAC aliases, provider output is bound to an exact request/response receipt, private-dependent candidates fall back deterministically, and repository-owned renderers supply all explanatory prose.
+- Reputation cannot make failing CI or a sensitive patch safe.
+- MergeSignal never merges, rejects, closes, or silently deprioritizes a PR.
 
-## Planned workflow
+## Reference architecture
 
-1. A GitHub App receives a pull-request webhook.
-2. Deterministic checks inspect the diff, tests, linked issue, and repository instructions.
-3. Relevant public contribution evidence is collected from GitHub.
-4. GPT-5.6 evaluates the evidence against a repository-specific rubric.
-5. MergeSignal publishes an explainable GitHub Check for maintainers.
+- TypeScript pnpm monorepo with Next.js on the Kontext Vercel team.
+- Long-lived Temporal workers and outbox relay on the existing Coolify server.
+- Temporal Cloud and managed PostgreSQL with row-level security.
+- GitHub App webhooks, GraphQL/REST evidence adapters, PR comments, and Checks.
+- A future OpenAI integration remains outside the MVP; current scoring and copy are
+  fully deterministic.
 
-## Planned stack
+The immediately shippable product is defined in
+[docs/MVP_IMPLEMENTATION_PLAN.md](docs/MVP_IMPLEMENTATION_PLAN.md). The complete
+long-term design, phase gates, contracts, threat model, privacy analysis, and review
+traceability remain in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 
-- TypeScript, Next.js, and React
-- GitHub Apps, webhooks, Checks, and Octokit
-- OpenAI Responses API with GPT-5.6
-- PostgreSQL, Drizzle ORM, and Zod
-- Vercel, Vitest, and Playwright
-- Codex for implementation, testing, review, and iteration
+## Current status
 
-## Project timeline
-
-- **July 15, 2026:** Initial idea and product direction developed during OpenAI Build Week.
-- **July 21, 2026:** Public repository created and implementation started.
-
-## Status
-
-MergeSignal is an early OpenAI Build Week prototype. The first milestone is an end-to-end GitHub App that analyzes a real pull request and publishes a transparent, evidence-linked Check.
-
+The MVP reputation path is implemented locally. It includes validated public-history
+GraphQL collection, versioned deterministic scoring, six-hour snapshot caching,
+immutable tenant-isolated assessments, durable Temporal retries, one app-owned PR
+comment, operational Checks, and head-race repair. Unit, contract, build, fresh
+PostgreSQL/Temporal integration, and production worker-image gates pass. A real
+GitHub App installation and staging pull request remain the final live-release gate.

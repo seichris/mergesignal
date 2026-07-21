@@ -1,0 +1,16 @@
+node_modules/
+.next/
+dist/
+coverage/
+.turbo/
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.vercel
+.env*.local

@@ -1,0 +1,1030 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/evidence-payload-v1.json",
+  "title": "MergeSignal normalized evidence payloads",
+  "type": "object",
+  "required": ["type", "canonicalPayload"],
+  "oneOf": [
+    {
+      "properties": {
+        "type": { "const": "ACCOUNT_CREATED" },
+        "canonicalPayload": { "$ref": "#/$defs/accountCreated" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "ACTOR_TYPE" },
+        "canonicalPayload": { "$ref": "#/$defs/actorType" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "AUTHOR_AVAILABILITY" },
+        "canonicalPayload": { "$ref": "#/$defs/authorAvailability" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "CONTRIBUTION_YEAR" },
+        "canonicalPayload": { "$ref": "#/$defs/contributionYear" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "ACTIVE_MONTH" },
+        "canonicalPayload": { "$ref": "#/$defs/activeMonth" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "PULL_REQUEST_OPENED" },
+        "canonicalPayload": { "$ref": "#/$defs/pullRequestOpened" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "PULL_REQUEST_MERGED" },
+        "canonicalPayload": { "$ref": "#/$defs/pullRequestMerged" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "PULL_REQUEST_CLOSED_UNMERGED" },
+        "canonicalPayload": { "$ref": "#/$defs/pullRequestClosed" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "MERGE_ACTOR" },
+        "canonicalPayload": { "$ref": "#/$defs/githubActor" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_OWNERSHIP_RELATIONSHIP" },
+        "canonicalPayload": { "$ref": "#/$defs/ownershipRelationship" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "enum": ["REVIEW_RECEIVED", "REVIEW_GIVEN"] },
+        "canonicalPayload": { "$ref": "#/$defs/review" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "FOLLOW_UP_COMMIT" },
+        "canonicalPayload": { "$ref": "#/$defs/followUpCommit" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REVIEW_THREAD_RESOLVED" },
+        "canonicalPayload": { "$ref": "#/$defs/resolvedThread" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_LANGUAGE" },
+        "canonicalPayload": { "$ref": "#/$defs/repositoryLanguage" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_TOPIC" },
+        "canonicalPayload": { "$ref": "#/$defs/repositoryTopic" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "DEPENDENCY_ECOSYSTEM" },
+        "canonicalPayload": { "$ref": "#/$defs/dependencyEcosystem" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "CHANGED_PATH" },
+        "canonicalPayload": { "$ref": "#/$defs/changedPath" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "ACTIVITY_BURST" },
+        "canonicalPayload": { "$ref": "#/$defs/activityBurst" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "TEMPLATE_SIMILARITY" },
+        "canonicalPayload": { "$ref": "#/$defs/templateSimilarity" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "RECIPROCAL_MERGE_EDGE" },
+        "canonicalPayload": { "$ref": "#/$defs/reciprocalMerge" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "MERGE_RELATIONSHIP_EVENT" },
+        "canonicalPayload": { "$ref": "#/$defs/mergeRelationshipEvent" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "BEHAVIOR_BASELINE_CHANGE" },
+        "canonicalPayload": { "$ref": "#/$defs/baselineChange" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "RELEVANCE_COMPARISON" },
+        "canonicalPayload": { "$ref": "#/$defs/relevanceComparison" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "PATCH_FILESET_STATUS" },
+        "canonicalPayload": { "$ref": "#/$defs/patchFilesetStatus" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_ADMIN_PERMISSION" },
+        "canonicalPayload": { "$ref": "#/$defs/repositoryAdminPermission" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_VISIBILITY_SNAPSHOT" },
+        "canonicalPayload": { "$ref": "#/$defs/repositoryVisibilitySnapshot" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "DASHBOARD_POLICY_REVISION" },
+        "canonicalPayload": { "$ref": "#/$defs/dashboardPolicyRevision" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "DASHBOARD_POLICY_STREAM_HEAD" },
+        "canonicalPayload": { "$ref": "#/$defs/dashboardPolicyStreamHead" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_DEFAULT_BRANCH" },
+        "canonicalPayload": { "$ref": "#/$defs/repositoryDefaultBranch" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_REF_SNAPSHOT" },
+        "canonicalPayload": { "$ref": "#/$defs/repositoryRefSnapshot" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_BLOB_SNAPSHOT" },
+        "canonicalPayload": { "$ref": "#/$defs/repositoryBlobSnapshot" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "REPOSITORY_RISK_POLICY" },
+        "canonicalPayload": { "$ref": "#/$defs/repositoryRiskPolicy" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "CI_CHECK_STATE" },
+        "canonicalPayload": { "$ref": "#/$defs/ciCheck" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "PATCH_SCOPE" },
+        "canonicalPayload": { "$ref": "#/$defs/patchScope" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "TEST_PATH_CHANGE" },
+        "canonicalPayload": { "$ref": "#/$defs/testPathChange" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "LINKED_ISSUE" },
+        "canonicalPayload": { "$ref": "#/$defs/linkedIssue" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "SENSITIVE_PATH_CHANGE" },
+        "canonicalPayload": { "$ref": "#/$defs/sensitivePathChange" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "PUBLIC_COVERAGE_SUMMARY" },
+        "canonicalPayload": { "$ref": "#/$defs/coverageSummary" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "EVIDENCE_COLLECTION_GAP" },
+        "canonicalPayload": { "$ref": "#/$defs/collectionGap" }
+      }
+    },
+    {
+      "properties": {
+        "type": { "const": "CONTEXTUALIZER_STATUS" },
+        "canonicalPayload": { "$ref": "#/$defs/contextualizerStatus" }
+      }
+    }
+  ],
+  "$defs": {
+    "closed": { "type": "object", "additionalProperties": false },
+    "accountCreated": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["createdAt"],
+      "properties": { "createdAt": { "type": "string", "format": "date-time" } }
+    },
+    "actorType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "actorNodeId", "actorType"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "actorNodeId": { "type": ["string", "null"], "minLength": 1 },
+        "actorType": { "enum": ["User", "Bot", "Mannequin", "Organization", "EnterpriseUserAccount", "Unknown"] }
+      }
+    },
+    "authorAvailability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "available", "authorNodeId"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "available": { "type": "boolean" },
+        "authorNodeId": { "type": ["string", "null"], "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "available": { "const": true } } },
+          "then": { "properties": { "authorNodeId": { "type": "string" } } },
+          "else": { "properties": { "authorNodeId": { "const": null } } }
+        }
+      ]
+    },
+    "contributionYear": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["year", "activeMonths"],
+      "properties": {
+        "year": { "type": "integer", "minimum": 2008, "maximum": 9999 },
+        "activeMonths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$" }
+        }
+      }
+    },
+    "activeMonth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["yearMonth"],
+      "properties": { "yearMonth": { "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$" } }
+    },
+    "pullRequestOpened": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "repositoryOwnerNodeId", "authorNodeId", "authorAssociation", "pullRequestNumber", "metadataStructure", "metadataStructureFingerprint", "repositoryTemplateStructure", "templateAdjustedStructure", "templateAdjustedFingerprint", "informativeFeatureCount", "metadataFeatureVersion", "openedAt"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "repositoryOwnerNodeId": { "type": "string", "minLength": 1 },
+        "authorNodeId": { "type": "string", "minLength": 1 },
+        "authorAssociation": { "enum": ["COLLABORATOR", "CONTRIBUTOR", "FIRST_TIMER", "FIRST_TIME_CONTRIBUTOR", "MANNEQUIN", "MEMBER", "NONE", "OWNER"] },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "metadataStructure": { "$ref": "#/$defs/metadataStructure" },
+        "metadataStructureFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "repositoryTemplateStructure": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/metadataStructure" }
+          ]
+        },
+        "templateAdjustedStructure": { "$ref": "#/$defs/metadataStructure" },
+        "templateAdjustedFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "informativeFeatureCount": { "type": "integer", "minimum": 0, "maximum": 101 },
+        "metadataFeatureVersion": { "const": "pr-metadata-structure-v1" },
+        "openedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "pullRequestMerged": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "authorNodeId", "pullRequestNumber", "mergedAt", "mergeCommitSha"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "authorNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "mergedAt": { "type": "string", "format": "date-time" },
+        "mergeCommitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    },
+    "pullRequestClosed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "authorNodeId", "pullRequestNumber", "closedAt"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "authorNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "closedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "githubActor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "pullRequestAuthorNodeId", "githubNodeId"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "pullRequestAuthorNodeId": { "type": "string", "minLength": 1 },
+        "githubNodeId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "ownershipRelationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "subjectNodeId", "repositoryOwnerNodeId", "classification"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "subjectNodeId": { "type": "string", "minLength": 1 },
+        "repositoryOwnerNodeId": { "type": "string", "minLength": 1 },
+        "classification": { "enum": ["self_controlled", "affiliated", "independently_maintained", "unknown"] }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewNodeId", "pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "pullRequestAuthorNodeId", "reviewerNodeId", "state", "submittedAt"],
+      "properties": {
+        "reviewNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "pullRequestAuthorNodeId": { "type": "string", "minLength": 1 },
+        "reviewerNodeId": { "type": "string", "minLength": 1 },
+        "state": { "enum": ["APPROVED", "CHANGES_REQUESTED", "COMMENTED", "DISMISSED", "PENDING"] },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "followUpCommit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commitNodeId", "pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "pullRequestAuthorNodeId", "commitAuthorNodeId", "commitSha", "committedAt"],
+      "properties": {
+        "commitNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "pullRequestAuthorNodeId": { "type": "string", "minLength": 1 },
+        "commitAuthorNodeId": { "type": "string", "minLength": 1 },
+        "commitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "committedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "resolvedThread": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["threadNodeId", "pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "pullRequestAuthorNodeId", "resolverNodeId", "resolvedAt"],
+      "properties": {
+        "threadNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "pullRequestAuthorNodeId": { "type": "string", "minLength": 1 },
+        "resolverNodeId": { "type": "string", "minLength": 1 },
+        "resolvedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "repositoryLanguage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryNodeId", "language", "share"],
+      "properties": {
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "share": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "repositoryTopic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryNodeId", "topic"],
+      "properties": {
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "topic": { "type": "string", "minLength": 1, "maxLength": 100 }
+      }
+    },
+    "dependencyEcosystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryNodeId", "ecosystem", "manifestPath"],
+      "properties": {
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "ecosystem": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "manifestPath": { "type": "string", "minLength": 1, "maxLength": 4096 }
+      }
+    },
+    "changedPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "headSha", "path", "language", "languageFeatureVersion", "additions", "deletions"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "headSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "path": { "type": "string", "minLength": 1, "maxLength": 4096 },
+        "language": { "type": ["string", "null"], "minLength": 1, "maxLength": 100 },
+        "languageFeatureVersion": { "const": "path-language-v1" },
+        "additions": { "type": "integer", "minimum": 0 },
+        "deletions": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "activityBurst": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recentActiveMonths", "baselineActiveMonths", "recentWindowMonths", "baselineWindowMonths", "windowEndMonth", "ratio"],
+      "properties": {
+        "recentActiveMonths": { "type": "integer", "minimum": 0 },
+        "baselineActiveMonths": { "type": "integer", "minimum": 0 },
+        "recentWindowMonths": { "const": 3 },
+        "baselineWindowMonths": { "const": 12 },
+        "windowEndMonth": { "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$" },
+        "ratio": { "type": "number", "minimum": 0 }
+      }
+    },
+    "templateSimilarity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["similarity", "sampleSize", "repositoryCount", "dominantFingerprint", "matchingCount", "featureVersion"],
+      "properties": {
+        "similarity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sampleSize": { "type": "integer", "minimum": 5 },
+        "repositoryCount": { "type": "integer", "minimum": 5 },
+        "dominantFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "matchingCount": { "type": "integer", "minimum": 1 },
+        "featureVersion": { "const": "pr-metadata-structure-v1" }
+      }
+    },
+    "reciprocalMerge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subjectNodeId", "counterpartyNodeId", "mergeCount", "reciprocalCount", "ratio"],
+      "properties": {
+        "subjectNodeId": { "type": "string", "minLength": 1 },
+        "counterpartyNodeId": { "type": "string", "minLength": 1 },
+        "mergeCount": { "type": "integer", "minimum": 2 },
+        "reciprocalCount": { "type": "integer", "minimum": 0 },
+        "ratio": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "mergeRelationshipEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "authorNodeId", "mergeActorNodeId", "mergedAt"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "authorNodeId": { "type": "string", "minLength": 1 },
+        "mergeActorNodeId": { "type": "string", "minLength": 1 },
+        "mergedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "baselineChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baselineActiveMonths", "recentActiveMonths", "baselineWindowMonths", "recentWindowMonths", "windowEndMonth", "relativeIncrease"],
+      "properties": {
+        "baselineActiveMonths": { "type": "integer", "minimum": 0 },
+        "recentActiveMonths": { "type": "integer", "minimum": 0 },
+        "baselineWindowMonths": { "const": 12 },
+        "recentWindowMonths": { "const": 3 },
+        "windowEndMonth": { "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$" },
+        "relativeIncrease": { "type": "number", "minimum": 0 }
+      }
+    },
+    "relevanceComparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["historicalPullRequestNodeId", "historicalRepositoryNodeId", "historicalHeadSha", "historicalFilesetEvidenceId", "targetPullRequestNodeId", "targetRepositoryNodeId", "targetHeadSha", "targetFilesetEvidenceId", "comparisonVersion", "languageMatches", "domainMatches", "pathMatches"],
+      "properties": {
+        "historicalPullRequestNodeId": { "type": "string", "minLength": 1 },
+        "historicalRepositoryNodeId": { "type": "string", "minLength": 1 },
+        "historicalHeadSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "historicalFilesetEvidenceId": { "type": "string", "minLength": 1 },
+        "targetPullRequestNodeId": { "type": "string", "minLength": 1 },
+        "targetRepositoryNodeId": { "type": "string", "minLength": 1 },
+        "targetHeadSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "targetFilesetEvidenceId": { "type": "string", "minLength": 1 },
+        "comparisonVersion": { "const": "relevance-comparison-v1" },
+        "languageMatches": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 100 } },
+        "domainMatches": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 100 } },
+        "pathMatches": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["historicalPath", "targetPath", "pathFamily"],
+            "properties": {
+              "historicalPath": { "type": "string", "minLength": 1, "maxLength": 4096 },
+              "targetPath": { "type": "string", "minLength": 1, "maxLength": 4096 },
+              "pathFamily": { "type": "string", "minLength": 1, "maxLength": 4096 }
+            }
+          }
+        }
+      }
+    },
+    "patchFilesetStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "headSha", "revisionAt", "collectionState", "providerTotalCount", "collectedFileCount", "pageInfoComplete", "complete"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "headSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "revisionAt": { "type": "string", "format": "date-time" },
+        "collectionState": { "enum": ["complete", "partial", "unavailable"] },
+        "providerTotalCount": { "type": ["integer", "null"], "minimum": 0 },
+        "collectedFileCount": { "type": "integer", "minimum": 0 },
+        "pageInfoComplete": { "type": "boolean" },
+        "complete": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "complete": { "const": true } } },
+          "then": {
+            "properties": {
+              "collectionState": { "const": "complete" },
+              "providerTotalCount": { "type": "integer" },
+              "pageInfoComplete": { "const": true }
+            }
+          },
+          "else": { "properties": { "collectionState": { "enum": ["partial", "unavailable"] } } }
+        },
+        {
+          "if": { "properties": { "collectionState": { "const": "unavailable" } } },
+          "then": {
+            "properties": {
+              "providerTotalCount": { "const": null },
+              "collectedFileCount": { "const": 0 },
+              "pageInfoComplete": { "const": false },
+              "complete": { "const": false }
+            }
+          }
+        }
+      ]
+    },
+    "repositoryAdminPermission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installationId", "repositoryNodeId", "actorGithubNodeId", "permission", "state", "providerObservedAt", "authorizationForRevisionId", "authorizationForRevisionSequence", "authorizationHeadRevision", "authorizationNonce", "authorizationSnapshotToken"],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "actorGithubNodeId": { "type": "string", "minLength": 1 },
+        "permission": { "enum": ["admin", "none"] },
+        "state": { "enum": ["granted", "revoked"] },
+        "providerObservedAt": { "type": "string", "format": "date-time" },
+        "authorizationForRevisionId": { "type": "string", "format": "uuid" },
+        "authorizationForRevisionSequence": { "type": "integer", "minimum": 1 },
+        "authorizationHeadRevision": { "type": "integer", "minimum": 1 },
+        "authorizationNonce": { "type": "string", "format": "uuid" },
+        "authorizationSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "repositoryVisibilitySnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installationId", "repositoryNodeId", "visibility", "providerObservedAt"],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "visibility": { "enum": ["public", "private", "internal"] },
+        "providerObservedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "dashboardPolicyRevision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installationId", "repositoryNodeId", "revisionId", "revisionSequence", "authorizedHeadRevision", "actorGithubNodeId", "configurationDigest", "authorizationNonce", "authorizationSnapshotToken", "recordedAt"],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "revisionId": { "type": "string", "format": "uuid" },
+        "revisionSequence": { "type": "integer", "minimum": 1 },
+        "authorizedHeadRevision": { "type": "integer", "minimum": 1 },
+        "actorGithubNodeId": { "type": "string", "minLength": 1 },
+        "configurationDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "authorizationNonce": { "type": "string", "format": "uuid" },
+        "authorizationSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "recordedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "dashboardPolicyStreamHead": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installationId", "repositoryNodeId", "streamId", "highWaterRevision", "highWaterRevisionId", "streamDigest", "databaseSnapshotToken", "serializableReadAt"],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "streamId": { "type": "string", "format": "uuid" },
+        "highWaterRevision": { "type": "integer", "minimum": 1 },
+        "highWaterRevisionId": { "type": "string", "format": "uuid" },
+        "streamDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "databaseSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "serializableReadAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "repositoryDefaultBranch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installationId", "repositoryNodeId", "observationBundleId", "defaultBranchRef", "providerObservedAt"],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "observationBundleId": { "type": "string", "format": "uuid" },
+        "defaultBranchRef": { "type": "string", "pattern": "^refs/heads/[A-Za-z0-9._/-]+$" },
+        "providerObservedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "repositoryRefSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installationId", "repositoryNodeId", "observationBundleId", "ref", "tipCommitSha", "providerObservedAt"],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "observationBundleId": { "type": "string", "format": "uuid" },
+        "ref": { "type": "string", "pattern": "^refs/heads/[A-Za-z0-9._/-]+$" },
+        "tipCommitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "providerObservedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "repositoryBlobSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installationId", "repositoryNodeId", "observationBundleId", "commitSha", "configPath", "configBlobSha", "configurationBytesBase64", "configurationDigest", "providerObservedAt"],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "observationBundleId": { "type": "string", "format": "uuid" },
+        "commitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "configPath": { "const": ".github/mergesignal.yml" },
+        "configBlobSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "configurationBytesBase64": { "type": "string", "minLength": 4, "maxLength": 65536, "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$" },
+        "configurationDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "providerObservedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "repositoryRiskPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["installationId", "repositoryNodeId", "policyId", "policyVersion", "policyDigest", "effectiveFrom", "effectiveUntil", "reviewPriorityEnabled", "configurationSource", "rules"],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "policyId": { "type": "string", "format": "uuid" },
+        "policyVersion": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "policyDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "effectiveFrom": { "type": "string", "format": "date-time" },
+        "effectiveUntil": { "type": ["string", "null"], "format": "date-time" },
+        "reviewPriorityEnabled": { "type": "boolean" },
+        "configurationSource": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["kind", "revisionEvidenceId", "adminPermissionEvidenceId", "policyHeadEvidenceId"],
+              "properties": {
+                "kind": { "const": "dashboard_revision" },
+                "revisionEvidenceId": { "type": "string", "minLength": 1 },
+                "adminPermissionEvidenceId": { "type": "string", "minLength": 1 },
+                "policyHeadEvidenceId": { "type": "string", "minLength": 1 }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["kind", "defaultBranchEvidenceId", "refSnapshotEvidenceId", "blobSnapshotEvidenceId"],
+              "properties": {
+                "kind": { "const": "default_branch_file" },
+                "defaultBranchEvidenceId": { "type": "string", "minLength": 1 },
+                "refSnapshotEvidenceId": { "type": "string", "minLength": 1 },
+                "blobSnapshotEvidenceId": { "type": "string", "minLength": 1 }
+              }
+            }
+          ]
+        },
+        "rules": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ruleId", "pathPrefix"],
+            "properties": {
+              "ruleId": { "type": "string", "pattern": "^[a-z][a-z0-9_-]+$" },
+              "pathPrefix": { "type": "string", "minLength": 1, "maxLength": 4096 }
+            }
+          }
+        }
+      }
+    },
+    "ciCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["checkSuiteNodeId", "pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "state", "headSha"],
+      "properties": {
+        "checkSuiteNodeId": { "type": ["string", "null"], "minLength": 1 },
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "state": { "enum": ["passing", "failing", "pending", "missing", "unknown"] },
+        "headSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "state": { "const": "missing" } } },
+          "then": { "properties": { "checkSuiteNodeId": { "const": null } } },
+          "else": { "properties": { "checkSuiteNodeId": { "type": "string" } } }
+        }
+      ]
+    },
+    "patchScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "headSha", "filesetComplete", "filesChanged", "additions", "deletions", "classification"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "headSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "filesetComplete": { "type": "boolean" },
+        "filesChanged": { "type": "integer", "minimum": 0 },
+        "additions": { "type": "integer", "minimum": 0 },
+        "deletions": { "type": "integer", "minimum": 0 },
+        "classification": { "enum": ["small", "medium", "large", "unknown"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "filesetComplete": { "const": false } } },
+          "then": { "properties": { "classification": { "type": "string", "const": "unknown" } } },
+          "else": { "properties": { "classification": { "type": "string", "enum": ["small", "medium", "large"] } } }
+        }
+      ]
+    },
+    "testPathChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "headSha", "filesetComplete", "state"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "headSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "filesetComplete": { "type": "boolean" },
+        "state": { "enum": ["changed", "unchanged", "unknown"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "filesetComplete": { "const": false } } },
+          "then": { "properties": { "state": { "const": "unknown" } } },
+          "else": { "properties": { "state": { "enum": ["changed", "unchanged"] } } }
+        }
+      ]
+    },
+    "linkedIssue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "issueNodeId", "issueNumber"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "issueNodeId": { "type": "string", "minLength": 1 },
+        "issueNumber": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "sensitivePathChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pullRequestNodeId", "repositoryNodeId", "pullRequestNumber", "headSha", "filesetComplete", "policyId", "policyVersion", "policyDigest", "state", "paths", "matchedRuleIds"],
+      "properties": {
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "headSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "filesetComplete": { "type": "boolean" },
+        "policyId": { "type": "string", "format": "uuid" },
+        "policyVersion": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "policyDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "state": { "enum": ["changed", "unchanged", "unknown"] },
+        "paths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 4096 }
+        },
+        "matchedRuleIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_-]+$" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "state": { "const": "changed" } } },
+          "then": { "properties": { "paths": { "type": "array", "minItems": 1 }, "matchedRuleIds": { "type": "array", "minItems": 1 } } },
+          "else": { "properties": { "paths": { "type": "array", "maxItems": 0 }, "matchedRuleIds": { "type": "array", "maxItems": 0 } } }
+        },
+        {
+          "if": { "properties": { "filesetComplete": { "const": false } } },
+          "then": { "properties": { "state": { "const": "unknown" } } },
+          "else": {
+            "properties": {
+              "state": { "enum": ["changed", "unchanged"] }
+            }
+          }
+        }
+      ]
+    },
+    "metadataStructure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["titleTokenClasses", "bodySectionKinds", "referenceKinds"],
+      "properties": {
+        "titleTokenClasses": {
+          "type": "array",
+          "maxItems": 64,
+          "items": { "enum": ["word", "number", "code", "path", "url", "issue_ref", "emoji", "punctuation"] }
+        },
+        "bodySectionKinds": {
+          "type": "array",
+          "maxItems": 32,
+          "items": { "enum": ["summary", "motivation", "changes", "testing", "screenshots", "checklist", "breaking_change", "other"] }
+        },
+        "referenceKinds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["issue", "pull_request", "commit", "discussion", "external_url"] }
+        }
+      }
+    },
+    "coverageSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subjectNodeId", "requestedWindowYears", "windowStart", "windowEnd", "completeYears", "partialSources", "freshAsOf", "freshnessPolicy", "freshness", "attribution", "confidencePolicy", "confidence", "sourcePartitions"],
+      "properties": {
+        "subjectNodeId": { "type": ["string", "null"], "minLength": 1 },
+        "requestedWindowYears": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "windowStart": { "type": "string", "format": "date-time" },
+        "windowEnd": { "type": "string", "format": "date-time" },
+        "completeYears": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "partialSources": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "freshAsOf": { "type": "string", "format": "date-time" },
+        "freshnessPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["version", "maxAgeSeconds"],
+          "properties": {
+            "version": { "const": "public-history-freshness-v1" },
+            "maxAgeSeconds": { "const": 86400 }
+          }
+        },
+        "freshness": { "enum": ["current", "stale"] },
+        "attribution": { "enum": ["complete", "uncertain", "unavailable"] },
+        "confidencePolicy": { "const": "coverage-confidence-v1" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourcePartitions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/coveragePartition" }
+        }
+      }
+    },
+    "coveragePartition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["partitionKey", "queryVersion", "temporalBasis", "evidenceTypes", "state", "requestedStart", "requestedEnd", "completedStart", "completedEnd", "providerTotalCount", "collectedCount", "pageInfoComplete", "observedAt", "limitationReasons", "candidateEvidenceIds", "candidateSetDigest"],
+      "properties": {
+        "partitionKey": { "type": "string", "pattern": "^[a-z][a-z0-9_]+$" },
+        "queryVersion": { "type": "string", "pattern": "^[a-z][a-z0-9-]+-v[1-9][0-9]*$" },
+        "temporalBasis": { "enum": ["not_applicable", "canonical_event_at"] },
+        "evidenceTypes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" }
+        },
+        "state": { "enum": ["complete", "partial", "unavailable"] },
+        "requestedStart": { "type": "string", "format": "date-time" },
+        "requestedEnd": { "type": "string", "format": "date-time" },
+        "completedStart": { "type": ["string", "null"], "format": "date-time" },
+        "completedEnd": { "type": ["string", "null"], "format": "date-time" },
+        "providerTotalCount": { "type": ["integer", "null"], "minimum": 0 },
+        "collectedCount": { "type": "integer", "minimum": 0 },
+        "pageInfoComplete": { "type": "boolean" },
+        "observedAt": { "type": "string", "format": "date-time" },
+        "limitationReasons": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["rate_limit", "pagination_limit", "source_limit", "authorization", "source_unavailable", "unknown"] }
+        },
+        "candidateEvidenceIds": {
+          "type": "array",
+          "maxItems": 25000,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 256 }
+        },
+        "candidateSetDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "state": { "const": "complete" } } },
+          "then": {
+            "properties": {
+              "completedStart": { "type": "string" },
+              "completedEnd": { "type": "string" },
+              "providerTotalCount": { "type": "integer" },
+              "pageInfoComplete": { "const": true },
+              "limitationReasons": { "type": "array", "maxItems": 0 }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "state": { "const": "partial" } } },
+          "then": {
+            "properties": {
+              "limitationReasons": { "type": "array", "minItems": 1 }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "state": { "const": "unavailable" } } },
+          "then": {
+            "properties": {
+              "completedStart": { "const": null },
+              "completedEnd": { "const": null },
+              "providerTotalCount": { "const": null },
+              "collectedCount": { "const": 0 },
+              "pageInfoComplete": { "const": false },
+              "candidateEvidenceIds": { "type": "array", "maxItems": 0 },
+              "limitationReasons": { "type": "array", "minItems": 1 }
+            }
+          }
+        }
+      ]
+    },
+    "collectionGap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["rate_limit", "pagination_limit", "authorization", "source_unavailable", "unknown"] }
+      }
+    },
+    "contextualizerStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state"],
+      "properties": { "state": { "enum": ["complete", "timeout", "invalid", "unavailable"] } }
+    }
+  }
+}

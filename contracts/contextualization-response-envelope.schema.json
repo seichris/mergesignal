@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/contextualization-response-envelope-v1.json",
+  "title": "MergeSignal internal contextualization response binding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "assessmentId", "requestAlias", "providerRequestDigest", "providerInvocationDigest", "candidatePacketDigest", "resolvedModel", "providerResponseId", "providerOutputDigest", "receivedAt", "envelopeDigest"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "requestAlias": { "type": "string", "format": "uuid" },
+    "providerRequestDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "providerInvocationDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "candidatePacketDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "resolvedModel": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "providerResponseId": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "providerOutputDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "receivedAt": { "type": "string", "format": "date-time" },
+    "envelopeDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

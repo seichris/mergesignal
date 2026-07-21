@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "reason-messages-v2",
+  "reasonMessages": {
+    "ACCOUNT_TENURE_ESTABLISHED": "The account has a long-standing public history."
+  }
+}

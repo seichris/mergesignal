@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/github-app-identity-observation-v1.json",
+  "title": "MergeSignal authenticated GitHub App identity observation",
+  "description": "A trusted startup or promotion-gate observation from GitHub GET /app. The provider request and response identifiers must originate from the authenticated credential path, never from policy configuration.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "observationId",
+    "deploymentId",
+    "credentialFingerprint",
+    "providerRequestId",
+    "providerResponseId",
+    "appId",
+    "slug",
+    "providerObservedAt",
+    "observationDigest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "observationId": { "type": "string", "format": "uuid" },
+    "deploymentId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "credentialFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "providerRequestId": { "type": "string", "format": "uuid" },
+    "providerResponseId": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "appId": { "type": "integer", "minimum": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "providerObservedAt": { "type": "string", "format": "date-time" },
+    "observationDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

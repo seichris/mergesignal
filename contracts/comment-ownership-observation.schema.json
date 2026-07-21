@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/comment-ownership-observation-v1.json",
+  "title": "MergeSignal provider-observed comment ownership",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "observationId", "installationId", "repositoryNodeId", "pullRequestNodeId", "pullRequestNumber", "commentId", "markerVersion", "renderedSourceSetDigest", "markerDigest", "authorAppId", "authorAppSlug", "authorInstallationId", "ownershipState", "providerObservedAt"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "observationId": { "type": "string", "format": "uuid" },
+    "installationId": { "type": "integer", "minimum": 1 },
+    "repositoryNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNumber": { "type": "integer", "minimum": 1 },
+    "commentId": { "type": "integer", "minimum": 1 },
+    "markerVersion": { "const": "1" },
+    "renderedSourceSetDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "markerDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "authorAppId": { "type": "integer", "minimum": 1 },
+    "authorAppSlug": { "const": "mergesignal" },
+    "authorInstallationId": { "type": "integer", "minimum": 1 },
+    "ownershipState": { "enum": ["owned", "unowned", "unavailable"] },
+    "providerObservedAt": { "type": "string", "format": "date-time" }
+  }
+}

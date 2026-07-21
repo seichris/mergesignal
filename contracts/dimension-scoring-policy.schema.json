@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/dimension-scoring-policy-v1.json",
+  "title": "MergeSignal deterministic dimension scoring policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "version", "effectiveFrom", "stateThresholds", "overallConfidence", "dimensions"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "version": { "type": "string", "pattern": "^scoring-v[1-9][0-9]*$" },
+    "effectiveFrom": { "type": "string", "format": "date-time" },
+    "stateThresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strong", "moderate"],
+      "properties": {
+        "strong": { "type": "number", "minimum": 0, "maximum": 100 },
+        "moderate": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "overallConfidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "coreDimensions", "precision"],
+      "properties": {
+        "method": { "const": "mean_core_capped_by_coverage" },
+        "coreDimensions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/dimensionKey" }
+        },
+        "precision": { "const": 2 }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tenure_continuity", "independent_open_source_record", "merge_follow_through", "collaboration", "relevant_experience", "integrity_gaming_resistance"],
+      "properties": {
+        "tenure_continuity": { "$ref": "#/$defs/dimensionRule" },
+        "independent_open_source_record": { "$ref": "#/$defs/dimensionRule" },
+        "merge_follow_through": { "$ref": "#/$defs/dimensionRule" },
+        "collaboration": { "$ref": "#/$defs/dimensionRule" },
+        "relevant_experience": { "$ref": "#/$defs/dimensionRule" },
+        "integrity_gaming_resistance": { "$ref": "#/$defs/dimensionRule" }
+      }
+    }
+  },
+  "$defs": {
+    "dimensionKey": {
+      "enum": ["tenure_continuity", "independent_open_source_record", "merge_follow_through", "collaboration", "relevant_experience", "integrity_gaming_resistance"]
+    },
+    "dimensionRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reasonWeights", "baseConfidence", "confidencePerSupportingReason", "maximumConfidence", "emptyEvidenceConfidence", "emptyState"],
+      "properties": {
+        "reasonWeights": {
+          "type": "object",
+          "propertyNames": { "pattern": "^[A-Z][A-Z0-9_]+$" },
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 100 }
+        },
+        "baseConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "confidencePerSupportingReason": { "type": "number", "minimum": 0, "maximum": 1 },
+        "maximumConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "emptyEvidenceConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "emptyState": { "const": "uncertain" }
+      }
+    }
+  }
+}

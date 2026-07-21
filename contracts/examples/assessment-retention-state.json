@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "assessmentId": "11111111-1111-4111-8111-111111111111",
+  "snapshotId": "22222222-2222-4222-8222-222222222222",
+  "transitionId": "99999999-9999-4999-8999-999999999999",
+  "lifecycleRevision": 1,
+  "previousState": null,
+  "state": "retained",
+  "calculationMaterialAvailable": true,
+  "publicationAllowed": true,
+  "effectiveAt": "2026-07-21T00:00:01Z",
+  "updatedAt": "2026-07-21T00:00:01Z",
+  "transactionId": "80808080-8080-4080-8080-808080808080",
+  "databaseCommitToken": "2e720e5feb11002fb930dea1c0ad4b231dd445489e2e7ae38c902fa901f34971",
+  "outboxBatchId": null
+}

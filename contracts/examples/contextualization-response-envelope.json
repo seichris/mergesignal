@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "assessmentId": "11111111-1111-4111-8111-111111111111",
+  "requestAlias": "78787878-7878-4878-8878-787878787878",
+  "providerRequestDigest": "e9106f123d70edd7dd9e06f1453b3de0c15a579faee6719faba9ef9d1a4499fb",
+  "providerInvocationDigest": "57d3dd40c01c0b9395cfe2443767d65a331724b6bdc256167e7cb0b6cb931291",
+  "candidatePacketDigest": "d855254d7dde628904e1148e6207d0ddd7d76f85e9db95ba393c7fb34f98b17c",
+  "resolvedModel": "gpt-5.6-sol-2026-07-01",
+  "providerResponseId": "resp_phase0_fixture_001",
+  "providerOutputDigest": "d041235ca419f8d7a6650e897aebc7b793175bf0ea37800ad312a669917545aa",
+  "receivedAt": "2026-07-21T00:00:01Z",
+  "envelopeDigest": "6a48f5fd242a0fb8c470e519fcc791db514af2a3a80960be9ef675266890510c"
+}

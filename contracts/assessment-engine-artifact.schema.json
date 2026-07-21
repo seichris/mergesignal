@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/assessment-engine-artifact-v1.json",
+  "title": "MergeSignal content-addressed assessment engine",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "version",
+    "evaluatorContractVersion",
+    "evaluatorArtifactPath",
+    "evaluatorArtifactDigest",
+    "evaluatorMethods",
+    "schemaArtifacts",
+    "replayRuntimeContractVersion",
+    "replayRuntimeArtifactPath",
+    "replayRuntimeArtifactDigest",
+    "replayRuntimeMethods",
+    "runtimeEnvironmentArtifactPath",
+    "runtimeEnvironmentArtifactDigest",
+    "runtimeArtifacts"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "version": { "type": "string", "pattern": "^engine-v[1-9][0-9]*$" },
+    "evaluatorContractVersion": { "type": "string", "pattern": "^assessment-engine-v[1-9][0-9]*$" },
+    "evaluatorArtifactPath": { "type": "string", "pattern": "^contracts/version-artifacts/bundles/assessment-engine-v[1-9][0-9]*\\.bundle\\.mjs$" },
+    "evaluatorArtifactDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "evaluatorMethods": {
+      "type": "array",
+      "minItems": 11,
+      "uniqueItems": true,
+      "allOf": [
+        { "contains": { "const": "validateDerivedEvidence" } },
+        { "contains": { "const": "exactDerivationCandidates" } },
+        { "contains": { "const": "calculateDimension" } },
+        { "contains": { "const": "classifyAssessment" } },
+        { "contains": { "const": "buildContextualizationCandidates" } },
+        { "contains": { "const": "expandEligibleDerivations" } },
+        { "contains": { "const": "buildAuthoritativeHistoryEvidenceIds" } },
+        { "contains": { "const": "authoritativeReasonEvidenceIds" } },
+        { "contains": { "const": "classifyPublication" } },
+        { "contains": { "const": "evaluatePublicationFence" } },
+        { "contains": { "const": "requiresCommentRemoval" } }
+      ],
+      "items": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]+$" }
+    },
+    "replayRuntimeContractVersion": {
+      "type": "string",
+      "pattern": "^replay-runtime-v[1-9][0-9]*$"
+    },
+    "replayRuntimeArtifactPath": {
+      "type": "string",
+      "pattern": "^contracts/version-artifacts/bundles/replay-runtime-v[1-9][0-9]*\\.bundle\\.mjs$"
+    },
+    "replayRuntimeArtifactDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "replayRuntimeMethods": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "allOf": [
+        { "contains": { "const": "canonicalizeIJson" } },
+        { "contains": { "const": "canonicalDigest" } },
+        { "contains": { "const": "assertEffectiveInterval" } },
+        { "contains": { "const": "selectEffectiveVersion" } },
+        { "contains": { "const": "parseMergeSignalYaml" } }
+      ],
+      "items": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]+$" }
+    },
+    "runtimeEnvironmentArtifactPath": {
+      "const": "contracts/version-artifacts/environments/replay-node22-v1.json"
+    },
+    "runtimeEnvironmentArtifactDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "runtimeArtifacts": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^contracts/version-artifacts/(runtime|bundles|environments)/[A-Za-z0-9._/-]+$"
+      },
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    },
+    "schemaArtifacts": {
+      "type": "object",
+      "minProperties": 8,
+      "propertyNames": { "pattern": "^contracts/[A-Za-z0-9._/-]+\\.json$" },
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    }
+  }
+}

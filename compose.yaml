@@ -1,0 +1,40 @@
+name: mergesignal
+
+services:
+  postgres:
+    image: postgres:17.5-bookworm
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+    ports:
+      - "5432:5432"
+    volumes:
+      - mergesignal-postgres:/var/lib/postgresql/data
+
+  temporal:
+    image: temporalio/auto-setup:1.29.7
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB: postgres12
+      DB_PORT: 5432
+      POSTGRES_PWD: postgres
+      POSTGRES_SEEDS: postgres
+      POSTGRES_USER: postgres
+    healthcheck:
+      test: ["CMD", "tctl", "--address", "temporal:7233", "workflow", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    ports:
+      - "7233:7233"
+
+volumes:
+  mergesignal-postgres:

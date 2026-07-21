@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "1.0.0",
+  "assessmentId": "11111111-1111-4111-8111-111111111111",
+  "target": {
+    "installationId": 9001,
+    "repositoryNodeId": "R_fixture_target",
+    "repositoryVisibility": "public",
+    "pullRequestNodeId": "PR_target_42",
+    "pullRequestNumber": 42,
+    "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "generation": 7,
+    "markerVersion": "1"
+  },
+  "summaryState": "established_evidence",
+  "overallConfidence": "high",
+  "reviewPriority": "prioritize",
+  "reviewPriorityBasis": "reputation_and_patch",
+  "dimensions": {
+    "tenure_continuity": {
+      "state": "strong",
+      "reasonCodes": [
+        "ACCOUNT_TENURE_ESTABLISHED",
+        "SUSTAINED_ACTIVITY",
+        "MULTI_YEAR_CONTINUITY"
+      ]
+    },
+    "independent_open_source_record": {
+      "state": "strong",
+      "reasonCodes": [
+        "INDEPENDENT_MERGES",
+        "MULTI_REPOSITORY_VALIDATION"
+      ]
+    },
+    "merge_follow_through": {
+      "state": "strong",
+      "reasonCodes": [
+        "MERGE_FOLLOW_THROUGH"
+      ]
+    },
+    "collaboration": {
+      "state": "strong",
+      "reasonCodes": [
+        "REVIEW_FOLLOW_THROUGH",
+        "REVIEWS_CONTRIBUTED"
+      ]
+    },
+    "relevant_experience": {
+      "state": "strong",
+      "reasonCodes": [
+        "RELEVANT_LANGUAGE_HISTORY",
+        "RELEVANT_DOMAIN_HISTORY",
+        "RELEVANT_PATH_HISTORY"
+      ]
+    },
+    "integrity_gaming_resistance": {
+      "state": "uncertain",
+      "reasonCodes": []
+    }
+  },
+  "coverage": {
+    "requestedWindowYears": 5,
+    "completeYears": 5,
+    "freshAsOf": "2026-07-21T00:00:00Z",
+    "reasonCodes": []
+  },
+  "patchContext": {
+    "ciState": "passing",
+    "scope": "medium",
+    "linkedIssue": true,
+    "testPathState": "changed",
+    "sensitivePathState": "unchanged",
+    "reasonCodes": [
+      "CI_PASSING",
+      "TESTS_CHANGED",
+      "LINKED_ISSUE_PRESENT"
+    ]
+  },
+  "explanation": {
+    "status": "complete",
+    "reasonCodes": [],
+    "claimReasonCodes": [
+      "INDEPENDENT_MERGES",
+      "RELEVANT_LANGUAGE_HISTORY",
+      "RELEVANT_PATH_HISTORY"
+    ],
+    "caveatKeys": [
+      "PUBLIC_HISTORY_NOT_PATCH_CORRECTNESS",
+      "MODEL_INTERPRETATION"
+    ]
+  },
+  "evidenceLinks": [
+    {
+      "evidenceId": "ev_pr",
+      "evidenceType": "PULL_REQUEST_MERGED",
+      "url": "https://github.com/example/project/pull/12",
+      "visibility": "PUBLIC_GLOBAL",
+      "appliesTo": [
+        "independent_open_source_record",
+        "merge_follow_through",
+        "explanation"
+      ]
+    },
+    {
+      "evidenceId": "ev_path",
+      "evidenceType": "CHANGED_PATH",
+      "url": "https://github.com/example/project/pull/12/files",
+      "visibility": "PUBLIC_GLOBAL",
+      "appliesTo": [
+        "relevant_experience",
+        "explanation"
+      ]
+    }
+  ],
+  "sourceSetDigest": "e17b7785386dc24c25bd65dbfa8e3bbf10db321beae85443f7eeb9b7f7bc94c4",
+  "assessmentVersion": "scoring-v1"
+}

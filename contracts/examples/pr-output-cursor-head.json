@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "cursorId": "67676767-6767-4767-8767-676767676767",
+  "installationId": 9001,
+  "repositoryNodeId": "R_fixture_target",
+  "pullRequestNodeId": "PR_target_42",
+  "pullRequestNumber": 42,
+  "logicalScopeDigest": "a395dff77d2be8e463fb0879db3e43837187a17a45c7298097229075675effe2",
+  "scopeUniquenessReceipt": {
+    "schemaVersion": "1.0.0",
+    "receiptId": "67676767-1111-4111-8111-111111111111",
+    "relation": "pr_output_cursor",
+    "constraintName": "uq_pr_output_cursor_scope",
+    "keyDigest": "ec6a2ceda0d51b07a350559068dfe1c888e776268050e11845409bf11dfea31c",
+    "rowIdentity": "67676767-6767-4767-8767-676767676767",
+    "transactionId": "67676767-2222-4222-8222-222222222222",
+    "databaseCommitToken": "e79a8c04f1b4a06fd5cdbca48c80f14fe9a74e9eacd61fa29a30d7d0f0ccc9e0",
+    "isolationLevel": "serializable",
+    "outcome": "committed",
+    "committedAt": "2026-07-21T00:00:01.500Z",
+    "receiptDigest": "a5380f962cac0fb2bf0a5430ede8f0e2bab70bc8299bd3083c17a0e41d72fd45"
+  },
+  "highWaterCursorRevision": 3,
+  "cursorDigest": "2d8d8287f920c6c13ec5163298fe3a07c4a685dcb2a7f71e4a8c3de71e4b1e6b",
+  "activeGeneration": 7,
+  "activeHeadSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "databaseSnapshotToken": "b96dadc071ff09f455475988bf004bbac3ba693d1668553b7a2a4a7c444b789c",
+  "serializableReadAt": "2026-07-21T00:00:05.200Z"
+}

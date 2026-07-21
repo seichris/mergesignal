@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/evidence-types-registry-v1.json",
+  "title": "MergeSignal evidence-type registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "visibilityClasses", "types"],
+  "properties": {
+    "version": {
+      "const": "1.0.0"
+    },
+    "visibilityClasses": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "PUBLIC_GLOBAL",
+          "PUBLIC_DERIVED",
+          "TARGET_REPOSITORY_PRIVATE",
+          "SUBJECT_VISIBLE",
+          "INTERNAL_OPERATIONAL"
+        ]
+      },
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true
+    },
+    "types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "source",
+          "description",
+          "dimensions",
+          "allowedVisibility",
+          "mutable"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]+$"
+          },
+          "source": {
+            "enum": [
+              "github_graphql",
+              "github_rest",
+              "system",
+              "derived",
+              "internal"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 20
+          },
+          "dimensions": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/dimension"
+            }
+          },
+          "allowedVisibility": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "PUBLIC_GLOBAL",
+                "PUBLIC_DERIVED",
+                "TARGET_REPOSITORY_PRIVATE",
+                "SUBJECT_VISIBLE",
+                "INTERNAL_OPERATIONAL"
+              ]
+            }
+          },
+          "mutable": {
+            "type": "boolean"
+          },
+          "derivationRule": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["version", "requiredAll", "requiredAny", "optional", "minimumCounts", "predicate"],
+            "properties": {
+              "version": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]+-v[1-9][0-9]*$"
+              },
+              "requiredAll": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" }
+              },
+              "requiredAny": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" }
+              },
+              "optional": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" }
+              },
+              "minimumCounts": {
+                "type": "object",
+                "propertyNames": { "pattern": "^[A-Z][A-Z0-9_]+$" },
+                "additionalProperties": { "type": "integer", "minimum": 1 }
+              },
+              "predicate": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]+_v[1-9][0-9]*$"
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": { "source": { "const": "derived" } }
+            },
+            "then": {
+              "required": ["derivationRule"],
+              "properties": { "derivationRule": { "type": "object" } }
+            },
+            "else": {
+              "not": { "required": ["derivationRule"] }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "dimension": {
+      "enum": [
+        "tenure_continuity",
+        "independent_open_source_record",
+        "merge_follow_through",
+        "collaboration",
+        "relevant_experience",
+        "integrity_gaming_resistance",
+        "patch_context",
+        "coverage",
+        "explanation"
+      ]
+    }
+  }
+}

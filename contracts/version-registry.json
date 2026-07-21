@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "1.0.0",
+  "entries": [
+    {
+      "kind": "engine",
+      "version": "engine-v1",
+      "artifactDigest": "09775a319223b237b406d8722117e95abb314375583bcb90c14ab8ecde8dad70",
+      "artifactPath": "contracts/version-artifacts/engine-v1.json",
+      "effectiveFrom": "2026-07-01T00:00:00Z",
+      "effectiveUntil": "2026-07-21T00:00:04Z",
+      "status": "retired"
+    },
+    {
+      "kind": "engine",
+      "version": "engine-v2",
+      "artifactDigest": "52d11ccb16764dcf6c3e46caa998c90b3e5c459302005e389e397f26fc99e2a1",
+      "artifactPath": "contracts/version-artifacts/engine-v2.json",
+      "effectiveFrom": "2026-07-21T00:00:04Z",
+      "effectiveUntil": null,
+      "status": "active"
+    },
+    {
+      "kind": "policy",
+      "version": "policy-v1",
+      "artifactDigest": "a46f0cc5bf024f57933cd9cbad5ad5c7adc5308be8203472ac2a2408a2df5a94",
+      "artifactPath": "contracts/version-artifacts/policy-v1.json",
+      "effectiveFrom": "2026-07-01T00:00:00Z",
+      "effectiveUntil": null,
+      "status": "active"
+    },
+    {
+      "kind": "evidence",
+      "version": "evidence-v2",
+      "artifactDigest": "16ea7c5705428f259e1b0245ae1a8424752d05a4d7dcd2373c5f804e856d35eb",
+      "artifactPath": "contracts/version-artifacts/evidence-v2.json",
+      "effectiveFrom": "2026-07-21T00:00:02Z",
+      "effectiveUntil": null,
+      "status": "active"
+    },
+    {
+      "kind": "evidence",
+      "version": "evidence-v1",
+      "artifactDigest": "4bd90b7665322e88f9060cf795712bc94c1dc72e7e11a9400584280739ec9a05",
+      "artifactPath": "contracts/version-artifacts/evidence-v1.json",
+      "effectiveFrom": "2026-07-01T00:00:00Z",
+      "effectiveUntil": "2026-07-21T00:00:02Z",
+      "status": "retired"
+    },
+    {
+      "kind": "features",
+      "version": "features-v2",
+      "artifactDigest": "b1af855cf6107361d1daab4b3290211e3c5c4686863ccb0ea23df40f877f574b",
+      "artifactPath": "contracts/version-artifacts/features-v2.json",
+      "effectiveFrom": "2026-07-21T00:00:02Z",
+      "effectiveUntil": null,
+      "status": "active"
+    },
+    {
+      "kind": "features",
+      "version": "features-v1",
+      "artifactDigest": "3d95e08075a934d1647c56c181c6c2e0c7d6d82661c6d6f4fbcf98c5c0a1f4f3",
+      "artifactPath": "contracts/version-artifacts/features-v1.json",
+      "effectiveFrom": "2026-07-01T00:00:00Z",
+      "effectiveUntil": "2026-07-21T00:00:02Z",
+      "status": "retired"
+    },
+    {
+      "kind": "scoring",
+      "version": "scoring-v1",
+      "artifactDigest": "51b70a9b58280a9eb55f8b0a2b23f5e2bd5ac959e001eae5fcca2d90226fb817",
+      "artifactPath": "contracts/dimension-scoring-policy.json",
+      "effectiveFrom": "2026-07-01T00:00:00Z",
+      "effectiveUntil": "2026-07-21T00:00:02Z",
+      "status": "retired"
+    },
+    {
+      "kind": "scoring",
+      "version": "scoring-v2",
+      "artifactDigest": "5af5ebca7647cb4433d371a64cffb6fdf823c77a5ae35432d4747945913ee048",
+      "artifactPath": "contracts/version-artifacts/scoring-v2.json",
+      "effectiveFrom": "2026-07-21T00:00:02Z",
+      "effectiveUntil": null,
+      "status": "active"
+    },
+    {
+      "kind": "prompt",
+      "version": "relevance-v1",
+      "artifactDigest": "77fab69fc68026529b99135d34620d21a3e76ebb8d7d1ded3574076a44d9a950",
+      "artifactPath": "contracts/version-artifacts/relevance-v1.md",
+      "effectiveFrom": "2026-07-01T00:00:00Z",
+      "effectiveUntil": null,
+      "status": "active"
+    },
+    {
+      "kind": "model",
+      "version": "gpt-5.6-sol",
+      "artifactDigest": "119acaa3a30602db33f67a8c405e8bb7e14734181dda21ab26fdb5bb52ebdd37",
+      "artifactPath": "contracts/version-artifacts/model-gpt-5.6-sol.json",
+      "effectiveFrom": "2026-07-01T00:00:00Z",
+      "effectiveUntil": null,
+      "status": "active"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "schemaVersion": "1.0.0",
+  "requestAlias": "78787878-7878-4878-8878-787878787878",
+  "assessmentId": "11111111-1111-4111-8111-111111111111",
+  "target": {
+    "installationId": 9001,
+    "repositoryNodeId": "R_fixture_target",
+    "pullRequestNodeId": "PR_target_42",
+    "pullRequestNumber": 42,
+    "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "generation": 7
+  },
+  "requestNonce": "89898989-8989-4989-8989-898989898989",
+  "targetAlias": "1288145ba7201bf583d5b06f43ab75fdc17aa9ccc7efde908b521f76bd2e3c5e",
+  "targetAliasKeyVersion": "target-alias-key-v1",
+  "targetAliasScope": "per_request_target",
+  "safetyIdentifier": "e28e06b1e4e8d68c17aef39abf282a6760267f693524126c987d5d2877b67f77",
+  "safetyKeyVersion": "safety-key-v1",
+  "safetyScope": "installation_subject",
+  "safetyPrincipal": "U_fixture_established",
+  "evidenceAliases": [
+    {
+      "evidenceId": "ev_account",
+      "evidenceAlias": "ev_80ce3aab4217b45f3065a5f944e64083abc6228fb5f907e11fff02e12dbaa766"
+    },
+    {
+      "evidenceId": "ev_active",
+      "evidenceAlias": "ev_5d28b653a8755a30a2d5e8d49e77f21edfca1c813a5611d778b2f41bd654f49a"
+    },
+    {
+      "evidenceId": "ev_active_mid",
+      "evidenceAlias": "ev_7a6ee38d57e5705632bfad9590c50624bb272950704da325d89dc78f88474d8e"
+    },
+    {
+      "evidenceId": "ev_active_old",
+      "evidenceAlias": "ev_72af505ec155b211be99faef2b306c7994e3e9be0b0a60c2af9acac25d542b30"
+    },
+    {
+      "evidenceId": "ev_fileset",
+      "evidenceAlias": "ev_cb0c782dde2d5eb2c0ac5e96161774438b4509a0523df9a5484238203d83eb1e"
+    },
+    {
+      "evidenceId": "ev_follow",
+      "evidenceAlias": "ev_7cb35b400537b5038dd7545d17232f8938798fc84b16b9f5317504c2e3a0b9a7"
+    },
+    {
+      "evidenceId": "ev_historical_fileset",
+      "evidenceAlias": "ev_f8062a337c8f43c6452fdbdd236d65b7ff1e8e3523c27485c5dafc1bba177641"
+    },
+    {
+      "evidenceId": "ev_merge_actor",
+      "evidenceAlias": "ev_2f6bc0cea6091292ae3b55c520c2255ba3150b6ef8930b7b1ea13160eea213e9"
+    },
+    {
+      "evidenceId": "ev_merge_actor_2",
+      "evidenceAlias": "ev_090d167d8daf3a40e6cfc47bbaf43bd4c927d744231e95b7ba0ea9d5f7aa7ba0"
+    },
+    {
+      "evidenceId": "ev_owner",
+      "evidenceAlias": "ev_776b3425f757b61257cb2b6741e0e9a7683b5777ded63e6e54d13f716cb38f61"
+    },
+    {
+      "evidenceId": "ev_owner_2",
+      "evidenceAlias": "ev_a7ea2ba44bc53746269e5fe6acce3afd53df91b10665ee126cdd0087c25adad7"
+    },
+    {
+      "evidenceId": "ev_path",
+      "evidenceAlias": "ev_88b796f13adbcdcc4deac7fc30ec0b335ab075a992a6aa7b75de9623727c947a"
+    },
+    {
+      "evidenceId": "ev_pr",
+      "evidenceAlias": "ev_fb80a4bfbdc8d51f0b04a26a4ecac3ed9f9bcec67ea1ae818e5f19fa0467dafb"
+    },
+    {
+      "evidenceId": "ev_pr_2",
+      "evidenceAlias": "ev_3e932e5fd4b34235e21242061098c6cfc0caf481056cae6d3e20a8139c69c6ad"
+    },
+    {
+      "evidenceId": "ev_pr_opened",
+      "evidenceAlias": "ev_3c1dcc5ad840948e0ee4f1f959ef7de1fcade8fc97b4ed2d83cbe6fcda019310"
+    },
+    {
+      "evidenceId": "ev_pr_opened_2",
+      "evidenceAlias": "ev_7272efb26d79664f5bb76f2e6ec97c0ca8a75a4f31908bcdb70d0dea11136abc"
+    },
+    {
+      "evidenceId": "ev_relevance",
+      "evidenceAlias": "ev_d8b2490b8403f85cfde6461798aebb1dc074d501fc2bc5b5a3eda7ee44e35b59"
+    },
+    {
+      "evidenceId": "ev_review",
+      "evidenceAlias": "ev_9477de40a710c4a6b59fdc5b7fa606b8e90344244976a5fbbd206104cd91a6a5"
+    },
+    {
+      "evidenceId": "ev_review_given",
+      "evidenceAlias": "ev_81077a4d9d234491512d85a9fb37f58969b567d0b0432d96b1a45be7ace157bd"
+    },
+    {
+      "evidenceId": "ev_target_path",
+      "evidenceAlias": "ev_02499963c877a8f515d4e5b4462d880d9d273dad949057e0ce2a477fd40e7e8f"
+    },
+    {
+      "evidenceId": "ev_target_topic",
+      "evidenceAlias": "ev_739bbe67dd28b4bc250af5c479c6b21eb22ea0ca0f51fe7662bd2ecc918e7983"
+    },
+    {
+      "evidenceId": "ev_topic",
+      "evidenceAlias": "ev_35bedef11d172b0dbdbea055b9ba72a6ed15f2852d1ebb83f6b41895fbac084f"
+    },
+    {
+      "evidenceId": "ev_year",
+      "evidenceAlias": "ev_8dd7f2d7f3090f98141a44025173fb26604c4b1778698ba3fa2f2c957d2779e4"
+    },
+    {
+      "evidenceId": "ev_year_mid",
+      "evidenceAlias": "ev_a4be4ab9d1af91d75a7f62056276b81852a6a1b6e4c4a0ae7470c1c514de2c33"
+    },
+    {
+      "evidenceId": "ev_year_recent",
+      "evidenceAlias": "ev_dc8222bb5a99d685f442e93dbb367dc42c251696e617bee65d40ae7a3744365f"
+    }
+  ],
+  "candidatePopulations": [
+    {
+      "claimId": "claim-account-tenure-established",
+      "populationEvidenceIds": [
+        "ev_account",
+        "ev_year",
+        "ev_year_mid",
+        "ev_year_recent"
+      ],
+      "populationCommitment": "24b84c082770f1e5a80f2bff4697af86bd9e5ef365f827271415a7ab051c8d1d"
+    },
+    {
+      "claimId": "claim-multi-year-continuity",
+      "populationEvidenceIds": [
+        "ev_active",
+        "ev_active_mid",
+        "ev_active_old",
+        "ev_year",
+        "ev_year_mid",
+        "ev_year_recent"
+      ],
+      "populationCommitment": "0a0419824578f3f438744e207bbc5896d2b7dcfc94d595d97bfdda2557286b28"
+    },
+    {
+      "claimId": "claim-sustained-activity",
+      "populationEvidenceIds": [
+        "ev_active",
+        "ev_active_mid",
+        "ev_active_old"
+      ],
+      "populationCommitment": "b9f47015a8fb46f2d032feceb5f95387c276878ae156057b58b9330225106bff"
+    },
+    {
+      "claimId": "claim-independent-merges",
+      "populationEvidenceIds": [
+        "ev_merge_actor",
+        "ev_merge_actor_2",
+        "ev_owner",
+        "ev_owner_2",
+        "ev_pr",
+        "ev_pr_2"
+      ],
+      "populationCommitment": "a8a5188b4a2d9f7fa06d2ed061da2de48f338f44bf7b00cc9b1b03964e2a51d9"
+    },
+    {
+      "claimId": "claim-multi-repository-validation",
+      "populationEvidenceIds": [
+        "ev_owner",
+        "ev_owner_2",
+        "ev_pr",
+        "ev_pr_2"
+      ],
+      "populationCommitment": "4829c9ead86a49f83383fdced62740b949c371d573a777e0b5b663e178f8b606"
+    },
+    {
+      "claimId": "claim-merge-follow-through",
+      "populationEvidenceIds": [
+        "ev_pr",
+        "ev_pr_2",
+        "ev_pr_opened",
+        "ev_pr_opened_2"
+      ],
+      "populationCommitment": "74d8e009fd0cd303facc93bf9b7642ce4eaf48a5aa66bcc85a2791f12509b3ba"
+    },
+    {
+      "claimId": "claim-reviews-contributed",
+      "populationEvidenceIds": [
+        "ev_review_given"
+      ],
+      "populationCommitment": "8acde6d80ef1b30306b0785c6b2545913c6f6c1150383bb16bd7ac1ecb06abd6"
+    },
+    {
+      "claimId": "claim-review-follow-through",
+      "populationEvidenceIds": [
+        "ev_follow",
+        "ev_review"
+      ],
+      "populationCommitment": "5e0bb4dacbfebf347af34dd9f58b813c7b9a4c14ee62e5fe7a9e522323d46687"
+    },
+    {
+      "claimId": "claim-relevant-domain-history",
+      "populationEvidenceIds": [
+        "ev_pr_opened",
+        "ev_relevance",
+        "ev_target_topic",
+        "ev_topic"
+      ],
+      "populationCommitment": "cc25550fe451a7428adcd28d8e849eb32db618d02ccafeda371d9a8d2be055f4"
+    },
+    {
+      "claimId": "claim-relevant-language-history",
+      "populationEvidenceIds": [
+        "ev_fileset",
+        "ev_historical_fileset",
+        "ev_path",
+        "ev_pr_opened",
+        "ev_relevance",
+        "ev_target_path"
+      ],
+      "populationCommitment": "f1413aedd432e416b6ed112e7b3daba37b3f7b91717b5f75c9c47376b2dce4fd"
+    },
+    {
+      "claimId": "claim-relevant-path-history",
+      "populationEvidenceIds": [
+        "ev_path",
+        "ev_pr_opened",
+        "ev_relevance",
+        "ev_target_path"
+      ],
+      "populationCommitment": "fda5e3cba931a3e113f80588b6422da6440ae3c5f684c06ec35e62f08dd9ca8c"
+    }
+  ],
+  "instructionArtifactDigest": "77fab69fc68026529b99135d34620d21a3e76ebb8d7d1ded3574076a44d9a950",
+  "requestSchemaArtifactDigest": "c5497f0e5249ab4c5c0a4fbd180b2952a2d964f408412abaa9072317f1bbf3a0",
+  "responseSchemaArtifactDigest": "f436b62b1deedae25edc73b5296be5e7a2ba5e8c310977274233acbe15f7d350",
+  "modelParametersDigest": "31dd8cb5b73222df44b7e1348f5f54d99efba9916c22c083f04f116af6a7010e",
+  "providerRequestDigest": "e9106f123d70edd7dd9e06f1453b3de0c15a579faee6719faba9ef9d1a4499fb",
+  "providerInvocationDigest": "57d3dd40c01c0b9395cfe2443767d65a331724b6bdc256167e7cb0b6cb931291",
+  "sentAt": "2026-07-21T00:00:00.500Z",
+  "envelopeDigest": "499f640799a20aa5d4f6d5119e632a4ab661b649f202da90675c50759536ac9a"
+}

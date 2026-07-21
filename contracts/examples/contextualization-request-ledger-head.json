@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0.0",
+  "ledgerId": "74747474-7474-4474-8474-747474747474",
+  "assessmentId": "11111111-1111-4111-8111-111111111111",
+  "highWaterRevision": 2,
+  "eventCount": 2,
+  "state": "accepted",
+  "casToken": "aaddbb31d2b6a069ed77ea9f42d582f0c7e4b6911f90634c77a04a4cb38fbe07",
+  "streamDigest": "ae23f1490e51e114aa90d71dc4549fc8916ab4c67ce76b68c3bec798db519415",
+  "databaseSnapshotToken": "ce296cc9bfd0cf3a989a0f695adcbbe330d46908a9591f5ba036426009eab08a",
+  "serializableReadAt": "2026-07-21T00:00:01.050Z"
+}

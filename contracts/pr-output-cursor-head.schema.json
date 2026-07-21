@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/pr-output-cursor-head-v1.json",
+  "title": "MergeSignal authoritative PR output cursor high-water record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "cursorId", "installationId", "repositoryNodeId", "pullRequestNodeId", "pullRequestNumber", "logicalScopeDigest", "scopeUniquenessReceipt", "highWaterCursorRevision", "cursorDigest", "activeGeneration", "activeHeadSha", "databaseSnapshotToken", "serializableReadAt"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "cursorId": { "type": "string", "format": "uuid" },
+    "installationId": { "type": "integer", "minimum": 1 },
+    "repositoryNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNumber": { "type": "integer", "minimum": 1 },
+    "logicalScopeDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "scopeUniquenessReceipt": { "$ref": "https://mergesignal.dev/schemas/database-uniqueness-receipt-v1.json" },
+    "highWaterCursorRevision": { "type": "integer", "minimum": 1 },
+    "cursorDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "activeGeneration": { "type": "integer", "minimum": 1 },
+    "activeHeadSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "databaseSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "serializableReadAt": { "type": "string", "format": "date-time" }
+  }
+}

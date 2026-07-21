@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/comment-inventory-observation-v1.json",
+  "title": "MergeSignal complete provider comment inventory",
+  "description": "A complete provider-observed inventory of every PR comment matching the configured App identity and MergeSignal marker, including ambiguous-create duplicates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "observationId", "installationId", "repositoryNodeId", "pullRequestNodeId", "pullRequestNumber", "authorAppId", "authorAppSlug", "markerVersion", "providerTotalCount", "pageInfoComplete", "matches", "providerObservedAt", "inventoryDigest"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "observationId": { "type": "string", "format": "uuid" },
+    "installationId": { "type": "integer", "minimum": 1 },
+    "repositoryNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNumber": { "type": "integer", "minimum": 1 },
+    "authorAppId": { "type": "integer", "minimum": 1 },
+    "authorAppSlug": { "const": "mergesignal" },
+    "markerVersion": { "const": "1" },
+    "providerTotalCount": { "type": "integer", "minimum": 0, "maximum": 1000 },
+    "pageInfoComplete": { "const": true },
+    "matches": {
+      "type": "array",
+      "maxItems": 1000,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["commentId", "ownershipObservationId"],
+        "properties": {
+          "commentId": { "type": "integer", "minimum": 1 },
+          "ownershipObservationId": { "type": "string", "format": "uuid" }
+        }
+      }
+    },
+    "providerObservedAt": { "type": "string", "format": "date-time" },
+    "inventoryDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

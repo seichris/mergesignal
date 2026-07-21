@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "observationId": "69696969-6969-4969-8969-696969696969",
+  "installationId": 9001,
+  "repositoryNodeId": "R_fixture_target",
+  "pullRequestNodeId": "PR_target_42",
+  "pullRequestNumber": 42,
+  "commentId": 123456,
+  "markerVersion": "1",
+  "renderedSourceSetDigest": "e17b7785386dc24c25bd65dbfa8e3bbf10db321beae85443f7eeb9b7f7bc94c4",
+  "markerDigest": "9ec5fcbca9b20725f3bb04f9799fd7155df33a6991448519d5720865430c9b1e",
+  "authorAppId": 424242,
+  "authorAppSlug": "mergesignal",
+  "authorInstallationId": 9001,
+  "ownershipState": "owned",
+  "providerObservedAt": "2026-07-21T00:10:00.850Z"
+}

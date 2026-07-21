@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/detailed-report-authority-v1.json",
+  "title": "MergeSignal trusted detailed-report authority receipt",
+  "description": "An internal authority receipt assembled from a fresh GitHub permission observation and an independent serializable policy-head read. It is trusted input to authorization validation; its digests provide integrity, not caller authentication.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "authorityId", "sessionId", "requestNonce", "viewerGithubNodeId", "installationId", "repositoryNodeId", "permissionObservation", "policyHead", "receivedAt", "authorityDigest"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "authorityId": { "type": "string", "format": "uuid" },
+    "sessionId": { "type": "string", "format": "uuid" },
+    "requestNonce": { "type": "string", "format": "uuid" },
+    "viewerGithubNodeId": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "installationId": { "type": "integer", "minimum": 1 },
+    "repositoryNodeId": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "permissionObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observationId", "providerRequestId", "providerResponseId", "viewerGithubNodeId", "installationId", "repositoryNodeId", "permission", "providerObservedAt", "observationDigest"],
+      "properties": {
+        "observationId": { "type": "string", "format": "uuid" },
+        "providerRequestId": { "type": "string", "format": "uuid" },
+        "providerResponseId": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "viewerGithubNodeId": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "permission": { "enum": ["maintain", "admin"] },
+        "providerObservedAt": { "type": "string", "format": "date-time" },
+        "observationDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "policyHead": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["deploymentId", "installationId", "repositoryNodeId", "logicalStreamKeyDigest", "streamId", "highWaterRevision", "highWaterRevisionId", "streamDigest", "databaseSnapshotToken", "serializableReadAt", "headDigest"],
+      "properties": {
+        "deploymentId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "logicalStreamKeyDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "streamId": { "type": "string", "format": "uuid" },
+        "highWaterRevision": { "type": "integer", "minimum": 1 },
+        "highWaterRevisionId": { "type": "string", "format": "uuid" },
+        "streamDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "databaseSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "serializableReadAt": { "type": "string", "format": "date-time" },
+        "headDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "receivedAt": { "type": "string", "format": "date-time" },
+    "authorityDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

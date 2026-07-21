@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/comment-removal-state-v1.json",
+  "title": "MergeSignal minimized GitHub comment removal audit event",
+  "description": "A short-lived, append-only audit event for removing a previously published PR comment after a terminal assessment-retention event.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "removalId",
+    "transitionId",
+    "lifecycleRevision",
+    "previousState",
+    "publicationId",
+    "assessmentId",
+    "installationId",
+    "repositoryNodeId",
+    "pullRequestNodeId",
+    "pullRequestNumber",
+    "retentionTransitionId",
+    "retentionRevision",
+    "retentionState",
+    "deletionAuthorityId",
+    "deletionAuthorityDigest",
+    "outputCursorRevision",
+    "outputCursorDigest",
+    "commentInventoryObservationId",
+    "commentInventoryDigest",
+    "originTransactionId",
+    "originDatabaseCommitToken",
+    "originOutboxBatchId",
+    "transactionId",
+    "databaseCommitToken",
+    "outboxBatchId",
+    "deletionRequestId",
+    "expiryPolicyVersion",
+    "commentId",
+    "commentOwnershipObservationId",
+    "state",
+    "attemptCount",
+    "lastAttemptAt",
+    "providerDeletionCompletedAt",
+    "providerReceiptDigest",
+    "createdAt",
+    "updatedAt",
+    "auditExpiresAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "removalId": { "type": "string", "format": "uuid" },
+    "transitionId": { "type": "string", "format": "uuid" },
+    "lifecycleRevision": { "type": "integer", "minimum": 1 },
+    "previousState": {
+      "type": ["string", "null"],
+      "enum": [null, "queued", "removing", "retrying", "removed", "failed", "superseded"]
+    },
+    "publicationId": { "type": "string", "format": "uuid" },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "installationId": { "type": "integer", "minimum": 1 },
+    "repositoryNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNodeId": { "type": "string", "minLength": 1 },
+    "pullRequestNumber": { "type": "integer", "minimum": 1 },
+    "retentionTransitionId": { "type": "string", "format": "uuid" },
+    "retentionRevision": { "type": "integer", "minimum": 2 },
+    "retentionState": { "enum": ["subject_deleted", "expired"] },
+    "deletionAuthorityId": { "type": "string", "format": "uuid" },
+    "deletionAuthorityDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "outputCursorRevision": { "type": "integer", "minimum": 1 },
+    "outputCursorDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "commentInventoryObservationId": { "type": "string", "format": "uuid" },
+    "commentInventoryDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "originTransactionId": { "type": "string", "format": "uuid" },
+    "originDatabaseCommitToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "originOutboxBatchId": { "type": "string", "format": "uuid" },
+    "transactionId": { "type": "string", "format": "uuid" },
+    "databaseCommitToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "outboxBatchId": { "type": "string", "format": "uuid" },
+    "deletionRequestId": { "type": ["string", "null"], "format": "uuid" },
+    "expiryPolicyVersion": { "type": ["string", "null"], "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "commentId": { "type": "integer", "minimum": 1 },
+    "commentOwnershipObservationId": { "type": "string", "format": "uuid" },
+    "state": { "enum": ["queued", "removing", "retrying", "removed", "failed", "superseded"] },
+    "attemptCount": { "type": "integer", "minimum": 0 },
+    "lastAttemptAt": { "type": ["string", "null"], "format": "date-time" },
+    "providerDeletionCompletedAt": { "type": ["string", "null"], "format": "date-time" },
+    "providerReceiptDigest": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "auditExpiresAt": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lifecycleRevision": { "const": 1 } } },
+      "then": {
+        "properties": {
+          "previousState": { "const": null },
+          "state": { "const": "queued" }
+        }
+      },
+      "else": { "properties": { "previousState": { "type": "string" } } }
+    },
+    {
+      "if": { "properties": { "retentionState": { "const": "subject_deleted" } } },
+      "then": {
+        "properties": {
+          "deletionRequestId": { "type": "string", "format": "uuid" },
+          "expiryPolicyVersion": { "const": null }
+        }
+      },
+      "else": {
+        "properties": {
+          "deletionRequestId": { "const": null },
+          "expiryPolicyVersion": { "type": "string" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "state": { "const": "queued" } } },
+      "then": {
+        "properties": {
+          "attemptCount": { "const": 0 },
+          "lastAttemptAt": { "const": null },
+          "providerDeletionCompletedAt": { "const": null },
+          "providerReceiptDigest": { "const": null }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "state": { "const": "removed" } } },
+      "then": {
+        "properties": {
+          "attemptCount": { "type": "integer", "minimum": 1 },
+          "lastAttemptAt": { "type": "string" },
+          "providerDeletionCompletedAt": { "type": "string" },
+          "providerReceiptDigest": { "type": "string" }
+        }
+      },
+      "else": {
+        "properties": {
+          "providerDeletionCompletedAt": { "const": null },
+          "providerReceiptDigest": { "const": null }
+        }
+      }
+    }
+  ]
+}

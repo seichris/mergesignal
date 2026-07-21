@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/feature-policy-artifact-v1.json",
+  "title": "MergeSignal deterministic feature and collection policy artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "version", "evaluatorContractVersion", "evaluatorArtifactPath", "evaluatorArtifactDigest", "accountTenureMinimumDays", "sustainedActivity", "multiYearContinuity", "historyWindowMaximumYears", "metadataStructureVersion", "pathLanguage", "publicHistoryFreshness", "coverageConfidence", "coverageQueryPlan", "resourceLimits", "dashboardAuthorization", "publicationVisibilityFence"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "version": { "type": "string", "pattern": "^features-v[1-9][0-9]*$" },
+    "evaluatorContractVersion": { "type": "string", "pattern": "^feature-evaluator-v[1-9][0-9]*$" },
+    "evaluatorArtifactPath": { "type": "string", "pattern": "^contracts/version-artifacts/evaluators/feature-evaluator-v[1-9][0-9]*\\.mjs$" },
+    "evaluatorArtifactDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "accountTenureMinimumDays": { "type": "integer", "minimum": 1, "maximum": 3650 },
+    "sustainedActivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimumActiveMonths", "minimumSpanDays"],
+      "properties": {
+        "minimumActiveMonths": { "type": "integer", "minimum": 2, "maximum": 60 },
+        "minimumSpanDays": { "type": "integer", "minimum": 1, "maximum": 3650 }
+      }
+    },
+    "multiYearContinuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimumActiveYears"],
+      "properties": {
+        "minimumActiveYears": { "type": "integer", "minimum": 2, "maximum": 5 }
+      }
+    },
+    "historyWindowMaximumYears": { "const": 5 },
+    "metadataStructureVersion": { "const": "pr-metadata-structure-v1" },
+    "pathLanguage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "caseSensitive", "extensionMap", "fallback"],
+      "properties": {
+        "version": { "const": "path-language-v1" },
+        "caseSensitive": { "const": false },
+        "extensionMap": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "pattern": "^[a-z][a-z0-9+#.-]*$" },
+          "propertyNames": { "pattern": "^\\.[a-z0-9]+$" }
+        },
+        "fallback": { "const": null }
+      }
+    },
+    "publicHistoryFreshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "maxAgeSeconds"],
+      "properties": {
+        "version": { "const": "public-history-freshness-v1" },
+        "maxAgeSeconds": { "type": "integer", "minimum": 60, "maximum": 604800 }
+      }
+    },
+    "coverageConfidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "precision", "attributionFactors", "freshnessFactors"],
+      "properties": {
+        "version": { "const": "coverage-confidence-v1" },
+        "precision": { "const": 2 },
+        "attributionFactors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["complete", "uncertain", "unavailable"],
+          "properties": {
+            "complete": { "const": 1 },
+            "uncertain": { "type": "number", "minimum": 0, "maximum": 1 },
+            "unavailable": { "const": 0 }
+          }
+        },
+        "freshnessFactors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["current", "stale"],
+          "properties": {
+            "current": { "const": 1 },
+            "stale": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "coverageQueryPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "partitions"],
+      "properties": {
+        "version": { "const": "public-history-query-plan-v1" },
+        "partitions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["key", "queryVersion", "mode", "temporalBasis", "evidenceTypes", "countsTowardCompleteYears"],
+            "properties": {
+              "key": { "type": "string", "pattern": "^[a-z][a-z0-9_]+$" },
+              "queryVersion": { "type": "string", "pattern": "^[a-z][a-z0-9-]+-v[1-9][0-9]*$" },
+              "mode": { "enum": ["singleton", "per_calendar_year"] },
+              "temporalBasis": { "enum": ["not_applicable", "canonical_event_at"] },
+              "evidenceTypes": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" }
+              },
+              "countsTowardCompleteYears": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "resourceLimits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["snapshotMaxItems", "snapshotMaxCanonicalBytes", "partitionMaxCandidates", "visibilityMaxSources", "visibilityMaxCanonicalBytes", "identifierMaxLength"],
+      "properties": {
+        "snapshotMaxItems": { "type": "integer", "minimum": 1000, "maximum": 100000 },
+        "snapshotMaxCanonicalBytes": { "type": "integer", "minimum": 1048576, "maximum": 67108864 },
+        "partitionMaxCandidates": { "type": "integer", "minimum": 1000, "maximum": 50000 },
+        "visibilityMaxSources": { "type": "integer", "minimum": 100, "maximum": 50000 },
+        "visibilityMaxCanonicalBytes": { "type": "integer", "minimum": 1048576, "maximum": 134217728 },
+        "identifierMaxLength": { "type": "integer", "minimum": 64, "maximum": 512 }
+      }
+    },
+    "dashboardAuthorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "maxAgeSeconds"],
+      "properties": {
+        "version": { "const": "dashboard-authorization-v1" },
+        "maxAgeSeconds": { "type": "integer", "minimum": 1, "maximum": 600 }
+      }
+    },
+    "publicationVisibilityFence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "maxAgeSeconds"],
+      "properties": {
+        "version": { "const": "publication-visibility-fence-v1" },
+        "maxAgeSeconds": { "type": "integer", "minimum": 1, "maximum": 300 }
+      }
+    }
+  }
+}

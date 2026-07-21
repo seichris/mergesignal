@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "observationId": "77777777-7777-4777-8777-777777777777",
+  "installationId": 9001,
+  "repositoryNodeId": "R_fixture_target",
+  "pullRequestNodeId": "PR_target_42",
+  "pullRequestNumber": 42,
+  "authorAppId": 424242,
+  "authorAppSlug": "mergesignal",
+  "markerVersion": "1",
+  "providerTotalCount": 0,
+  "pageInfoComplete": true,
+  "matches": [],
+  "providerObservedAt": "2026-07-21T00:00:01.750Z",
+  "inventoryDigest": "8ef13a608ff552fe8e09075c490c0f380102c2879b578916b34ae83e37333923"
+}

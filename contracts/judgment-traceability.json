@@ -1,0 +1,215 @@
+{
+  "version": "1.0.0",
+  "judgments": [
+    {
+      "key": "dimension.tenure_continuity",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["ACCOUNT_CREATED", "CONTRIBUTION_YEAR", "ACTIVE_MONTH", "ACTIVITY_BURST", "PUBLIC_COVERAGE_SUMMARY"],
+      "confidenceRule": "Confidence is bounded by complete time-window coverage; account age alone cannot produce a strong state.",
+      "reasonCodes": ["ACCOUNT_TENURE_ESTABLISHED", "SUSTAINED_ACTIVITY", "MULTI_YEAR_CONTINUITY", "LIMITED_PUBLIC_HISTORY"],
+      "tests": ["newcomer-strong-patch", "established-relevant", "established-unrelated", "rename-control", "renamed-account", "dormant-old-burst"]
+    },
+    {
+      "key": "dimension.independent_open_source_record",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["PULL_REQUEST_MERGED", "MERGE_ACTOR", "REPOSITORY_OWNERSHIP_RELATIONSHIP"],
+      "confidenceRule": "Confidence requires resolved merge actors and repository relationships across independent maintainers or repositories.",
+      "reasonCodes": ["INDEPENDENT_MERGES", "MULTI_REPOSITORY_VALIDATION"],
+      "tests": ["established-relevant", "established-unrelated", "rename-control", "renamed-account", "self-merge-heavy", "reciprocal-merge-ring"]
+    },
+    {
+      "key": "dimension.merge_follow_through",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["PULL_REQUEST_OPENED", "PULL_REQUEST_MERGED", "PULL_REQUEST_CLOSED_UNMERGED", "REVIEW_RECEIVED", "FOLLOW_UP_COMMIT", "PUBLIC_COVERAGE_SUMMARY"],
+      "confidenceRule": "Small samples are shrunk toward a calibrated prior and unresolved or contextless closed PRs are not interpreted as poor work.",
+      "reasonCodes": ["MERGE_FOLLOW_THROUGH", "HISTORY_PARTIALLY_ACCESSIBLE"],
+      "tests": ["established-relevant", "established-unrelated", "rename-control", "renamed-account", "high-volume-complete-history", "partial-rate-limited-history"]
+    },
+    {
+      "key": "dimension.collaboration",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["ACCOUNT_CREATED", "REVIEW_RECEIVED", "REVIEW_GIVEN", "FOLLOW_UP_COMMIT", "REVIEW_THREAD_RESOLVED", "PUBLIC_COVERAGE_SUMMARY"],
+      "confidenceRule": "Only structured review actions count; comment sentiment, personality, and response prose are excluded.",
+      "reasonCodes": ["REVIEW_FOLLOW_THROUGH", "REVIEWS_CONTRIBUTED", "LIMITED_PUBLIC_HISTORY"],
+      "tests": ["established-relevant", "newcomer-strong-patch"]
+    },
+    {
+      "key": "dimension.relevant_experience",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["PULL_REQUEST_OPENED", "REPOSITORY_TOPIC", "DEPENDENCY_ECOSYSTEM", "CHANGED_PATH", "PATCH_FILESET_STATUS", "RELEVANCE_COMPARISON"],
+      "confidenceRule": "Deterministic similarity owns the score and state; model output can explain or rerank cited candidates but cannot change them.",
+      "reasonCodes": ["RELEVANT_LANGUAGE_HISTORY", "RELEVANT_DOMAIN_HISTORY", "RELEVANT_PATH_HISTORY"],
+      "tests": ["established-relevant", "prompt-injection-in-evidence", "prompt-injection-valid-irrelevant-citation"]
+    },
+    {
+      "key": "dimension.integrity_gaming_resistance",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["PULL_REQUEST_OPENED", "PULL_REQUEST_MERGED", "MERGE_ACTOR", "REPOSITORY_OWNERSHIP_RELATIONSHIP", "ACTIVE_MONTH", "ACTIVITY_BURST", "TEMPLATE_SIMILARITY", "MERGE_RELATIONSHIP_EVENT", "RECIPROCAL_MERGE_EDGE", "BEHAVIOR_BASELINE_CHANGE"],
+      "confidenceRule": "Anomaly evidence can lower confidence or require inspection but cannot make an allegation or apply a hidden negative score.",
+      "reasonCodes": ["INDEPENDENCE_UNCLEAR", "SELF_MERGE_DOMINATED", "RECENT_ACTIVITY_ANOMALY", "RECIPROCAL_PATTERN", "TEMPLATED_ACTIVITY_PATTERN", "RECENT_BEHAVIOR_CHANGE"],
+      "tests": ["dormant-old-burst", "self-merge-heavy", "reciprocal-merge-ring", "account-takeover-shift", "templated-mass-prs"]
+    },
+    {
+      "key": "confidence.overall",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["PUBLIC_COVERAGE_SUMMARY", "ACTOR_TYPE", "AUTHOR_AVAILABILITY", "CONTRIBUTION_YEAR"],
+      "confidenceRule": "The stored overall label is deterministically derived and cannot exceed decision-critical coverage or attribution confidence.",
+      "reasonCodes": ["LIMITED_PUBLIC_HISTORY", "HISTORY_PARTIALLY_ACCESSIBLE", "HISTORY_TRUNCATED", "EVIDENCE_STALE", "ATTRIBUTION_UNCERTAIN", "UNSUPPORTED_ACTOR_TYPE", "AUTHOR_UNAVAILABLE"],
+      "tests": ["newcomer-strong-patch", "partial-rate-limited-history", "high-volume-truncated-history", "stale-public-cache", "ambiguous-attribution", "unsupported-bot-author", "missing-pull-request-author"]
+    },
+    {
+      "key": "summary.established_evidence",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["PULL_REQUEST_MERGED", "MERGE_ACTOR", "REPOSITORY_OWNERSHIP_RELATIONSHIP", "ACTIVE_MONTH"],
+      "confidenceRule": "Requires sufficient multi-year coverage, independent validation, and no unresolved manual-inspection trigger; technical relevance remains separate.",
+      "reasonCodes": ["INDEPENDENT_MERGES", "MULTI_REPOSITORY_VALIDATION", "SUSTAINED_ACTIVITY"],
+      "tests": ["established-relevant", "established-unrelated", "rename-control", "renamed-account"]
+    },
+    {
+      "key": "summary.developing_evidence",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["PULL_REQUEST_OPENED", "PULL_REQUEST_MERGED", "MERGE_ACTOR", "REPOSITORY_OWNERSHIP_RELATIONSHIP", "ACTIVE_MONTH", "PUBLIC_COVERAGE_SUMMARY"],
+      "confidenceRule": "Used when accessible history supports some dimensions but does not meet established-evidence coverage or validation thresholds.",
+      "reasonCodes": ["MERGE_FOLLOW_THROUGH", "SUSTAINED_ACTIVITY", "INDEPENDENT_MERGES"],
+      "tests": ["high-volume-complete-history", "prompt-injection-in-evidence", "prompt-injection-valid-irrelevant-citation", "model-timeout-fallback", "review-priority-disabled"]
+    },
+    {
+      "key": "summary.limited_evidence",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["ACCOUNT_CREATED", "ACTOR_TYPE", "AUTHOR_AVAILABILITY", "PUBLIC_COVERAGE_SUMMARY"],
+      "confidenceRule": "Selected for sparse, inaccessible, truncated, stale, or unsupported history and never described or sorted as low reputation.",
+      "reasonCodes": ["LIMITED_PUBLIC_HISTORY", "HISTORY_PARTIALLY_ACCESSIBLE", "HISTORY_TRUNCATED", "EVIDENCE_STALE", "ATTRIBUTION_UNCERTAIN", "UNSUPPORTED_ACTOR_TYPE", "AUTHOR_UNAVAILABLE"],
+      "tests": ["newcomer-strong-patch", "private-history-hidden", "partial-rate-limited-history", "high-volume-truncated-history", "stale-public-cache", "ambiguous-attribution", "unsupported-bot-author", "missing-pull-request-author", "internal-repository-boundary", "sensitive-large-patch", "private-cross-repository-blocked", "source-visibility-changed-before-publication"]
+    },
+    {
+      "key": "summary.needs_manual_inspection",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/reputation",
+      "evidenceTypes": ["PULL_REQUEST_OPENED", "PULL_REQUEST_MERGED", "MERGE_ACTOR", "ACTIVE_MONTH", "ACTIVITY_BURST", "TEMPLATE_SIMILARITY", "MERGE_RELATIONSHIP_EVENT", "RECIPROCAL_MERGE_EDGE", "BEHAVIOR_BASELINE_CHANGE", "REPOSITORY_OWNERSHIP_RELATIONSHIP"],
+      "confidenceRule": "Selected only by explicit, evidence-backed integrity reason codes; wording remains neutral and exposes supporting public facts.",
+      "reasonCodes": ["SELF_MERGE_DOMINATED", "RECENT_ACTIVITY_ANOMALY", "RECIPROCAL_PATTERN", "TEMPLATED_ACTIVITY_PATTERN", "RECENT_BEHAVIOR_CHANGE"],
+      "tests": ["dormant-old-burst", "self-merge-heavy", "reciprocal-merge-ring", "account-takeover-shift", "templated-mass-prs"]
+    },
+    {
+      "key": "priority.prioritize",
+      "surface": "pr_comment",
+      "owner": "packages/policy",
+      "evidenceTypes": ["PULL_REQUEST_MERGED", "MERGE_ACTOR", "REPOSITORY_OWNERSHIP_RELATIONSHIP", "CI_CHECK_STATE", "PATCH_SCOPE", "TEST_PATH_CHANGE", "SENSITIVE_PATH_CHANGE"],
+      "confidenceRule": "Opt-in only; either reputation plus patch context or an explicitly labeled patch-only path may qualify. Limited history is never treated as negative, and priority never authorizes merge.",
+      "reasonCodes": ["INDEPENDENT_MERGES", "MULTI_REPOSITORY_VALIDATION", "CI_PASSING"],
+      "tests": ["established-relevant", "newcomer-strong-patch"]
+    },
+    {
+      "key": "priority.standard",
+      "surface": "pr_comment",
+      "owner": "packages/policy",
+      "evidenceTypes": ["ACCOUNT_CREATED", "PULL_REQUEST_OPENED", "CI_CHECK_STATE", "PUBLIC_COVERAGE_SUMMARY"],
+      "confidenceRule": "Default for limited evidence and ordinary cases; sparse history alone cannot force inspect-first.",
+      "reasonCodes": ["LIMITED_PUBLIC_HISTORY", "CI_INCOMPLETE"],
+      "tests": ["established-unrelated", "ambiguous-attribution"]
+    },
+    {
+      "key": "priority.inspect_first",
+      "surface": "pr_comment",
+      "owner": "packages/policy",
+      "evidenceTypes": ["PULL_REQUEST_OPENED", "PULL_REQUEST_MERGED", "MERGE_ACTOR", "REPOSITORY_OWNERSHIP_RELATIONSHIP", "ACTIVE_MONTH", "ACTIVITY_BURST", "RECIPROCAL_MERGE_EDGE", "BEHAVIOR_BASELINE_CHANGE", "TEMPLATE_SIMILARITY", "CI_CHECK_STATE", "PATCH_SCOPE", "SENSITIVE_PATH_CHANGE"],
+      "confidenceRule": "Requires an explicit visible integrity or patch-context reason, remains advisory, and cannot be caused by sparse history alone.",
+      "reasonCodes": ["SELF_MERGE_DOMINATED", "RECENT_ACTIVITY_ANOMALY", "RECIPROCAL_PATTERN", "RECENT_BEHAVIOR_CHANGE", "TEMPLATED_ACTIVITY_PATTERN", "CI_FAILING", "SENSITIVE_PATH_CHANGED", "LARGE_PATCH_SCOPE"],
+      "tests": ["dormant-old-burst", "self-merge-heavy", "reciprocal-merge-ring", "account-takeover-shift", "templated-mass-prs", "sensitive-large-patch"]
+    },
+    {
+      "key": "patch_context.summary",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/github-output",
+      "evidenceTypes": ["CI_CHECK_STATE", "PATCH_FILESET_STATUS", "REPOSITORY_RISK_POLICY", "PATCH_SCOPE", "TEST_PATH_CHANGE", "LINKED_ISSUE", "SENSITIVE_PATH_CHANGE"],
+      "confidenceRule": "Facts are tied to the assessed head SHA and never combined mathematically with contributor reputation.",
+      "reasonCodes": ["CI_PASSING", "CI_FAILING", "CI_INCOMPLETE", "PATCH_INVENTORY_INCOMPLETE", "TESTS_CHANGED", "LINKED_ISSUE_PRESENT", "SENSITIVE_PATH_CHANGED", "LARGE_PATCH_SCOPE"],
+      "tests": ["newcomer-strong-patch", "established-relevant", "established-unrelated", "sensitive-large-patch", "changed-file-inventory-unavailable", "ambiguous-attribution"]
+    },
+    {
+      "key": "explanation.status",
+      "surface": "pr_comment_and_dashboard",
+      "owner": "packages/contextualizer",
+      "evidenceTypes": ["CONTEXTUALIZER_STATUS"],
+      "confidenceRule": "Contextual failure never changes deterministic scores, summary state, or coverage and is rendered as a generic operational caveat.",
+      "reasonCodes": ["MODEL_EXPLANATION_UNAVAILABLE"],
+      "tests": ["model-timeout-fallback"]
+    },
+    {
+      "key": "check.pending",
+      "surface": "operational_check",
+      "owner": "packages/github-output",
+      "contractStates": ["queued:none", "in_progress:none", "retrying:none"],
+      "confidenceRule": "Only non-terminal delivery lifecycle facts render as a pending operational Check; reputation never changes the outcome.",
+      "tests": ["partial-rate-limited-history", "source-visibility-changed-before-publication", "assessment-in-progress", "publication-retrying"]
+    },
+    {
+      "key": "check.success",
+      "surface": "operational_check",
+      "owner": "packages/github-output",
+      "contractStates": ["completed:success"],
+      "confidenceRule": "Success requires the current head and generation, one published app comment, persisted GitHub IDs, and a current post-write source fence.",
+      "tests": [
+        "newcomer-strong-patch",
+        "established-relevant",
+        "established-unrelated",
+        "dormant-old-burst",
+        "self-merge-heavy",
+        "reciprocal-merge-ring",
+        "high-volume-complete-history",
+        "high-volume-truncated-history",
+        "rename-control",
+        "renamed-account",
+        "ambiguous-attribution",
+        "private-history-hidden",
+        "prompt-injection-in-evidence",
+        "model-timeout-fallback",
+        "account-takeover-shift",
+        "sensitive-large-patch",
+        "templated-mass-prs",
+        "stale-public-cache",
+        "review-priority-disabled",
+        "unsupported-bot-author",
+        "private-cross-repository-blocked",
+        "prompt-injection-valid-irrelevant-citation",
+        "missing-pull-request-author",
+        "internal-repository-boundary",
+        "changed-file-inventory-unavailable"
+      ]
+    },
+    {
+      "key": "check.action_required",
+      "surface": "operational_check",
+      "owner": "packages/github-output",
+      "contractStates": ["completed:action_required"],
+      "confidenceRule": "Action required is reserved for explicit configuration or maintainer input and never represents contributor reputation.",
+      "tests": ["installation-permission-action-required"]
+    },
+    {
+      "key": "check.failure",
+      "surface": "operational_check",
+      "owner": "packages/github-output",
+      "contractStates": ["completed:failure"],
+      "confidenceRule": "Failure represents exhausted assessment or publication policy and never a negative contributor judgment.",
+      "tests": ["publication-retry-exhausted"]
+    },
+    {
+      "key": "check.superseded",
+      "surface": "operational_check",
+      "owner": "packages/github-output",
+      "contractStates": ["superseded:cancelled"],
+      "confidenceRule": "Cancellation means a newer pull-request head or generation superseded this delivery and requires no reputation interpretation.",
+      "tests": ["stale-generation-superseded"]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "gpt-5.6-sol",
+  "provider": "openai",
+  "requestedModel": "gpt-5.6-sol",
+  "resolvedModel": "gpt-5.6-sol-2026-07-01",
+  "reasoningEffort": "high",
+  "routingPolicy": "quality-critical-relevance-v1",
+  "routingPolicyArtifactPath": "contracts/version-artifacts/routing-quality-critical-relevance-v1.json",
+  "routingPolicyArtifactDigest": "3b482c858d667407c8d4dc2a513b3159ce4a985faf177604a791595c0f9e4c1b",
+  "requestSchema": "contextualization-request-v1",
+  "requestSchemaArtifactPath": "contracts/contextualization-request.schema.json",
+  "requestSchemaArtifactDigest": "c5497f0e5249ab4c5c0a4fbd180b2952a2d964f408412abaa9072317f1bbf3a0",
+  "responseSchema": "contextualization-output-v1",
+  "responseSchemaArtifactPath": "contracts/contextualization-output.schema.json",
+  "responseSchemaArtifactDigest": "f436b62b1deedae25edc73b5296be5e7a2ba5e8c310977274233acbe15f7d350",
+  "targetAliasStrategy": "hmac-sha256-installation-secret-v1",
+  "evidenceAliasStrategy": "hmac-sha256-request-local-evidence-v1",
+  "safetyIdentifierStrategy": "hmac-sha256-abuse-correlation-v1",
+  "privateEvidencePolicy": "exclude-private-dependent-candidates-v1",
+  "tools": [],
+  "store": false
+}

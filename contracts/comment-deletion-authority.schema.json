@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/comment-deletion-authority-v1.json",
+  "title": "MergeSignal fresh comment-deletion authority",
+  "description": "A durable compare-and-swap authority binding terminal retention to the current PR output cursor and complete deletion-time App/marker inventory.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "authorityId", "publicationId", "assessmentId", "sourceSetDigest", "mutationLeaseId", "mutationLeaseDigest", "mutationFencingToken", "outputCursorId", "outputCursorRevision", "outputCursorDigest", "outputCursorSnapshotToken", "outputCursorReadAt", "commentInventoryObservationId", "commentInventoryDigest", "authorizedCommentIds", "observedAt", "authorityDigest"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "authorityId": { "type": "string", "format": "uuid" },
+    "publicationId": { "type": "string", "format": "uuid" },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "sourceSetDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "mutationLeaseId": { "type": "string", "format": "uuid" },
+    "mutationLeaseDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "mutationFencingToken": { "type": "integer", "minimum": 1 },
+    "outputCursorId": { "type": "string", "format": "uuid" },
+    "outputCursorRevision": { "type": "integer", "minimum": 1 },
+    "outputCursorDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "outputCursorSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "outputCursorReadAt": { "type": "string", "format": "date-time" },
+    "commentInventoryObservationId": { "type": "string", "format": "uuid" },
+    "commentInventoryDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "authorizedCommentIds": {
+      "type": "array",
+      "maxItems": 1000,
+      "uniqueItems": true,
+      "items": { "type": "integer", "minimum": 1 }
+    },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "authorityDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

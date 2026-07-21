@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "streamKind": "comment_removal",
+  "aggregateId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "highWaterRevision": 3,
+  "eventCount": 3,
+  "streamDigest": "48007bd2203c0b4b6eeca2dc947ce0277f8e001b0b79ef032a8ef390d8cd9f74",
+  "databaseSnapshotToken": "68b538c2fd60200032ecc44bea97cfc0dfeeeb4ce8af3f394fae1de33e4b88a0",
+  "serializableReadAt": "2026-07-21T00:10:03Z"
+}

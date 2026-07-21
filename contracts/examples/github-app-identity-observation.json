@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0.0",
+  "observationId": "91919191-9191-4191-8191-919191919191",
+  "deploymentId": "kontext-production",
+  "credentialFingerprint": "501ddd573b82108c38f8d487e5d8f8868098bd65404d5eaa5cf3589f8b2927d0",
+  "providerRequestId": "92929292-9292-4292-8292-929292929292",
+  "providerResponseId": "github-request-fixture-app-identity-1",
+  "appId": 424242,
+  "slug": "mergesignal",
+  "providerObservedAt": "2026-07-21T00:00:00.500Z",
+  "observationDigest": "c37a723a6d4bbb459e42aeb9d449c07d5c600b687b7fb636f21f252113808fc1"
+}

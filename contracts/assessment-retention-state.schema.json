@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/assessment-retention-state-v1.json",
+  "title": "MergeSignal append-only assessment retention event",
+  "description": "A content-free, monotonically versioned lifecycle event. Terminal deletion and expiry events cannot transition back to a publishable state.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "assessmentId",
+    "snapshotId",
+    "transitionId",
+    "lifecycleRevision",
+    "previousState",
+    "state",
+    "calculationMaterialAvailable",
+    "publicationAllowed",
+    "transactionId",
+    "databaseCommitToken",
+    "outboxBatchId",
+    "effectiveAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "snapshotId": { "type": "string", "format": "uuid" },
+    "transitionId": { "type": "string", "format": "uuid" },
+    "lifecycleRevision": { "type": "integer", "minimum": 1 },
+    "previousState": {
+      "type": ["string", "null"],
+      "enum": [null, "retained", "source_tombstoned", "subject_deleted", "expired"]
+    },
+    "state": { "enum": ["retained", "source_tombstoned", "subject_deleted", "expired"] },
+    "deletionRequestId": { "type": "string", "format": "uuid" },
+    "expiryPolicyVersion": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "calculationMaterialAvailable": { "type": "boolean" },
+    "publicationAllowed": { "type": "boolean" },
+    "transactionId": { "type": "string", "format": "uuid" },
+    "databaseCommitToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "outboxBatchId": { "type": ["string", "null"], "format": "uuid" },
+    "effectiveAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lifecycleRevision": { "const": 1 } } },
+      "then": { "properties": { "previousState": { "const": null }, "state": { "const": "retained" } } },
+      "else": { "properties": { "previousState": { "type": "string" } } }
+    },
+    {
+      "if": { "properties": { "state": { "enum": ["retained", "source_tombstoned"] } } },
+      "then": {
+        "properties": {
+          "calculationMaterialAvailable": { "const": true },
+          "publicationAllowed": { "const": true },
+          "outboxBatchId": { "const": null }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "state": { "enum": ["subject_deleted", "expired"] } } },
+      "then": {
+        "properties": {
+          "calculationMaterialAvailable": { "const": false },
+          "publicationAllowed": { "const": false },
+          "outboxBatchId": { "type": "string", "format": "uuid" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "state": { "const": "subject_deleted" } } },
+      "then": {
+        "required": ["deletionRequestId"],
+        "properties": {
+          "deletionRequestId": { "type": "string", "format": "uuid" },
+          "expiryPolicyVersion": false
+        }
+      }
+    },
+    {
+      "if": { "properties": { "state": { "const": "expired" } } },
+      "then": {
+        "required": ["expiryPolicyVersion"],
+        "properties": {
+          "expiryPolicyVersion": { "type": "string" },
+          "deletionRequestId": false
+        }
+      }
+    },
+    {
+      "if": { "properties": { "state": { "enum": ["retained", "source_tombstoned"] } } },
+      "then": {
+        "properties": {
+          "previousState": { "enum": [null, "retained", "source_tombstoned"] },
+          "deletionRequestId": false,
+          "expiryPolicyVersion": false
+        }
+      }
+    }
+  ]
+}

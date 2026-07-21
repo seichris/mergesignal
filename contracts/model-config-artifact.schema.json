@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/model-config-artifact-v1.json",
+  "title": "MergeSignal resolved model configuration artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "version", "provider", "requestedModel", "resolvedModel", "reasoningEffort", "routingPolicy", "routingPolicyArtifactPath", "routingPolicyArtifactDigest", "requestSchema", "requestSchemaArtifactPath", "requestSchemaArtifactDigest", "responseSchema", "responseSchemaArtifactPath", "responseSchemaArtifactDigest", "targetAliasStrategy", "evidenceAliasStrategy", "safetyIdentifierStrategy", "privateEvidencePolicy", "tools", "store"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "version": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "provider": { "const": "openai" },
+    "requestedModel": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "resolvedModel": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "reasoningEffort": { "enum": ["low", "medium", "high", "xhigh"] },
+    "routingPolicy": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "routingPolicyArtifactPath": { "type": "string", "pattern": "^contracts/[A-Za-z0-9._/-]+\\.json$" },
+    "routingPolicyArtifactDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "requestSchema": { "const": "contextualization-request-v1" },
+    "requestSchemaArtifactPath": { "const": "contracts/contextualization-request.schema.json" },
+    "requestSchemaArtifactDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "responseSchema": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "responseSchemaArtifactPath": { "type": "string", "pattern": "^contracts/[A-Za-z0-9._/-]+\\.json$" },
+    "responseSchemaArtifactDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "targetAliasStrategy": { "const": "hmac-sha256-installation-secret-v1" },
+    "evidenceAliasStrategy": { "const": "hmac-sha256-request-local-evidence-v1" },
+    "safetyIdentifierStrategy": { "const": "hmac-sha256-abuse-correlation-v1" },
+    "privateEvidencePolicy": { "const": "exclude-private-dependent-candidates-v1" },
+    "tools": { "type": "array", "maxItems": 0 },
+    "store": { "const": false }
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/publication-state-v1.json",
+  "title": "MergeSignal append-only GitHub publication event",
+  "description": "A monotonically revised PR-scoped publication event kept separate from the immutable assessment and advanced with compare-and-swap persistence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "publicationId",
+    "transitionId",
+    "lifecycleRevision",
+    "previousState",
+    "state",
+    "attemptCount",
+    "installationId",
+    "repositoryNodeId",
+    "pullRequestNodeId",
+    "pullRequestNumber",
+    "generation",
+    "latestObservedGeneration",
+    "outputCursorId",
+    "outputCursorRevision",
+    "outputCursorDigest",
+    "retentionHeadRevision",
+    "retentionHeadDigest",
+    "retentionSnapshotToken",
+    "publicationHeadRevision",
+    "publicationHeadDigest",
+    "publicationSnapshotToken",
+    "assessmentId",
+    "assessmentHeadSha",
+    "latestObservedHeadSha",
+    "fenceState",
+    "sourceFenceState",
+    "renderedSourceSetDigest",
+    "policyVersion",
+    "policyDigest",
+    "engineVersion",
+    "engineDigest",
+    "preWriteVisibilityValidationId",
+    "postWriteVisibilityValidationId",
+    "latestVisibilityStateDigest",
+    "preWriteRetentionRevision",
+    "preWriteRetentionTransitionId",
+    "postWriteRetentionRevision",
+    "postWriteRetentionTransitionId",
+    "postWriteRetentionState",
+    "postCheckVisibilityValidationId",
+    "postCheckRetentionRevision",
+    "postCheckRetentionTransitionId",
+    "postCheckRetentionState",
+    "commentOwnershipObservationId",
+    "commentInventoryObservationId",
+    "comment",
+    "check",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "publicationId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "transitionId": { "type": "string", "format": "uuid" },
+    "lifecycleRevision": { "type": "integer", "minimum": 1 },
+    "previousState": {
+      "type": ["string", "null"],
+      "enum": [null, "queued", "publishing", "published", "retrying", "repair_queued", "action_required", "stale", "failed"]
+    },
+    "state": {
+      "enum": ["queued", "publishing", "published", "retrying", "repair_queued", "action_required", "stale", "failed"]
+    },
+    "attemptCount": { "type": "integer", "minimum": 0 },
+    "installationId": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "repositoryNodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pullRequestNodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pullRequestNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "latestObservedGeneration": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "outputCursorId": { "type": "string", "format": "uuid" },
+    "outputCursorRevision": { "type": "integer", "minimum": 1 },
+    "outputCursorDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "retentionHeadRevision": { "type": "integer", "minimum": 1 },
+    "retentionHeadDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "retentionSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "publicationHeadRevision": { "type": "integer", "minimum": 1 },
+    "publicationHeadDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "publicationSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "assessmentId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "assessmentHeadSha": {
+      "$ref": "#/$defs/sha"
+    },
+    "latestObservedHeadSha": {
+      "$ref": "#/$defs/sha"
+    },
+    "fenceState": {
+      "enum": [
+        "current",
+        "stale",
+        "repair_queued"
+      ]
+    },
+    "sourceFenceState": {
+      "enum": ["current", "stale", "repair_queued"]
+    },
+    "renderedSourceSetDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "policyVersion": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "policyDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "engineVersion": { "type": "string", "pattern": "^engine-v[1-9][0-9]*$" },
+    "engineDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "preWriteVisibilityValidationId": { "type": ["string", "null"], "format": "uuid" },
+    "postWriteVisibilityValidationId": { "type": ["string", "null"], "format": "uuid" },
+    "latestVisibilityStateDigest": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "preWriteRetentionRevision": { "type": ["integer", "null"], "minimum": 1 },
+    "preWriteRetentionTransitionId": { "type": ["string", "null"], "format": "uuid" },
+    "postWriteRetentionRevision": { "type": ["integer", "null"], "minimum": 1 },
+    "postWriteRetentionTransitionId": { "type": ["string", "null"], "format": "uuid" },
+    "postWriteRetentionState": {
+      "type": ["string", "null"],
+      "enum": [null, "retained", "source_tombstoned", "subject_deleted", "expired"]
+    },
+    "postCheckVisibilityValidationId": { "type": ["string", "null"], "format": "uuid" },
+    "postCheckRetentionRevision": { "type": ["integer", "null"], "minimum": 1 },
+    "postCheckRetentionTransitionId": { "type": ["string", "null"], "format": "uuid" },
+    "postCheckRetentionState": {
+      "type": ["string", "null"],
+      "enum": [null, "retained", "source_tombstoned", "subject_deleted", "expired"]
+    },
+    "commentOwnershipObservationId": { "type": ["string", "null"], "format": "uuid" },
+    "commentInventoryObservationId": { "type": ["string", "null"], "format": "uuid" },
+    "comment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "commentId",
+        "markerVersion",
+        "lastAttemptAt",
+        "writeStartedAt",
+        "writeCompletedAt"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "pending",
+            "publishing",
+            "published",
+            "refreshing",
+            "retrying",
+            "stale",
+            "failed"
+          ]
+        },
+        "commentId": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "markerVersion": {
+          "const": "1"
+        },
+        "lastAttemptAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "writeStartedAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "writeCompletedAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "checkRunId",
+        "conclusion",
+        "lastAttemptAt",
+        "writeStartedAt",
+        "writeCompletedAt"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "queued",
+            "in_progress",
+            "completed",
+            "retrying",
+            "superseded"
+          ]
+        },
+        "checkRunId": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "conclusion": {
+          "enum": [
+            "none",
+            "success",
+            "action_required",
+            "cancelled",
+            "failure"
+          ]
+        },
+        "lastAttemptAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "writeStartedAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "writeCompletedAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lifecycleRevision": { "const": 1 } } },
+      "then": {
+        "properties": {
+          "previousState": { "const": null },
+          "state": { "const": "queued" },
+          "attemptCount": { "const": 0 }
+        }
+      },
+      "else": { "properties": { "previousState": { "type": "string" } } }
+    }
+  ],
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    }
+  }
+}

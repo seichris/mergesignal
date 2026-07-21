@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/detailed-report-nonce-consumption-v1.json",
+  "title": "MergeSignal durable detailed-report nonce consumption",
+  "description": "A trusted receipt proving that one session nonce was atomically consumed under PostgreSQL uniqueness before a numeric report was returned.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "consumptionId",
+    "authorizationId",
+    "sessionId",
+    "requestNonce",
+    "viewerGithubNodeId",
+    "installationId",
+    "repositoryNodeId",
+    "assessmentId",
+    "uniquenessReceipt",
+    "consumedAt",
+    "consumptionDigest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "consumptionId": { "type": "string", "format": "uuid" },
+    "authorizationId": { "type": "string", "format": "uuid" },
+    "sessionId": { "type": "string", "format": "uuid" },
+    "requestNonce": { "type": "string", "format": "uuid" },
+    "viewerGithubNodeId": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "installationId": { "type": "integer", "minimum": 1 },
+    "repositoryNodeId": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "uniquenessReceipt": { "$ref": "https://mergesignal.dev/schemas/database-uniqueness-receipt-v1.json" },
+    "consumedAt": { "type": "string", "format": "date-time" },
+    "consumptionDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

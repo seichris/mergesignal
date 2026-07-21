@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/contextualization-request-ledger-v1.json",
+  "title": "MergeSignal append-only contextualization request ledger event",
+  "description": "A compare-and-swap event that makes a request alias and nonce single-use and causally binds the one accepted provider response.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "ledgerId",
+    "transitionId",
+    "ledgerRevision",
+    "previousState",
+    "state",
+    "assessmentId",
+    "requestEnvelopeDigest",
+    "requestAlias",
+    "requestNonce",
+    "providerInvocationDigest",
+    "sentAt",
+    "acceptedAt",
+    "providerResponseId",
+    "responseEnvelopeDigest",
+    "transactionId",
+    "databaseCommitToken",
+    "uniquenessReceipts",
+    "previousCasToken",
+    "casToken",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "ledgerId": { "type": "string", "format": "uuid" },
+    "transitionId": { "type": "string", "format": "uuid" },
+    "ledgerRevision": { "type": "integer", "minimum": 1, "maximum": 2 },
+    "previousState": { "type": ["string", "null"], "enum": [null, "sent"] },
+    "state": { "enum": ["sent", "accepted"] },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "requestEnvelopeDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "requestAlias": { "type": "string", "format": "uuid" },
+    "requestNonce": { "type": "string", "format": "uuid" },
+    "providerInvocationDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "sentAt": { "type": "string", "format": "date-time" },
+    "acceptedAt": { "type": ["string", "null"], "format": "date-time" },
+    "providerResponseId": { "type": ["string", "null"], "minLength": 1, "maxLength": 256 },
+    "responseEnvelopeDigest": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "transactionId": { "type": "string", "format": "uuid" },
+    "databaseCommitToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "uniquenessReceipts": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": { "$ref": "https://mergesignal.dev/schemas/database-uniqueness-receipt-v1.json" }
+    },
+    "previousCasToken": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "casToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "state": { "const": "sent" } } },
+      "then": {
+        "properties": {
+          "ledgerRevision": { "const": 1 },
+          "previousState": { "const": null },
+          "acceptedAt": { "const": null },
+          "providerResponseId": { "const": null },
+          "responseEnvelopeDigest": { "const": null },
+          "previousCasToken": { "const": null },
+          "uniquenessReceipts": { "type": "array", "minItems": 2, "maxItems": 2 }
+        }
+      },
+      "else": {
+        "properties": {
+          "ledgerRevision": { "const": 2 },
+          "previousState": { "const": "sent" },
+          "acceptedAt": { "type": "string" },
+          "providerResponseId": { "type": "string" },
+          "responseEnvelopeDigest": { "type": "string" },
+          "previousCasToken": { "type": "string" },
+          "uniquenessReceipts": { "type": "array", "minItems": 3, "maxItems": 3 }
+        }
+      }
+    }
+  ]
+}

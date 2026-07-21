@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/detailed-report-projection-v1.json",
+  "title": "MergeSignal authorized detailed-report projection",
+  "description": "The only object permitted at the authenticated detailed-report boundary. It deliberately excludes internal evidence payloads, provider locators, model aliases, and lifecycle records.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "reportId",
+    "assessmentId",
+    "assessmentDigest",
+    "authorizationId",
+    "contributor",
+    "target",
+    "summaryState",
+    "overallConfidence",
+    "reviewPriority",
+    "dimensions",
+    "coverage",
+    "generatedAt",
+    "projectionDigest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "reportId": { "type": "string", "format": "uuid" },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "assessmentDigest": { "$ref": "#/$defs/digest" },
+    "authorizationId": { "type": "string", "format": "uuid" },
+    "contributor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["availability", "loginAtAssessment", "actorType", "historySupport"],
+      "properties": {
+        "availability": { "enum": ["available", "unavailable"] },
+        "loginAtAssessment": { "type": ["string", "null"], "minLength": 1, "maxLength": 256 },
+        "actorType": { "type": ["string", "null"], "minLength": 1, "maxLength": 80 },
+        "historySupport": { "enum": ["full", "partial", "unsupported"] }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repositoryNodeId", "pullRequestNumber", "headSha", "generation"],
+      "properties": {
+        "repositoryNodeId": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "headSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "generation": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "summaryState": { "enum": ["established_evidence", "developing_evidence", "limited_evidence", "needs_manual_inspection"] },
+    "overallConfidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "label", "reasonCodes"],
+      "properties": {
+        "value": { "type": "number", "minimum": 0, "maximum": 1 },
+        "label": { "enum": ["low", "medium", "high"] },
+        "reasonCodes": { "$ref": "#/$defs/reasonCodes" }
+      }
+    },
+    "reviewPriority": { "enum": ["not_enabled", "prioritize", "standard", "inspect_first"] },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tenure_continuity", "independent_open_source_record", "merge_follow_through", "collaboration", "relevant_experience", "integrity_gaming_resistance"],
+      "properties": {
+        "tenure_continuity": { "$ref": "#/$defs/dimension" },
+        "independent_open_source_record": { "$ref": "#/$defs/dimension" },
+        "merge_follow_through": { "$ref": "#/$defs/dimension" },
+        "collaboration": { "$ref": "#/$defs/dimension" },
+        "relevant_experience": { "$ref": "#/$defs/dimension" },
+        "integrity_gaming_resistance": { "$ref": "#/$defs/dimension" }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requestedWindowYears", "completeYears", "freshAsOf", "freshness", "attribution", "confidence", "reasonCodes"],
+      "properties": {
+        "requestedWindowYears": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "completeYears": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "freshAsOf": { "type": "string", "format": "date-time" },
+        "freshness": { "enum": ["current", "stale"] },
+        "attribution": { "enum": ["complete", "uncertain", "unavailable"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "reasonCodes": { "$ref": "#/$defs/reasonCodes" }
+      }
+    },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "projectionDigest": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "reasonCodes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" }
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "confidence", "state", "reasonCodes", "evidenceCount"],
+      "properties": {
+        "score": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "state": { "enum": ["strong", "moderate", "limited", "uncertain", "manual_inspection"] },
+        "reasonCodes": { "$ref": "#/$defs/reasonCodes" },
+        "evidenceCount": { "type": "integer", "minimum": 0, "maximum": 50000 }
+      }
+    }
+  }
+}

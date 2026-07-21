@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/reason-codes-registry-v1.json",
+  "title": "MergeSignal reason-code registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "codes"],
+  "properties": {
+    "version": {
+      "const": "1.0.0"
+    },
+    "codes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "category",
+          "dimension",
+          "message",
+          "evidenceRule"
+        ],
+        "properties": {
+          "code": {
+            "$ref": "https://mergesignal.dev/schemas/reason-code-v1.json"
+          },
+          "category": {
+            "enum": [
+              "supporting",
+              "coverage",
+              "caveat",
+              "manual_inspection",
+              "operational",
+              "patch_context"
+            ]
+          },
+          "dimension": {
+            "enum": [
+              "tenure_continuity",
+              "independent_open_source_record",
+              "merge_follow_through",
+              "collaboration",
+              "relevant_experience",
+              "integrity_gaming_resistance",
+              "patch_context",
+              "coverage",
+              "explanation"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 240
+          },
+          "evidenceRule": { "$ref": "#/$defs/evidenceRule" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "evidenceTypeList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]+$"
+      }
+    },
+    "evidenceRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredAll", "requiredAny", "predicate"],
+      "properties": {
+        "requiredAll": { "$ref": "#/$defs/evidenceTypeList" },
+        "requiredAny": { "$ref": "#/$defs/evidenceTypeList" },
+        "predicate": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]+_v[1-9][0-9]*$"
+        }
+      },
+      "anyOf": [
+        { "properties": { "requiredAll": { "type": "array", "minItems": 1 } } },
+        { "properties": { "requiredAny": { "type": "array", "minItems": 1 } } }
+      ]
+    }
+  }
+}

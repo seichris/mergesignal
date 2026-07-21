@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "cursorId": "67676767-6767-4767-8767-676767676767",
+  "installationId": 9001,
+  "repositoryNodeId": "R_fixture_target",
+  "pullRequestNodeId": "PR_target_42",
+  "pullRequestNumber": 42,
+  "activeGeneration": 7,
+  "activeHeadSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "state": "active",
+  "cursorRevision": 4,
+  "transitionKind": "publish_same_generation",
+  "previousCursorDigest": "2d8d8287f920c6c13ec5163298fe3a07c4a685dcb2a7f71e4a8c3de71e4b1e6b",
+  "canonicalCommentId": 123456,
+  "canonicalCheckRunId": 789012,
+  "databaseSnapshotToken": "038f2fb52e8815faaf0a0117d1eaa89adaa96d771960b5d61ca23254444ef59a",
+  "observedAt": "2026-07-21T00:10:00.800Z",
+  "cursorDigest": "7f1e7af6e2d2046ed9a42af81895aa316666cb362a1599d1b2ba47dd496b9bd5"
+}

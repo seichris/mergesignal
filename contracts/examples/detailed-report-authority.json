@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "authorityId": "76767676-7676-4676-8676-767676767676",
+  "sessionId": "70707070-7070-4070-8070-707070707070",
+  "requestNonce": "72727272-7272-4272-8272-727272727272",
+  "viewerGithubNodeId": "U_maintainer_admin",
+  "installationId": 9001,
+  "repositoryNodeId": "R_fixture_target",
+  "permissionObservation": {
+    "observationId": "74747474-7474-4474-8474-747474747474",
+    "providerRequestId": "75757575-7575-4575-8575-757575757575",
+    "providerResponseId": "github-request-fixture-detailed-report-1",
+    "viewerGithubNodeId": "U_maintainer_admin",
+    "installationId": 9001,
+    "repositoryNodeId": "R_fixture_target",
+    "permission": "admin",
+    "providerObservedAt": "2026-07-21T00:00:01Z",
+    "observationDigest": "98c33e952a25850a4f6728aa506c1a15cd420ae193274c54a0cdbac0daf3be83"
+  },
+  "policyHead": {
+    "deploymentId": "kontext-production",
+    "installationId": 9001,
+    "repositoryNodeId": "R_fixture_target",
+    "logicalStreamKeyDigest": "b7f3433fbeffe664ff6a1bb7333476d9216689aaec2ca49f3321c21139c22afb",
+    "streamId": "15151515-1515-4151-8151-151515151515",
+    "highWaterRevision": 1,
+    "highWaterRevisionId": "13131313-1313-4131-8131-131313131313",
+    "streamDigest": "0a1b26d5ca9f6cdb4301aa220c49a12eb8bd2100080fc49b8e9297fc1e88bae6",
+    "databaseSnapshotToken": "760282ef04ec91407d2d9fcb88963c9f6d64fd49375844a305d015e8d368a48f",
+    "serializableReadAt": "2026-07-21T00:00:01.050Z",
+    "headDigest": "4ee8875535e84ad475d0f6e0ae9f3c6b1b5c0f52a9d7b6b4a6f8c20d16044edf"
+  },
+  "receivedAt": "2026-07-21T00:00:01.075Z",
+  "authorityDigest": "b7fb97a970601b39c5b5a10b819517023f4feed3d30e495b9403d3d3fe22d6ba"
+}

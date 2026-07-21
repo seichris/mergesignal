@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "features-v1",
+  "evaluatorContractVersion": "feature-evaluator-v1",
+  "evaluatorArtifactPath": "contracts/version-artifacts/evaluators/feature-evaluator-v1.mjs",
+  "evaluatorArtifactDigest": "3d473503ed9fe015b7f0904cf47c1ebe764c8ef7844245a75ffeaff18415f736",
+  "accountTenureMinimumDays": 730,
+  "sustainedActivity": {
+    "minimumActiveMonths": 3,
+    "minimumSpanDays": 180
+  },
+  "multiYearContinuity": {
+    "minimumActiveYears": 2
+  },
+  "historyWindowMaximumYears": 5,
+  "metadataStructureVersion": "pr-metadata-structure-v1",
+  "pathLanguage": {
+    "version": "path-language-v1",
+    "caseSensitive": false,
+    "extensionMap": {
+      ".c": "c",
+      ".cpp": "cpp",
+      ".cs": "csharp",
+      ".go": "go",
+      ".h": "c",
+      ".java": "java",
+      ".js": "javascript",
+      ".jsx": "javascript",
+      ".kt": "kotlin",
+      ".php": "php",
+      ".py": "python",
+      ".rb": "ruby",
+      ".rs": "rust",
+      ".scala": "scala",
+      ".sh": "shell",
+      ".sql": "sql",
+      ".swift": "swift",
+      ".ts": "typescript",
+      ".tsx": "typescript"
+    },
+    "fallback": null
+  },
+  "publicHistoryFreshness": {
+    "version": "public-history-freshness-v1",
+    "maxAgeSeconds": 86400
+  },
+  "coverageConfidence": {
+    "version": "coverage-confidence-v1",
+    "precision": 2,
+    "attributionFactors": {
+      "complete": 1,
+      "uncertain": 0.5,
+      "unavailable": 0
+    },
+    "freshnessFactors": {
+      "current": 1,
+      "stale": 0.5
+    }
+  },
+  "coverageQueryPlan": {
+    "version": "public-history-query-plan-v1",
+    "partitions": [
+      {
+        "key": "identity_and_calendar",
+        "queryVersion": "identity-and-calendar-v1",
+        "mode": "singleton",
+        "temporalBasis": "not_applicable",
+        "evidenceTypes": [
+          "AUTHOR_AVAILABILITY",
+          "ACTOR_TYPE",
+          "ACCOUNT_CREATED",
+          "CONTRIBUTION_YEAR"
+        ],
+        "countsTowardCompleteYears": false
+      },
+      {
+        "key": "pull_request_history",
+        "queryVersion": "pull-request-history-v1",
+        "mode": "per_calendar_year",
+        "temporalBasis": "canonical_event_at",
+        "evidenceTypes": [
+          "PULL_REQUEST_OPENED",
+          "PULL_REQUEST_MERGED",
+          "PULL_REQUEST_CLOSED_UNMERGED",
+          "MERGE_ACTOR",
+          "FOLLOW_UP_COMMIT",
+          "REVIEW_THREAD_RESOLVED",
+          "MERGE_RELATIONSHIP_EVENT",
+          "CHANGED_PATH",
+          "PATCH_FILESET_STATUS"
+        ],
+        "countsTowardCompleteYears": true
+      },
+      {
+        "key": "review_history",
+        "queryVersion": "review-history-v1",
+        "mode": "per_calendar_year",
+        "temporalBasis": "canonical_event_at",
+        "evidenceTypes": [
+          "REVIEW_RECEIVED",
+          "REVIEW_GIVEN"
+        ],
+        "countsTowardCompleteYears": true
+      },
+      {
+        "key": "repository_metadata",
+        "queryVersion": "repository-metadata-v1",
+        "mode": "singleton",
+        "temporalBasis": "not_applicable",
+        "evidenceTypes": [
+          "REPOSITORY_LANGUAGE",
+          "REPOSITORY_TOPIC"
+        ],
+        "countsTowardCompleteYears": false
+      }
+    ]
+  },
+  "resourceLimits": {
+    "snapshotMaxItems": 50000,
+    "snapshotMaxCanonicalBytes": 33554432,
+    "partitionMaxCandidates": 25000,
+    "visibilityMaxSources": 50000,
+    "visibilityMaxCanonicalBytes": 67108864,
+    "identifierMaxLength": 256
+  },
+  "dashboardAuthorization": {
+    "version": "dashboard-authorization-v1",
+    "maxAgeSeconds": 300
+  },
+  "publicationVisibilityFence": {
+    "version": "publication-visibility-fence-v1",
+    "maxAgeSeconds": 300
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "mergesignal",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": "22.17.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "esbuild",
+      "protobufjs",
+      "sharp"
+    ]
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "check:boundaries": "node scripts/check-workspace-boundaries.mjs",
+    "ci": "pnpm test:phase0 && pnpm check:boundaries && turbo run typecheck test build",
+    "db:migrate": "pnpm --filter @mergesignal/database migrate",
+    "dev": "turbo run dev",
+    "phase0:build-replay": "node scripts/build-replay-artifacts.mjs",
+    "phase0:check-replay": "node scripts/build-replay-artifacts.mjs --check",
+    "phase0:refresh-version-artifacts": "node scripts/refresh-version-artifacts.mjs",
+    "phase0:refresh-examples": "node scripts/refresh-phase0-examples.mjs",
+    "phase0:validate": "node scripts/validate-phase0.mjs",
+    "phase0:check-version-immutability": "node scripts/check-version-immutability.mjs",
+    "lint:md": "markdownlint-cli2 'README.md' 'IMPLEMENTATION_PLAN.md' 'docs/**/*.md'",
+    "lint:whitespace": "node scripts/check-whitespace.mjs",
+    "review:snapshot": "node scripts/hash-review-snapshot.mjs",
+    "test": "pnpm run ci",
+    "test:phase0": "npm run phase0:check-replay && npm run phase0:check-version-immutability && npm run phase0:refresh-examples -- --check && npm run phase0:validate && npm run lint:whitespace && npm run lint:md",
+    "test:phase1:integration": "node scripts/phase1/run-foundation-integration.mjs",
+    "test:phase2:integration": "node scripts/phase2/run-github-lifecycle-integration.mjs",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@temporalio/client": "catalog:",
+    "@temporalio/common": "catalog:",
+    "@temporalio/worker": "catalog:",
+    "@types/node": "26.1.1",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "canonicalize": "3.0.0",
+    "esbuild": "0.28.1",
+    "markdownlint-cli2": "0.20.0",
+    "pg": "catalog:",
+    "tsx": "4.23.1",
+    "turbo": "2.10.5",
+    "typescript": "5.9.3",
+    "yaml": "2.8.1"
+  }
+}

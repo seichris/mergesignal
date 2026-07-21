@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/phase0-cases-v1.json",
+  "title": "MergeSignal Phase 0 adversarial cases",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "executionStatus", "cases"],
+  "properties": {
+    "version": {
+      "const": "1.0.0"
+    },
+    "executionStatus": {
+      "const": "specification_only"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "policy", "input", "expected"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]+$"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 30
+          },
+          "policy": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["reviewPriorityEnabled"],
+            "properties": {
+              "reviewPriorityEnabled": {
+                "type": "boolean"
+              }
+            }
+          },
+          "input": {
+            "$ref": "#/$defs/input"
+          },
+          "expected": {
+            "type": "object",
+            "required": [
+              "summaryState",
+              "overallConfidence",
+              "reviewPriority",
+              "reasonCodes",
+              "dimensionStates",
+              "check",
+              "comment"
+            ],
+            "properties": {
+              "summaryState": {
+                "enum": [
+                  "established_evidence",
+                  "developing_evidence",
+                  "limited_evidence",
+                  "needs_manual_inspection"
+                ]
+              },
+              "overallConfidence": {
+                "enum": ["low", "medium", "high"]
+              },
+              "reviewPriority": {
+                "enum": [
+                  "not_enabled",
+                  "prioritize",
+                  "standard",
+                  "inspect_first"
+                ]
+              },
+              "reasonCodes": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "$ref": "https://mergesignal.dev/schemas/reason-code-v1.json"
+                }
+              },
+              "dimensionStates": {
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": false,
+                "properties": {
+                  "tenure_continuity": { "$ref": "#/$defs/dimensionState" },
+                  "independent_open_source_record": { "$ref": "#/$defs/dimensionState" },
+                  "merge_follow_through": { "$ref": "#/$defs/dimensionState" },
+                  "collaboration": { "$ref": "#/$defs/dimensionState" },
+                  "relevant_experience": { "$ref": "#/$defs/dimensionState" },
+                  "integrity_gaming_resistance": { "$ref": "#/$defs/dimensionState" }
+                }
+              },
+              "check": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["state", "conclusion"],
+                "properties": {
+                  "state": { "enum": ["queued", "in_progress", "completed", "retrying", "superseded"] },
+                  "conclusion": { "enum": ["none", "success", "action_required", "cancelled", "failure"] }
+                }
+              },
+              "comment": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "numericScoresIncluded",
+                  "privateEvidenceIncluded",
+                  "mustContain",
+                  "mustNotContain"
+                ],
+                "properties": {
+                  "numericScoresIncluded": {
+                    "const": false
+                  },
+                  "privateEvidenceIncluded": {
+                    "const": false
+                  },
+                  "mustContain": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "mustNotContain": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "identityRecords": { "type": "integer", "minimum": 1 },
+              "equivalentTo": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$" },
+              "workflowResumable": { "type": "boolean" },
+              "allowedExplanationEvidenceIds": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "forbiddenExplanationEvidenceIds": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "forbiddenExplanationReasonCodes": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "$ref": "https://mergesignal.dev/schemas/reason-code-v1.json" }
+              },
+              "explanationStatus": { "enum": ["complete", "deterministic_fallback"] },
+              "coverageGapAdded": { "type": "boolean" },
+              "reputationCancelsPatchRisk": { "type": "boolean" },
+              "privateSourceInfluencesAssessment": { "type": "boolean" },
+              "publicationRequiresRefresh": { "type": "boolean" }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "dimensionState": {
+      "enum": ["strong", "moderate", "limited", "uncertain", "manual_inspection"]
+    },
+    "nonNegativeInteger": { "type": "integer", "minimum": 0 },
+    "ratio": { "type": "number", "minimum": 0 },
+    "boundedRatio": { "type": "number", "minimum": 0, "maximum": 1 },
+    "stringArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "input": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "accountAgeDays": { "$ref": "#/$defs/nonNegativeInteger" },
+        "activeMonthsLastThreeYears": { "type": "integer", "minimum": 0, "maximum": 36 },
+        "actorType": { "enum": ["User", "Bot", "Mannequin", "Organization", "EnterpriseUserAccount", "Unknown"] },
+        "allowedEvidenceIds": { "$ref": "#/$defs/stringArray" },
+        "attributedEventDetailsAvailable": { "type": "boolean" },
+        "authorAvailability": { "enum": ["available", "unavailable"] },
+        "ciState": { "enum": ["passing", "failing", "pending", "missing", "unknown"] },
+        "closedUnmergedPullRequests": { "$ref": "#/$defs/nonNegativeInteger" },
+        "completeHistoryYears": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "completePublicHistoryYears": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "crossRepositoryReuseAllowed": { "type": "boolean" },
+        "cursorPersisted": { "type": "boolean" },
+        "detailCollectionComplete": { "type": "boolean" },
+        "deterministicAssessmentComplete": { "type": "boolean" },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["evidenceId", "type", "value"],
+            "properties": {
+              "evidenceId": { "type": "string", "minLength": 1 },
+              "type": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+              "value": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "evidenceAgeDays": { "$ref": "#/$defs/nonNegativeInteger" },
+        "githubNodeId": { "type": ["string", "null"], "minLength": 1 },
+        "historicalDomain": { "type": "string", "minLength": 1 },
+        "historicalLogins": { "$ref": "#/$defs/stringArray" },
+        "historicalWeeklyBaseline": { "$ref": "#/$defs/ratio" },
+        "independentMergedPullRequests": { "$ref": "#/$defs/nonNegativeInteger" },
+        "independentRepositories": { "$ref": "#/$defs/nonNegativeInteger" },
+        "interruption": { "enum": ["github_rate_limit", "pagination_limit", "source_limit", "authorization", "source_unavailable"] },
+        "maximumEvidenceAgeDays": { "$ref": "#/$defs/nonNegativeInteger" },
+        "mergedPullRequests": { "$ref": "#/$defs/nonNegativeInteger" },
+        "modelResult": { "enum": ["complete", "timeout", "invalid", "unavailable"] },
+        "newMergeActorConcentration": { "$ref": "#/$defs/boundedRatio" },
+        "openPullRequests": { "$ref": "#/$defs/nonNegativeInteger" },
+        "openedPullRequests": { "$ref": "#/$defs/nonNegativeInteger" },
+        "operationalIssue": { "enum": ["assessment_in_progress", "missing_installation_permission", "newer_generation_observed", "publication_retry_exhausted", "publication_retrying"] },
+        "patch": { "enum": ["medium_with_tests_linked_issue_and_passing_ci", "small_with_tests_and_passing_ci"] },
+        "patchScope": { "enum": ["small", "medium", "large", "unknown"] },
+        "privateSourceRepositoryId": { "type": "string", "minLength": 1 },
+        "publicHistoryEvents": { "$ref": "#/$defs/nonNegativeInteger" },
+        "publicPullRequests": { "$ref": "#/$defs/nonNegativeInteger" },
+        "pullRequestsLastSevenDays": { "$ref": "#/$defs/nonNegativeInteger" },
+        "recentCadenceIncrease": { "$ref": "#/$defs/ratio" },
+        "recentDomain": { "type": "string", "minLength": 1 },
+        "reciprocalMergeRatio": { "$ref": "#/$defs/boundedRatio" },
+        "refreshResult": { "enum": ["complete", "temporarily_unavailable", "failed"] },
+        "relevance": { "enum": ["high", "medium", "low", "none"] },
+        "relevantPaths": { "$ref": "#/$defs/nonNegativeInteger" },
+        "reportedContributionCount": { "$ref": "#/$defs/nonNegativeInteger" },
+        "repositoryVisibility": { "enum": ["public", "private", "internal"] },
+        "requestedHistoryYears": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "restrictedContributionCount": { "$ref": "#/$defs/nonNegativeInteger" },
+        "reviewsContributed": { "$ref": "#/$defs/nonNegativeInteger" },
+        "sameTenant": { "type": "boolean" },
+        "selfMergedPullRequests": { "$ref": "#/$defs/nonNegativeInteger" },
+        "sensitivePaths": { "$ref": "#/$defs/stringArray" },
+        "sourceLimitReached": { "type": "boolean" },
+        "sourceRepositoryAccessible": { "type": "boolean" },
+        "sourceVisibilityAtPublication": { "enum": ["public", "private", "internal", "unavailable"] },
+        "sourceVisibilityAtSnapshot": { "enum": ["public", "private", "internal", "unavailable"] },
+        "targetRepositoryId": { "type": "string", "minLength": 1 },
+        "targetRestrictedFactsPresent": { "type": "boolean" },
+        "templateSimilarity": { "$ref": "#/$defs/boundedRatio" },
+        "testsChanged": { "type": "boolean" },
+        "uniqueMergeActors": { "$ref": "#/$defs/nonNegativeInteger" },
+        "unrelatedRepositories": { "$ref": "#/$defs/nonNegativeInteger" },
+        "untrustedTextFields": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string" }
+        },
+        "userHistoryAvailable": { "type": "boolean" },
+        "viewerCanAccessPrivateSource": { "type": "boolean" }
+      }
+    }
+  }
+}

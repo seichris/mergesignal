@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "scoring-v2",
+  "effectiveFrom": "2026-07-21T00:00:02Z",
+  "stateThresholds": {
+    "strong": 80,
+    "moderate": 50
+  },
+  "overallConfidence": {
+    "method": "mean_core_capped_by_coverage",
+    "coreDimensions": ["tenure_continuity", "independent_open_source_record", "merge_follow_through"],
+    "precision": 2
+  },
+  "dimensions": {
+    "tenure_continuity": {
+      "reasonWeights": {
+        "ACCOUNT_TENURE_ESTABLISHED": 32,
+        "SUSTAINED_ACTIVITY": 28,
+        "MULTI_YEAR_CONTINUITY": 28
+      },
+      "baseConfidence": 0.8,
+      "confidencePerSupportingReason": 0.05,
+      "maximumConfidence": 0.95,
+      "emptyEvidenceConfidence": 0,
+      "emptyState": "uncertain"
+    },
+    "independent_open_source_record": {
+      "reasonWeights": {
+        "INDEPENDENT_MERGES": 44,
+        "MULTI_REPOSITORY_VALIDATION": 44
+      },
+      "baseConfidence": 0.8,
+      "confidencePerSupportingReason": 0.05,
+      "maximumConfidence": 0.9,
+      "emptyEvidenceConfidence": 0,
+      "emptyState": "uncertain"
+    },
+    "merge_follow_through": {
+      "reasonWeights": {
+        "MERGE_FOLLOW_THROUGH": 81
+      },
+      "baseConfidence": 0.82,
+      "confidencePerSupportingReason": 0.05,
+      "maximumConfidence": 0.87,
+      "emptyEvidenceConfidence": 0,
+      "emptyState": "uncertain"
+    },
+    "collaboration": {
+      "reasonWeights": {
+        "REVIEW_FOLLOW_THROUGH": 40,
+        "REVIEWS_CONTRIBUTED": 40
+      },
+      "baseConfidence": 0.74,
+      "confidencePerSupportingReason": 0.05,
+      "maximumConfidence": 0.84,
+      "emptyEvidenceConfidence": 0,
+      "emptyState": "uncertain"
+    },
+    "relevant_experience": {
+      "reasonWeights": {
+        "RELEVANT_LANGUAGE_HISTORY": 28,
+        "RELEVANT_DOMAIN_HISTORY": 27,
+        "RELEVANT_PATH_HISTORY": 28
+      },
+      "baseConfidence": 0.67,
+      "confidencePerSupportingReason": 0.05,
+      "maximumConfidence": 0.82,
+      "emptyEvidenceConfidence": 0,
+      "emptyState": "uncertain"
+    },
+    "integrity_gaming_resistance": {
+      "reasonWeights": {},
+      "baseConfidence": 0.86,
+      "confidencePerSupportingReason": 0,
+      "maximumConfidence": 0.86,
+      "emptyEvidenceConfidence": 0,
+      "emptyState": "uncertain"
+    }
+  }
+}

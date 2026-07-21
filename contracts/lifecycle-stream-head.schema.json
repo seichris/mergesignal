@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/lifecycle-stream-head-v1.json",
+  "title": "MergeSignal authoritative lifecycle stream head",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "streamKind", "aggregateId", "highWaterRevision", "eventCount", "streamDigest", "databaseSnapshotToken", "serializableReadAt"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "streamKind": { "enum": ["retention", "publication", "comment_removal"] },
+    "aggregateId": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "highWaterRevision": { "type": "integer", "minimum": 1 },
+    "eventCount": { "type": "integer", "minimum": 1 },
+    "streamDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "databaseSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "serializableReadAt": { "type": "string", "format": "date-time" }
+  }
+}

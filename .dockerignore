@@ -1,0 +1,16 @@
+.git
+.next
+**/.next
+.terraform
+**/.terraform
+.turbo
+**/.turbo
+coverage
+**/coverage
+dist
+**/dist
+node_modules
+**/node_modules
+*.log
+*.tfstate
+*.tfstate.*

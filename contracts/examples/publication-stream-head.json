@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "streamKind": "publication",
+  "aggregateId": "33333333-3333-4333-8333-333333333333",
+  "highWaterRevision": 3,
+  "eventCount": 3,
+  "streamDigest": "1556436c4bd50641ed0130573fd8f08a6a95284a13dfc0acc245796a1fde2541",
+  "databaseSnapshotToken": "b1280cb19043f6d0da7110e42f627d722904ff027a09a6b72a655098ae40ff79",
+  "serializableReadAt": "2026-07-21T00:00:05.500Z"
+}

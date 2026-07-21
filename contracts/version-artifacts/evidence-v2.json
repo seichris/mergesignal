@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "evidence-v2",
+  "components": {
+    "evidenceRegistry": "contracts/evidence-types.json",
+    "evidenceRegistrySchema": "contracts/evidence-types.schema.json",
+    "payloadSchema": "contracts/evidence-payload.schema.json",
+    "manifestSchema": "contracts/evidence-snapshot-manifest.schema.json",
+    "reasonCodeSchema": "contracts/reason-code.schema.json",
+    "reasonRegistry": "contracts/reason-codes.json",
+    "reasonRegistrySchema": "contracts/reason-codes.registry.schema.json",
+    "reasonMessages": "contracts/version-artifacts/reason-messages-v2.json"
+  },
+  "artifacts": {
+    "contracts/evidence-types.json": "04034a5eeadb362e1e91c027fc959555ec7f84cbbdbc66e2fe37e149fab092dc",
+    "contracts/evidence-types.schema.json": "902c477a60df8c73c3bdb6a5f4928329c049c48e5a2cfe360d429eba2b04e50a",
+    "contracts/evidence-payload.schema.json": "0e9f8b54b9d1ab99a560fffd532498012b2b6fb18ac6a4efe4fd6180c461af35",
+    "contracts/evidence-snapshot-manifest.schema.json": "a9849fa0563462db8ad6c994957ca4cfcde0af0941303b2b991d2e7e477f7035",
+    "contracts/reason-code.schema.json": "62fbf73e344c5483f2ca24c1c94a5e373ef9f1f3725992f1c54d2d0bcb603ec5",
+    "contracts/reason-codes.json": "5978376c9eb157f53dfff9d299145694da5dbba5b84a3b0dcf1c8c733d8fa954",
+    "contracts/reason-codes.registry.schema.json": "e26e4f0df0ca564055fb8c4f0d788f82e46dd185fc0e083b39e3d6f0538dd350",
+    "contracts/version-artifacts/reason-messages-v2.json": "c506c5a1e996aaebbe5584aaf6caa90b622346f0d3223685092fdad8a681a23e"
+  }
+}

@@ -1,0 +1,1413 @@
+{
+  "schemaVersion": "1.0.0",
+  "snapshotId": "22222222-2222-4222-8222-222222222222",
+  "items": [
+    {
+      "evidenceId": "ev_author_available",
+      "type": "AUTHOR_AVAILABILITY",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_target_42",
+      "repositoryNodeId": "R_fixture_target",
+      "eventAt": "2026-07-20T23:59:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "available": true,
+        "authorNodeId": "U_fixture_established"
+      },
+      "sourceUrl": "https://github.com/example/target/pull/42",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_fixture_target",
+        "nameWithOwner": "example/target"
+      }
+    },
+    {
+      "evidenceId": "ev_actor_type",
+      "type": "ACTOR_TYPE",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "actorNodeId": "U_fixture_established",
+        "actorType": "User"
+      },
+      "sourceUrl": "https://github.com/example/target/pull/42",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_fixture_target",
+        "nameWithOwner": "example/target"
+      }
+    },
+    {
+      "evidenceId": "ev_account",
+      "type": "ACCOUNT_CREATED",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "U_fixture_established",
+      "eventAt": "2019-12-01T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "createdAt": "2019-12-01T00:00:00Z"
+      },
+      "sourceUrl": "https://github.com/established-contributor",
+      "providerLocator": {
+        "kind": "actor",
+        "nodeId": "U_fixture_established",
+        "login": "established-contributor"
+      }
+    },
+    {
+      "evidenceId": "ev_year",
+      "type": "CONTRIBUTION_YEAR",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "year": 2022,
+        "activeMonths": [
+          "2022-06"
+        ]
+      },
+      "sourceUrl": "https://github.com/established-contributor",
+      "providerLocator": {
+        "kind": "actor",
+        "nodeId": "U_fixture_established",
+        "login": "established-contributor"
+      }
+    },
+    {
+      "evidenceId": "ev_year_mid",
+      "type": "CONTRIBUTION_YEAR",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "year": 2025,
+        "activeMonths": [
+          "2025-11"
+        ]
+      },
+      "sourceUrl": "https://github.com/established-contributor",
+      "providerLocator": {
+        "kind": "actor",
+        "nodeId": "U_fixture_established",
+        "login": "established-contributor"
+      }
+    },
+    {
+      "evidenceId": "ev_year_recent",
+      "type": "CONTRIBUTION_YEAR",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "year": 2026,
+        "activeMonths": [
+          "2026-06"
+        ]
+      },
+      "sourceUrl": "https://github.com/established-contributor",
+      "providerLocator": {
+        "kind": "actor",
+        "nodeId": "U_fixture_established",
+        "login": "established-contributor"
+      }
+    },
+    {
+      "evidenceId": "ev_active_old",
+      "type": "ACTIVE_MONTH",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "eventAt": "2022-06-01T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "yearMonth": "2022-06"
+      },
+      "derivation": {
+        "version": "active-month-v1",
+        "inputEvidenceIds": [
+          "ev_year"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_active_mid",
+      "type": "ACTIVE_MONTH",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "eventAt": "2025-11-01T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "yearMonth": "2025-11"
+      },
+      "derivation": {
+        "version": "active-month-v1",
+        "inputEvidenceIds": [
+          "ev_year_mid"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_active",
+      "type": "ACTIVE_MONTH",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "eventAt": "2026-06-01T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "yearMonth": "2026-06"
+      },
+      "derivation": {
+        "version": "active-month-v1",
+        "inputEvidenceIds": [
+          "ev_year_recent"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_pr_opened",
+      "type": "PULL_REQUEST_OPENED",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_public_12",
+      "repositoryNodeId": "R_public_project",
+      "eventAt": "2026-05-01T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_public_12",
+        "repositoryNodeId": "R_public_project",
+        "repositoryOwnerNodeId": "O_example_project",
+        "authorNodeId": "U_fixture_established",
+        "authorAssociation": "CONTRIBUTOR",
+        "pullRequestNumber": 12,
+        "metadataStructureFingerprint": "17482678565903f2d45ab9f063ec02da227702590241b95044cf406e209dee19",
+        "metadataFeatureVersion": "pr-metadata-structure-v1",
+        "openedAt": "2026-05-01T00:00:00Z",
+        "metadataStructure": {
+          "titleTokenClasses": [
+            "word",
+            "word",
+            "code"
+          ],
+          "bodySectionKinds": [
+            "summary",
+            "changes",
+            "testing"
+          ],
+          "referenceKinds": [
+            "issue"
+          ]
+        },
+        "repositoryTemplateStructure": null,
+        "templateAdjustedStructure": {
+          "titleTokenClasses": [
+            "word",
+            "word",
+            "code"
+          ],
+          "bodySectionKinds": [
+            "summary",
+            "changes",
+            "testing"
+          ],
+          "referenceKinds": [
+            "issue"
+          ]
+        },
+        "templateAdjustedFingerprint": "17482678565903f2d45ab9f063ec02da227702590241b95044cf406e209dee19",
+        "informativeFeatureCount": 7
+      },
+      "sourceUrl": "https://github.com/example/project/pull/12",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_pr",
+      "type": "PULL_REQUEST_MERGED",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_public_12",
+      "repositoryNodeId": "R_public_project",
+      "eventAt": "2026-05-04T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_public_12",
+        "repositoryNodeId": "R_public_project",
+        "authorNodeId": "U_fixture_established",
+        "pullRequestNumber": 12,
+        "mergedAt": "2026-05-04T00:00:00Z",
+        "mergeCommitSha": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      },
+      "sourceUrl": "https://github.com/example/project/pull/12",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_merge_actor",
+      "type": "MERGE_ACTOR",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "U_independent_maintainer",
+      "repositoryNodeId": "R_public_project",
+      "eventAt": "2026-05-04T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_public_12",
+        "repositoryNodeId": "R_public_project",
+        "pullRequestNumber": 12,
+        "pullRequestAuthorNodeId": "U_fixture_established",
+        "githubNodeId": "U_independent_maintainer"
+      },
+      "sourceUrl": "https://github.com/example/project/pull/12",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_owner",
+      "type": "REPOSITORY_OWNERSHIP_RELATIONSHIP",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_public_project",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_public_12",
+        "repositoryNodeId": "R_public_project",
+        "pullRequestNumber": 12,
+        "subjectNodeId": "U_fixture_established",
+        "repositoryOwnerNodeId": "O_example_project",
+        "classification": "independently_maintained"
+      },
+      "derivation": {
+        "version": "repository-ownership-v1",
+        "inputEvidenceIds": [
+          "ev_pr_opened",
+          "ev_pr",
+          "ev_merge_actor"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_pr_opened_2",
+      "type": "PULL_REQUEST_OPENED",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_other_7",
+      "repositoryNodeId": "R_other_project",
+      "eventAt": "2025-11-01T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_other_7",
+        "repositoryNodeId": "R_other_project",
+        "repositoryOwnerNodeId": "O_other_project",
+        "authorNodeId": "U_fixture_established",
+        "authorAssociation": "CONTRIBUTOR",
+        "pullRequestNumber": 7,
+        "metadataStructureFingerprint": "58bc39ef112bbc571941eaedeee1e863ca6e880f51d0707bf1173065de1fe20e",
+        "metadataFeatureVersion": "pr-metadata-structure-v1",
+        "openedAt": "2025-11-01T00:00:00Z",
+        "metadataStructure": {
+          "titleTokenClasses": [
+            "word",
+            "code"
+          ],
+          "bodySectionKinds": [
+            "summary",
+            "testing"
+          ],
+          "referenceKinds": []
+        },
+        "repositoryTemplateStructure": null,
+        "templateAdjustedStructure": {
+          "titleTokenClasses": [
+            "word",
+            "code"
+          ],
+          "bodySectionKinds": [
+            "summary",
+            "testing"
+          ],
+          "referenceKinds": []
+        },
+        "templateAdjustedFingerprint": "58bc39ef112bbc571941eaedeee1e863ca6e880f51d0707bf1173065de1fe20e",
+        "informativeFeatureCount": 4
+      },
+      "sourceUrl": "https://github.com/other/project/pull/7",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_other_project",
+        "nameWithOwner": "other/project"
+      }
+    },
+    {
+      "evidenceId": "ev_pr_2",
+      "type": "PULL_REQUEST_MERGED",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_other_7",
+      "repositoryNodeId": "R_other_project",
+      "eventAt": "2025-11-03T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_other_7",
+        "repositoryNodeId": "R_other_project",
+        "authorNodeId": "U_fixture_established",
+        "pullRequestNumber": 7,
+        "mergedAt": "2025-11-03T00:00:00Z",
+        "mergeCommitSha": "ffffffffffffffffffffffffffffffffffffffff"
+      },
+      "sourceUrl": "https://github.com/other/project/pull/7",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_other_project",
+        "nameWithOwner": "other/project"
+      }
+    },
+    {
+      "evidenceId": "ev_merge_actor_2",
+      "type": "MERGE_ACTOR",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "U_other_maintainer",
+      "repositoryNodeId": "R_other_project",
+      "eventAt": "2025-11-03T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_other_7",
+        "repositoryNodeId": "R_other_project",
+        "pullRequestNumber": 7,
+        "pullRequestAuthorNodeId": "U_fixture_established",
+        "githubNodeId": "U_other_maintainer"
+      },
+      "sourceUrl": "https://github.com/other/project/pull/7",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_other_project",
+        "nameWithOwner": "other/project"
+      }
+    },
+    {
+      "evidenceId": "ev_owner_2",
+      "type": "REPOSITORY_OWNERSHIP_RELATIONSHIP",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_other_project",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_other_7",
+        "repositoryNodeId": "R_other_project",
+        "pullRequestNumber": 7,
+        "subjectNodeId": "U_fixture_established",
+        "repositoryOwnerNodeId": "O_other_project",
+        "classification": "independently_maintained"
+      },
+      "derivation": {
+        "version": "repository-ownership-v1",
+        "inputEvidenceIds": [
+          "ev_pr_opened_2",
+          "ev_pr_2",
+          "ev_merge_actor_2"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_review",
+      "type": "REVIEW_RECEIVED",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "REV_public_12_1",
+      "repositoryNodeId": "R_public_project",
+      "eventAt": "2026-05-02T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "reviewNodeId": "REV_public_12_1",
+        "pullRequestNodeId": "PR_public_12",
+        "repositoryNodeId": "R_public_project",
+        "pullRequestNumber": 12,
+        "pullRequestAuthorNodeId": "U_fixture_established",
+        "reviewerNodeId": "U_independent_maintainer",
+        "state": "CHANGES_REQUESTED",
+        "submittedAt": "2026-05-02T00:00:00Z"
+      },
+      "sourceUrl": "https://github.com/example/project/pull/12",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_review_given",
+      "type": "REVIEW_GIVEN",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "REV_public_14_1",
+      "repositoryNodeId": "R_public_project",
+      "eventAt": "2026-04-15T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "reviewNodeId": "REV_public_14_1",
+        "pullRequestNodeId": "PR_public_14",
+        "repositoryNodeId": "R_public_project",
+        "pullRequestNumber": 14,
+        "pullRequestAuthorNodeId": "U_other_contributor",
+        "reviewerNodeId": "U_fixture_established",
+        "state": "APPROVED",
+        "submittedAt": "2026-04-15T00:00:00Z"
+      },
+      "sourceUrl": "https://github.com/example/project/pull/14",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_follow",
+      "type": "FOLLOW_UP_COMMIT",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "C_followup_public_12",
+      "repositoryNodeId": "R_public_project",
+      "eventAt": "2026-05-03T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "commitNodeId": "C_followup_public_12",
+        "pullRequestNodeId": "PR_public_12",
+        "repositoryNodeId": "R_public_project",
+        "pullRequestNumber": 12,
+        "pullRequestAuthorNodeId": "U_fixture_established",
+        "commitSha": "dddddddddddddddddddddddddddddddddddddddd",
+        "committedAt": "2026-05-03T00:00:00Z",
+        "commitAuthorNodeId": "U_fixture_established"
+      },
+      "sourceUrl": "https://github.com/example/project/pull/12/commits",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_lang",
+      "type": "REPOSITORY_LANGUAGE",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_public_project",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "repositoryNodeId": "R_public_project",
+        "language": "TypeScript",
+        "share": 0.68
+      },
+      "sourceUrl": "https://github.com/example/project",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_topic",
+      "type": "REPOSITORY_TOPIC",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_public_project",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "repositoryNodeId": "R_public_project",
+        "topic": "github-app"
+      },
+      "sourceUrl": "https://github.com/example/project",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_target_lang",
+      "type": "REPOSITORY_LANGUAGE",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "repositoryNodeId": "R_fixture_target",
+        "language": "TypeScript",
+        "share": 0.72
+      },
+      "sourceUrl": "https://github.com/example/target",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_fixture_target",
+        "nameWithOwner": "example/target"
+      }
+    },
+    {
+      "evidenceId": "ev_target_topic",
+      "type": "REPOSITORY_TOPIC",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "repositoryNodeId": "R_fixture_target",
+        "topic": "github-app"
+      },
+      "sourceUrl": "https://github.com/example/target",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_fixture_target",
+        "nameWithOwner": "example/target"
+      }
+    },
+    {
+      "evidenceId": "ev_path",
+      "type": "CHANGED_PATH",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_public_12:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:src/github/app.ts",
+      "repositoryNodeId": "R_public_project",
+      "eventAt": "2026-05-04T00:00:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-rest-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_public_12",
+        "repositoryNodeId": "R_public_project",
+        "pullRequestNumber": 12,
+        "headSha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "path": "src/github/app.ts",
+        "additions": 80,
+        "deletions": 12,
+        "language": "typescript",
+        "languageFeatureVersion": "path-language-v1"
+      },
+      "sourceUrl": "https://github.com/example/project/pull/12/files",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      }
+    },
+    {
+      "evidenceId": "ev_target_path",
+      "type": "CHANGED_PATH",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_target_42:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:tests/github/app.test.ts",
+      "repositoryNodeId": "R_fixture_target",
+      "eventAt": "2026-07-20T23:59:00Z",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-rest-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "path": "tests/github/app.test.ts",
+        "additions": 42,
+        "deletions": 8,
+        "language": "typescript",
+        "languageFeatureVersion": "path-language-v1"
+      },
+      "sourceUrl": "https://github.com/example/target/pull/42/files",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_fixture_target",
+        "nameWithOwner": "example/target"
+      }
+    },
+    {
+      "evidenceId": "ev_historical_fileset",
+      "type": "PATCH_FILESET_STATUS",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_public_12",
+      "repositoryNodeId": "R_public_project",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-rest-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_public_12",
+        "repositoryNodeId": "R_public_project",
+        "pullRequestNumber": 12,
+        "headSha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "collectionState": "complete",
+        "providerTotalCount": 1,
+        "collectedFileCount": 1,
+        "pageInfoComplete": true,
+        "complete": true,
+        "revisionAt": "2026-05-04T00:00:00Z"
+      },
+      "sourceUrl": "https://github.com/example/project/pull/12/files",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_public_project",
+        "nameWithOwner": "example/project"
+      },
+      "eventAt": "2026-05-04T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev_relevance",
+      "type": "RELEVANCE_COMPARISON",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "historicalPullRequestNodeId": "PR_public_12",
+        "historicalRepositoryNodeId": "R_public_project",
+        "targetPullRequestNodeId": "PR_target_42",
+        "targetRepositoryNodeId": "R_fixture_target",
+        "comparisonVersion": "relevance-comparison-v1",
+        "languageMatches": [
+          "typescript"
+        ],
+        "domainMatches": [
+          "github-app"
+        ],
+        "pathMatches": [
+          {
+            "historicalPath": "src/github/app.ts",
+            "targetPath": "tests/github/app.test.ts",
+            "pathFamily": "github/app"
+          }
+        ],
+        "historicalHeadSha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "historicalFilesetEvidenceId": "ev_historical_fileset",
+        "targetHeadSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "targetFilesetEvidenceId": "ev_fileset"
+      },
+      "derivation": {
+        "version": "relevance-comparison-v1",
+        "inputEvidenceIds": [
+          "ev_pr_opened",
+          "ev_lang",
+          "ev_topic",
+          "ev_path",
+          "ev_target_lang",
+          "ev_target_topic",
+          "ev_target_path",
+          "ev_historical_fileset",
+          "ev_fileset"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_fileset",
+      "type": "PATCH_FILESET_STATUS",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "PR_target_42",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-rest-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "collectionState": "complete",
+        "providerTotalCount": 1,
+        "collectedFileCount": 1,
+        "pageInfoComplete": true,
+        "complete": true,
+        "revisionAt": "2026-07-20T23:59:00Z"
+      },
+      "sourceUrl": "https://github.com/example/target/pull/42/files",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_fixture_target",
+        "nameWithOwner": "example/target"
+      },
+      "eventAt": "2026-07-20T23:59:00Z"
+    },
+    {
+      "evidenceId": "ev_policy_admin",
+      "type": "REPOSITORY_ADMIN_PERMISSION",
+      "visibility": "TARGET_REPOSITORY_PRIVATE",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2025-12-31T23:59:59Z",
+      "collectorVersion": "github-rest-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "installationId": 9001,
+        "repositoryNodeId": "R_fixture_target",
+        "actorGithubNodeId": "U_maintainer_admin",
+        "permission": "admin",
+        "state": "granted",
+        "providerObservedAt": "2025-12-31T23:59:59Z",
+        "authorizationForRevisionId": "13131313-1313-4131-8131-131313131313",
+        "authorizationForRevisionSequence": 1,
+        "authorizationHeadRevision": 1,
+        "authorizationNonce": "14141414-1414-4141-8141-141414141414",
+        "authorizationSnapshotToken": "5def12b0138a8c51b45e9c3b2a3fb7382daeb051b3787ff49e131919de9da7cd"
+      }
+    },
+    {
+      "evidenceId": "ev_policy_revision",
+      "type": "DASHBOARD_POLICY_REVISION",
+      "visibility": "TARGET_REPOSITORY_PRIVATE",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2025-12-31T23:59:59Z",
+      "collectorVersion": "policy-engine-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "installationId": 9001,
+        "repositoryNodeId": "R_fixture_target",
+        "revisionId": "13131313-1313-4131-8131-131313131313",
+        "revisionSequence": 1,
+        "authorizedHeadRevision": 1,
+        "actorGithubNodeId": "U_maintainer_admin",
+        "configurationDigest": "c0e6a917bb500611543e7f5187d62b7043317fbe2c05163e0b4b53e9bb04967e",
+        "authorizationNonce": "14141414-1414-4141-8141-141414141414",
+        "authorizationSnapshotToken": "5def12b0138a8c51b45e9c3b2a3fb7382daeb051b3787ff49e131919de9da7cd",
+        "recordedAt": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "evidenceId": "ev_repository_visibility",
+      "type": "REPOSITORY_VISIBILITY_SNAPSHOT",
+      "visibility": "TARGET_REPOSITORY_PRIVATE",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-rest-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "installationId": 9001,
+        "repositoryNodeId": "R_fixture_target",
+        "visibility": "public",
+        "providerObservedAt": "2026-07-21T00:00:00Z"
+      }
+    },
+    {
+      "evidenceId": "ev_policy_head",
+      "type": "DASHBOARD_POLICY_STREAM_HEAD",
+      "visibility": "TARGET_REPOSITORY_PRIVATE",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2025-12-31T23:59:59.500Z",
+      "collectorVersion": "policy-engine-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "installationId": 9001,
+        "repositoryNodeId": "R_fixture_target",
+        "streamId": "15151515-1515-4151-8151-151515151515",
+        "highWaterRevision": 1,
+        "highWaterRevisionId": "13131313-1313-4131-8131-131313131313",
+        "streamDigest": "0a1b26d5ca9f6cdb4301aa220c49a12eb8bd2100080fc49b8e9297fc1e88bae6",
+        "databaseSnapshotToken": "5def12b0138a8c51b45e9c3b2a3fb7382daeb051b3787ff49e131919de9da7cd",
+        "serializableReadAt": "2025-12-31T23:59:59.500Z"
+      }
+    },
+    {
+      "evidenceId": "ev_risk_policy",
+      "type": "REPOSITORY_RISK_POLICY",
+      "visibility": "TARGET_REPOSITORY_PRIVATE",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "policy-engine-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "repositoryNodeId": "R_fixture_target",
+        "policyVersion": "target-risk-v1",
+        "rules": [
+          {
+            "ruleId": "release-workflows",
+            "pathPrefix": ".github/workflows/"
+          },
+          {
+            "ruleId": "authentication",
+            "pathPrefix": "src/auth/"
+          }
+        ],
+        "policyId": "12121212-1212-4121-8121-121212121212",
+        "effectiveFrom": "2026-01-01T00:00:00Z",
+        "effectiveUntil": null,
+        "policyDigest": "0c041a59e8120e48e58f6e7ffbe141efb6ec53eabcb627964a76670850b2aea1",
+        "reviewPriorityEnabled": true,
+        "installationId": 9001,
+        "configurationSource": {
+          "kind": "dashboard_revision",
+          "revisionEvidenceId": "ev_policy_revision",
+          "adminPermissionEvidenceId": "ev_policy_admin",
+          "policyHeadEvidenceId": "ev_policy_head"
+        }
+      },
+      "derivation": {
+        "version": "repository-risk-policy-v1",
+        "inputEvidenceIds": [
+          "ev_policy_admin",
+          "ev_policy_revision",
+          "ev_policy_head"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_ci",
+      "type": "CI_CHECK_STATE",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "CHECKSUITE_target_42",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-rest-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "checkSuiteNodeId": "CHECKSUITE_target_42",
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "state": "passing",
+        "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "sourceUrl": "https://github.com/example/target/pull/42/checks",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_fixture_target",
+        "nameWithOwner": "example/target"
+      }
+    },
+    {
+      "evidenceId": "ev_scope",
+      "type": "PATCH_SCOPE",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "filesetComplete": true,
+        "filesChanged": 1,
+        "additions": 42,
+        "deletions": 8,
+        "classification": "medium"
+      },
+      "derivation": {
+        "version": "patch-scope-v1",
+        "inputEvidenceIds": [
+          "ev_target_path",
+          "ev_ci",
+          "ev_fileset"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_test",
+      "type": "TEST_PATH_CHANGE",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "filesetComplete": true,
+        "state": "changed"
+      },
+      "derivation": {
+        "version": "test-path-change-v1",
+        "inputEvidenceIds": [
+          "ev_target_path",
+          "ev_ci",
+          "ev_fileset"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_sensitive",
+      "type": "SENSITIVE_PATH_CHANGE",
+      "visibility": "TARGET_REPOSITORY_PRIVATE",
+      "subjectGithubNodeId": "U_fixture_established",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "evidence-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "filesetComplete": true,
+        "policyVersion": "target-risk-v1",
+        "state": "unchanged",
+        "paths": [],
+        "matchedRuleIds": [],
+        "policyId": "12121212-1212-4121-8121-121212121212",
+        "policyDigest": "0c041a59e8120e48e58f6e7ffbe141efb6ec53eabcb627964a76670850b2aea1"
+      },
+      "derivation": {
+        "version": "sensitive-path-change-v1",
+        "inputEvidenceIds": [
+          "ev_target_path",
+          "ev_ci",
+          "ev_fileset",
+          "ev_risk_policy"
+        ]
+      }
+    },
+    {
+      "evidenceId": "ev_issue",
+      "type": "LINKED_ISSUE",
+      "visibility": "PUBLIC_GLOBAL",
+      "subjectGithubNodeId": "U_fixture_established",
+      "providerNodeId": "ISSUE_target_40",
+      "repositoryNodeId": "R_fixture_target",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "github-graphql-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "pullRequestNodeId": "PR_target_42",
+        "repositoryNodeId": "R_fixture_target",
+        "pullRequestNumber": 42,
+        "issueNodeId": "ISSUE_target_40",
+        "issueNumber": 40
+      },
+      "sourceUrl": "https://github.com/example/target/issues/40",
+      "providerLocator": {
+        "kind": "repository",
+        "nodeId": "R_fixture_target",
+        "nameWithOwner": "example/target"
+      }
+    },
+    {
+      "evidenceId": "ev_coverage",
+      "type": "PUBLIC_COVERAGE_SUMMARY",
+      "visibility": "PUBLIC_DERIVED",
+      "subjectGithubNodeId": "U_fixture_established",
+      "observedAt": "2026-07-21T00:00:00Z",
+      "collectorVersion": "coverage-derivation-v1",
+      "collectionRunId": "33333333-3333-4333-8333-333333333333",
+      "canonicalPayload": {
+        "subjectNodeId": "U_fixture_established",
+        "requestedWindowYears": 5,
+        "completeYears": 5,
+        "partialSources": [],
+        "freshAsOf": "2026-07-21T00:00:00Z",
+        "freshness": "current",
+        "attribution": "complete",
+        "confidence": 1,
+        "windowStart": "2022-01-01T00:00:00Z",
+        "windowEnd": "2026-07-21T00:00:00Z",
+        "freshnessPolicy": {
+          "version": "public-history-freshness-v1",
+          "maxAgeSeconds": 86400
+        },
+        "sourcePartitions": [
+          {
+            "partitionKey": "identity_and_calendar",
+            "queryVersion": "identity-and-calendar-v1",
+            "temporalBasis": "not_applicable",
+            "evidenceTypes": [
+              "AUTHOR_AVAILABILITY",
+              "ACTOR_TYPE",
+              "ACCOUNT_CREATED",
+              "CONTRIBUTION_YEAR"
+            ],
+            "state": "complete",
+            "requestedStart": "2022-01-01T00:00:00Z",
+            "requestedEnd": "2026-07-21T00:00:00Z",
+            "completedStart": "2022-01-01T00:00:00Z",
+            "completedEnd": "2026-07-21T00:00:00Z",
+            "providerTotalCount": 6,
+            "collectedCount": 6,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [
+              "ev_account",
+              "ev_actor_type",
+              "ev_author_available",
+              "ev_year",
+              "ev_year_mid",
+              "ev_year_recent"
+            ],
+            "candidateSetDigest": "d568154343b79adb4a4609e1b4e3b26ae73fdef817cbc6d10797c56fb9999311"
+          },
+          {
+            "partitionKey": "pull_request_history_2022",
+            "queryVersion": "pull-request-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "PULL_REQUEST_OPENED",
+              "PULL_REQUEST_MERGED",
+              "PULL_REQUEST_CLOSED_UNMERGED",
+              "MERGE_ACTOR",
+              "FOLLOW_UP_COMMIT",
+              "REVIEW_THREAD_RESOLVED",
+              "MERGE_RELATIONSHIP_EVENT",
+              "CHANGED_PATH",
+              "PATCH_FILESET_STATUS"
+            ],
+            "state": "complete",
+            "requestedStart": "2022-01-01T00:00:00Z",
+            "requestedEnd": "2022-12-31T23:59:59.999Z",
+            "completedStart": "2022-01-01T00:00:00Z",
+            "completedEnd": "2022-12-31T23:59:59.999Z",
+            "providerTotalCount": 0,
+            "collectedCount": 0,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [],
+            "candidateSetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "partitionKey": "pull_request_history_2023",
+            "queryVersion": "pull-request-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "PULL_REQUEST_OPENED",
+              "PULL_REQUEST_MERGED",
+              "PULL_REQUEST_CLOSED_UNMERGED",
+              "MERGE_ACTOR",
+              "FOLLOW_UP_COMMIT",
+              "REVIEW_THREAD_RESOLVED",
+              "MERGE_RELATIONSHIP_EVENT",
+              "CHANGED_PATH",
+              "PATCH_FILESET_STATUS"
+            ],
+            "state": "complete",
+            "requestedStart": "2023-01-01T00:00:00Z",
+            "requestedEnd": "2023-12-31T23:59:59.999Z",
+            "completedStart": "2023-01-01T00:00:00Z",
+            "completedEnd": "2023-12-31T23:59:59.999Z",
+            "providerTotalCount": 0,
+            "collectedCount": 0,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [],
+            "candidateSetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "partitionKey": "pull_request_history_2024",
+            "queryVersion": "pull-request-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "PULL_REQUEST_OPENED",
+              "PULL_REQUEST_MERGED",
+              "PULL_REQUEST_CLOSED_UNMERGED",
+              "MERGE_ACTOR",
+              "FOLLOW_UP_COMMIT",
+              "REVIEW_THREAD_RESOLVED",
+              "MERGE_RELATIONSHIP_EVENT",
+              "CHANGED_PATH",
+              "PATCH_FILESET_STATUS"
+            ],
+            "state": "complete",
+            "requestedStart": "2024-01-01T00:00:00Z",
+            "requestedEnd": "2024-12-31T23:59:59.999Z",
+            "completedStart": "2024-01-01T00:00:00Z",
+            "completedEnd": "2024-12-31T23:59:59.999Z",
+            "providerTotalCount": 0,
+            "collectedCount": 0,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [],
+            "candidateSetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "partitionKey": "pull_request_history_2025",
+            "queryVersion": "pull-request-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "PULL_REQUEST_OPENED",
+              "PULL_REQUEST_MERGED",
+              "PULL_REQUEST_CLOSED_UNMERGED",
+              "MERGE_ACTOR",
+              "FOLLOW_UP_COMMIT",
+              "REVIEW_THREAD_RESOLVED",
+              "MERGE_RELATIONSHIP_EVENT",
+              "CHANGED_PATH",
+              "PATCH_FILESET_STATUS"
+            ],
+            "state": "complete",
+            "requestedStart": "2025-01-01T00:00:00Z",
+            "requestedEnd": "2025-12-31T23:59:59.999Z",
+            "completedStart": "2025-01-01T00:00:00Z",
+            "completedEnd": "2025-12-31T23:59:59.999Z",
+            "providerTotalCount": 3,
+            "collectedCount": 3,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [
+              "ev_merge_actor_2",
+              "ev_pr_2",
+              "ev_pr_opened_2"
+            ],
+            "candidateSetDigest": "fe43d6d60e232ab78e54216b686d0aaff1293b57543903c9ed762cc606c5aa1b"
+          },
+          {
+            "partitionKey": "pull_request_history_2026",
+            "queryVersion": "pull-request-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "PULL_REQUEST_OPENED",
+              "PULL_REQUEST_MERGED",
+              "PULL_REQUEST_CLOSED_UNMERGED",
+              "MERGE_ACTOR",
+              "FOLLOW_UP_COMMIT",
+              "REVIEW_THREAD_RESOLVED",
+              "MERGE_RELATIONSHIP_EVENT",
+              "CHANGED_PATH",
+              "PATCH_FILESET_STATUS"
+            ],
+            "state": "complete",
+            "requestedStart": "2026-01-01T00:00:00Z",
+            "requestedEnd": "2026-07-21T00:00:00Z",
+            "completedStart": "2026-01-01T00:00:00Z",
+            "completedEnd": "2026-07-21T00:00:00Z",
+            "providerTotalCount": 8,
+            "collectedCount": 8,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [
+              "ev_fileset",
+              "ev_follow",
+              "ev_historical_fileset",
+              "ev_merge_actor",
+              "ev_path",
+              "ev_pr",
+              "ev_pr_opened",
+              "ev_target_path"
+            ],
+            "candidateSetDigest": "9c7ab4b927c00cd3e1fb30719d111734dfc1afa0e0a74c9b9380004bc253d7af"
+          },
+          {
+            "partitionKey": "review_history_2022",
+            "queryVersion": "review-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "REVIEW_RECEIVED",
+              "REVIEW_GIVEN"
+            ],
+            "state": "complete",
+            "requestedStart": "2022-01-01T00:00:00Z",
+            "requestedEnd": "2022-12-31T23:59:59.999Z",
+            "completedStart": "2022-01-01T00:00:00Z",
+            "completedEnd": "2022-12-31T23:59:59.999Z",
+            "providerTotalCount": 0,
+            "collectedCount": 0,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [],
+            "candidateSetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "partitionKey": "review_history_2023",
+            "queryVersion": "review-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "REVIEW_RECEIVED",
+              "REVIEW_GIVEN"
+            ],
+            "state": "complete",
+            "requestedStart": "2023-01-01T00:00:00Z",
+            "requestedEnd": "2023-12-31T23:59:59.999Z",
+            "completedStart": "2023-01-01T00:00:00Z",
+            "completedEnd": "2023-12-31T23:59:59.999Z",
+            "providerTotalCount": 0,
+            "collectedCount": 0,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [],
+            "candidateSetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "partitionKey": "review_history_2024",
+            "queryVersion": "review-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "REVIEW_RECEIVED",
+              "REVIEW_GIVEN"
+            ],
+            "state": "complete",
+            "requestedStart": "2024-01-01T00:00:00Z",
+            "requestedEnd": "2024-12-31T23:59:59.999Z",
+            "completedStart": "2024-01-01T00:00:00Z",
+            "completedEnd": "2024-12-31T23:59:59.999Z",
+            "providerTotalCount": 0,
+            "collectedCount": 0,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [],
+            "candidateSetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "partitionKey": "review_history_2025",
+            "queryVersion": "review-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "REVIEW_RECEIVED",
+              "REVIEW_GIVEN"
+            ],
+            "state": "complete",
+            "requestedStart": "2025-01-01T00:00:00Z",
+            "requestedEnd": "2025-12-31T23:59:59.999Z",
+            "completedStart": "2025-01-01T00:00:00Z",
+            "completedEnd": "2025-12-31T23:59:59.999Z",
+            "providerTotalCount": 0,
+            "collectedCount": 0,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [],
+            "candidateSetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          {
+            "partitionKey": "review_history_2026",
+            "queryVersion": "review-history-v1",
+            "temporalBasis": "canonical_event_at",
+            "evidenceTypes": [
+              "REVIEW_RECEIVED",
+              "REVIEW_GIVEN"
+            ],
+            "state": "complete",
+            "requestedStart": "2026-01-01T00:00:00Z",
+            "requestedEnd": "2026-07-21T00:00:00Z",
+            "completedStart": "2026-01-01T00:00:00Z",
+            "completedEnd": "2026-07-21T00:00:00Z",
+            "providerTotalCount": 2,
+            "collectedCount": 2,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [
+              "ev_review",
+              "ev_review_given"
+            ],
+            "candidateSetDigest": "e5d0d3cf1cf340bf899b2e0f486731238c27b124d1e00ea78031fb65e943eaf5"
+          },
+          {
+            "partitionKey": "repository_metadata",
+            "queryVersion": "repository-metadata-v1",
+            "temporalBasis": "not_applicable",
+            "evidenceTypes": [
+              "REPOSITORY_LANGUAGE",
+              "REPOSITORY_TOPIC"
+            ],
+            "state": "complete",
+            "requestedStart": "2022-01-01T00:00:00Z",
+            "requestedEnd": "2026-07-21T00:00:00Z",
+            "completedStart": "2022-01-01T00:00:00Z",
+            "completedEnd": "2026-07-21T00:00:00Z",
+            "providerTotalCount": 4,
+            "collectedCount": 4,
+            "pageInfoComplete": true,
+            "observedAt": "2026-07-21T00:00:00Z",
+            "limitationReasons": [],
+            "candidateEvidenceIds": [
+              "ev_lang",
+              "ev_target_lang",
+              "ev_target_topic",
+              "ev_topic"
+            ],
+            "candidateSetDigest": "156e27f161b6fb1280b8b490beb85eeeb9ab07acae69b4d8be898563a90e7dcb"
+          }
+        ],
+        "confidencePolicy": "coverage-confidence-v1"
+      }
+    }
+  ],
+  "capturedAt": "2026-07-21T00:00:00Z",
+  "versions": {
+    "engine": "engine-v1",
+    "evidence": "evidence-v1",
+    "features": "features-v1"
+  },
+  "versionDigests": {
+    "engine": "09775a319223b237b406d8722117e95abb314375583bcb90c14ab8ecde8dad70",
+    "evidence": "4bd90b7665322e88f9060cf795712bc94c1dc72e7e11a9400584280739ec9a05",
+    "features": "3d95e08075a934d1647c56c181c6c2e0c7d6d82661c6d6f4fbcf98c5c0a1f4f3"
+  }
+}

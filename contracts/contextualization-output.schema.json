@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/contextualization-output-v1.json",
+  "title": "MergeSignal contextualization output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "requestAlias", "candidatePacketDigest", "claims", "outputDigest"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "requestAlias": { "type": "string", "format": "uuid" },
+    "candidatePacketDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "claims": {
+      "type": "array",
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claimId", "reasonCode", "populationEvidenceCount", "populationCommitment", "witnessMode", "witnessEvidenceIds", "evidenceIds"],
+        "properties": {
+          "claimId": { "type": "string", "pattern": "^[a-z][a-z0-9_-]+$" },
+          "reasonCode": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+          "populationEvidenceCount": { "type": "integer", "minimum": 1, "maximum": 50000 },
+          "populationCommitment": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "witnessMode": { "enum": ["bounded_witness", "full_population_commitment"] },
+          "witnessEvidenceIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 64,
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^ev_[0-9a-f]{64}$" }
+          },
+          "evidenceIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 64,
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^ev_[0-9a-f]{64}$" }
+          }
+        }
+      }
+    },
+    "outputDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

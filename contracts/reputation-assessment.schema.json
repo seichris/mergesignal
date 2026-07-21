@@ -1,0 +1,447 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/reputation-assessment-v1.json",
+  "title": "MergeSignal immutable reputation assessment",
+  "description": "An immutable calculation snapshot. Publication, supersession, retention, and deletion state live in separate append-only lifecycle event streams.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "assessmentId",
+    "subject",
+    "target",
+    "assessmentStatus",
+    "summaryState",
+    "overallConfidence",
+    "reviewPriority",
+    "reviewPriorityBasis",
+    "dimensions",
+    "patchContext",
+    "coverage",
+    "evidenceSnapshot",
+    "explanation",
+    "versions",
+    "versionDigests",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "subject": { "$ref": "#/$defs/subject" },
+    "target": { "$ref": "#/$defs/target" },
+    "assessmentStatus": { "enum": ["complete", "partial"] },
+    "summaryState": {
+      "enum": [
+        "established_evidence",
+        "developing_evidence",
+        "limited_evidence",
+        "needs_manual_inspection"
+      ]
+    },
+    "overallConfidence": { "$ref": "#/$defs/confidence" },
+    "reviewPriority": {
+      "enum": ["not_enabled", "prioritize", "standard", "inspect_first"]
+    },
+    "reviewPriorityBasis": {
+      "enum": ["disabled", "reputation_and_patch", "patch_only", "standard", "inspection"]
+    },
+    "dimensions": { "$ref": "#/$defs/dimensions" },
+    "patchContext": { "$ref": "#/$defs/patchContext" },
+    "coverage": { "$ref": "#/$defs/coverage" },
+    "evidenceSnapshot": { "$ref": "#/$defs/evidenceSnapshot" },
+    "explanation": { "$ref": "#/$defs/explanation" },
+    "versions": { "$ref": "#/$defs/versions" },
+    "versionDigests": { "$ref": "#/$defs/versionDigests" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "availability",
+        "githubNodeId",
+        "loginAtAssessment",
+        "actorType",
+        "historySupport"
+      ],
+      "properties": {
+        "availability": { "enum": ["available", "unavailable"] },
+        "githubNodeId": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "loginAtAssessment": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "actorType": {
+          "enum": [
+            "User",
+            "Bot",
+            "Mannequin",
+            "Organization",
+            "EnterpriseUserAccount",
+            "Unknown"
+          ]
+        },
+        "historySupport": { "enum": ["full", "limited", "unsupported"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "availability": { "const": "available" } } },
+          "then": { "properties": { "githubNodeId": { "type": "string" } } }
+        },
+        {
+          "if": { "properties": { "availability": { "const": "unavailable" } } },
+          "then": {
+            "properties": {
+              "githubNodeId": { "const": null },
+              "loginAtAssessment": { "const": null },
+              "actorType": { "const": "Unknown" },
+              "historySupport": { "const": "unsupported" }
+            }
+          }
+        }
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "installationId",
+        "repositoryNodeId",
+        "repositoryVisibility",
+        "visibilityEvidenceId",
+        "pullRequestNodeId",
+        "pullRequestNumber",
+        "headSha",
+        "generation",
+        "riskPolicy"
+      ],
+      "properties": {
+        "installationId": { "type": "integer", "minimum": 1 },
+        "repositoryNodeId": { "type": "string", "minLength": 1 },
+        "repositoryVisibility": { "enum": ["public", "private", "internal"] },
+        "visibilityEvidenceId": { "type": "string", "minLength": 1 },
+        "pullRequestNodeId": { "type": "string", "minLength": 1 },
+        "pullRequestNumber": { "type": "integer", "minimum": 1 },
+        "headSha": { "$ref": "#/$defs/sha" },
+        "generation": { "type": "integer", "minimum": 1 },
+        "riskPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["installationId", "policyId", "policyVersion", "policyDigest", "reviewPriorityEnabled"],
+          "properties": {
+            "installationId": { "type": "integer", "minimum": 1 },
+            "policyId": { "type": "string", "format": "uuid" },
+            "policyVersion": { "$ref": "#/$defs/versionIdentifier" },
+            "policyDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            "reviewPriorityEnabled": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "label", "reasonCodes"],
+      "properties": {
+        "value": { "type": "number", "minimum": 0, "maximum": 1 },
+        "label": { "enum": ["low", "medium", "high"] },
+        "reasonCodes": { "$ref": "#/$defs/reasonCodes" }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tenure_continuity",
+        "independent_open_source_record",
+        "merge_follow_through",
+        "collaboration",
+        "relevant_experience",
+        "integrity_gaming_resistance"
+      ],
+      "properties": {
+        "tenure_continuity": { "$ref": "#/$defs/dimension" },
+        "independent_open_source_record": { "$ref": "#/$defs/dimension" },
+        "merge_follow_through": { "$ref": "#/$defs/dimension" },
+        "collaboration": { "$ref": "#/$defs/dimension" },
+        "relevant_experience": { "$ref": "#/$defs/dimension" },
+        "integrity_gaming_resistance": { "$ref": "#/$defs/dimension" }
+      }
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "confidence", "state", "reasonCodes", "evidenceIds"],
+      "properties": {
+        "score": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "state": {
+          "enum": ["strong", "moderate", "limited", "uncertain", "manual_inspection"]
+        },
+        "reasonCodes": { "$ref": "#/$defs/reasonCodes" },
+        "evidenceIds": { "$ref": "#/$defs/evidenceIds" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "state": { "enum": ["strong", "moderate"] } } },
+          "then": { "properties": { "score": { "type": "number" } } }
+        },
+        {
+          "if": { "properties": { "state": { "enum": ["limited", "uncertain", "manual_inspection"] } } },
+          "then": { "properties": { "score": { "const": null } } }
+        }
+      ]
+    },
+    "patchContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ciState",
+        "scope",
+        "linkedIssue",
+        "testPathState",
+        "sensitivePathState",
+        "reasonCodes",
+        "evidenceIds"
+      ],
+      "properties": {
+        "ciState": { "enum": ["passing", "failing", "pending", "missing", "unknown"] },
+        "scope": { "enum": ["small", "medium", "large", "unknown"] },
+        "linkedIssue": { "type": "boolean" },
+        "testPathState": { "enum": ["changed", "unchanged", "unknown"] },
+        "sensitivePathState": { "enum": ["changed", "unchanged", "unknown"] },
+        "reasonCodes": { "$ref": "#/$defs/reasonCodes" },
+        "evidenceIds": { "$ref": "#/$defs/evidenceIds" }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requestedWindowYears",
+        "completeYears",
+        "partialSources",
+        "freshAsOf",
+        "confidence",
+        "reasonCodes",
+        "evidenceIds"
+      ],
+      "properties": {
+        "requestedWindowYears": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "completeYears": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "partialSources": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "freshAsOf": { "type": "string", "format": "date-time" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "reasonCodes": { "$ref": "#/$defs/reasonCodes" },
+        "evidenceIds": { "$ref": "#/$defs/evidenceIds" }
+      }
+    },
+    "evidenceSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshotId",
+        "canonicalization",
+        "canonicalHash",
+        "evidenceIds",
+        "capturedAt"
+      ],
+      "properties": {
+        "snapshotId": { "type": "string", "format": "uuid" },
+        "canonicalization": { "const": "RFC8785-JCS+SHA256" },
+        "canonicalHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "evidenceIds": { "$ref": "#/$defs/evidenceIds" },
+        "capturedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "candidatePacket", "claims", "modelRun", "caveatKeys", "reasonCodes", "evidenceIds"],
+      "properties": {
+        "status": { "enum": ["complete", "deterministic_fallback"] },
+        "candidatePacket": { "$ref": "#/$defs/contextualizationCandidatePacket" },
+        "claims": {
+          "type": "array",
+          "maxItems": 3,
+          "items": { "$ref": "#/$defs/explanationClaim" }
+        },
+        "modelRun": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["requestAlias", "providerRequestDigest", "providerInvocationDigest", "candidatePacketDigest", "resolvedModel", "providerResponseId", "providerOutputDigest", "responseEnvelopeDigest"],
+              "properties": {
+                "requestAlias": { "type": "string", "format": "uuid" },
+                "providerRequestDigest": { "$ref": "#/$defs/digest" },
+                "providerInvocationDigest": { "$ref": "#/$defs/digest" },
+                "candidatePacketDigest": { "$ref": "#/$defs/digest" },
+                "resolvedModel": { "type": "string", "minLength": 1, "maxLength": 120 },
+                "providerResponseId": { "type": "string", "minLength": 1, "maxLength": 256 },
+                "providerOutputDigest": { "$ref": "#/$defs/digest" },
+                "responseEnvelopeDigest": { "$ref": "#/$defs/digest" }
+              }
+            }
+          ]
+        },
+        "caveatKeys": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "PUBLIC_HISTORY_NOT_PATCH_CORRECTNESS",
+              "PUBLIC_HISTORY_MAY_BE_INCOMPLETE",
+              "MODEL_INTERPRETATION",
+              "CONTEXTUALIZATION_UNAVAILABLE"
+            ]
+          }
+        },
+        "reasonCodes": { "$ref": "#/$defs/reasonCodes" },
+        "evidenceIds": { "$ref": "#/$defs/evidenceIds" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "complete" } } },
+          "then": {
+            "properties": {
+              "modelRun": { "type": "object" },
+              "caveatKeys": {
+                "type": "array",
+                "contains": { "const": "PUBLIC_HISTORY_NOT_PATCH_CORRECTNESS" }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "status": { "const": "deterministic_fallback" } } },
+          "then": {
+            "properties": {
+              "modelRun": { "const": null },
+              "claims": { "type": "array", "maxItems": 0 },
+              "reasonCodes": {
+                "type": "array",
+                "contains": { "const": "MODEL_EXPLANATION_UNAVAILABLE" }
+              },
+              "caveatKeys": {
+                "type": "array",
+                "maxItems": 3,
+                "allOf": [
+                  { "contains": { "const": "PUBLIC_HISTORY_NOT_PATCH_CORRECTNESS" } },
+                  { "contains": { "const": "CONTEXTUALIZATION_UNAVAILABLE" } },
+                  { "not": { "contains": { "const": "MODEL_INTERPRETATION" } } }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "explanationClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claimId", "reasonCode", "populationEvidenceCount", "populationDigest", "witnessMode", "witnessEvidenceIds", "evidenceIds"],
+      "properties": {
+        "claimId": { "type": "string", "pattern": "^[a-z][a-z0-9_-]+$" },
+        "reasonCode": { "$ref": "#/$defs/reasonCode" },
+        "populationEvidenceCount": { "type": "integer", "minimum": 1, "maximum": 50000 },
+        "populationDigest": { "$ref": "#/$defs/digest" },
+        "witnessMode": { "enum": ["bounded_witness", "full_population_commitment"] },
+        "witnessEvidenceIds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "evidenceIds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "contextualizationCandidatePacket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "digest", "candidates"],
+      "properties": {
+        "version": { "const": "contextualization-candidates-v1" },
+        "digest": { "$ref": "#/$defs/digest" },
+        "candidates": {
+          "type": "array",
+          "maxItems": 24,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/explanationClaim" }
+        }
+      }
+    },
+    "versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine", "policy", "evidence", "features", "scoring", "prompt", "model"],
+      "properties": {
+        "engine": { "$ref": "#/$defs/versionIdentifier" },
+        "policy": { "$ref": "#/$defs/versionIdentifier" },
+        "evidence": { "$ref": "#/$defs/versionIdentifier" },
+        "features": { "$ref": "#/$defs/versionIdentifier" },
+        "scoring": { "$ref": "#/$defs/versionIdentifier" },
+        "prompt": { "$ref": "#/$defs/versionIdentifier" },
+        "model": { "$ref": "#/$defs/versionIdentifier" }
+      }
+    },
+    "versionDigests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine", "policy", "evidence", "features", "scoring", "prompt", "model"],
+      "properties": {
+        "engine": { "$ref": "#/$defs/digest" },
+        "policy": { "$ref": "#/$defs/digest" },
+        "evidence": { "$ref": "#/$defs/digest" },
+        "features": { "$ref": "#/$defs/digest" },
+        "scoring": { "$ref": "#/$defs/digest" },
+        "prompt": { "$ref": "#/$defs/digest" },
+        "model": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "reasonCode": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]+$"
+    },
+    "reasonCodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reasonCode" },
+      "uniqueItems": true
+    },
+    "evidenceIds": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "versionIdentifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

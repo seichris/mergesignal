@@ -1,0 +1,368 @@
+{
+  "version": "1.0.0",
+  "codes": [
+    {
+      "code": "ACCOUNT_TENURE_ESTABLISHED",
+      "category": "supporting",
+      "dimension": "tenure_continuity",
+      "message": "The account has a multi-year public history.",
+      "evidenceRule": {
+        "requiredAll": ["ACCOUNT_CREATED", "CONTRIBUTION_YEAR"],
+        "requiredAny": [],
+        "predicate": "account_tenure_established_v1"
+      }
+    },
+    {
+      "code": "SUSTAINED_ACTIVITY",
+      "category": "supporting",
+      "dimension": "tenure_continuity",
+      "message": "Public contribution activity is distributed over time.",
+      "evidenceRule": {
+        "requiredAll": ["ACTIVE_MONTH"],
+        "requiredAny": [],
+        "predicate": "sustained_activity_v1"
+      }
+    },
+    {
+      "code": "MULTI_YEAR_CONTINUITY",
+      "category": "supporting",
+      "dimension": "tenure_continuity",
+      "message": "Attributable public work spans multiple years.",
+      "evidenceRule": {
+        "requiredAll": ["CONTRIBUTION_YEAR", "ACTIVE_MONTH"],
+        "requiredAny": [],
+        "predicate": "multi_year_continuity_v1"
+      }
+    },
+    {
+      "code": "LIMITED_PUBLIC_HISTORY",
+      "category": "coverage",
+      "dimension": "coverage",
+      "message": "There is not enough accessible public history for a strong reputation conclusion.",
+      "evidenceRule": {
+        "requiredAll": ["PUBLIC_COVERAGE_SUMMARY"],
+        "requiredAny": ["ACCOUNT_CREATED", "AUTHOR_AVAILABILITY"],
+        "predicate": "limited_public_history_v1"
+      }
+    },
+    {
+      "code": "HISTORY_PARTIALLY_ACCESSIBLE",
+      "category": "coverage",
+      "dimension": "coverage",
+      "message": "Some contribution history is private or inaccessible.",
+      "evidenceRule": {
+        "requiredAll": ["PUBLIC_COVERAGE_SUMMARY"],
+        "requiredAny": [],
+        "predicate": "history_partially_accessible_v1"
+      }
+    },
+    {
+      "code": "HISTORY_TRUNCATED",
+      "category": "coverage",
+      "dimension": "coverage",
+      "message": "A source or pagination limit prevented complete collection.",
+      "evidenceRule": {
+        "requiredAll": ["PUBLIC_COVERAGE_SUMMARY"],
+        "requiredAny": [],
+        "predicate": "history_truncated_v1"
+      }
+    },
+    {
+      "code": "EVIDENCE_STALE",
+      "category": "coverage",
+      "dimension": "coverage",
+      "message": "Cached evidence is older than the active policy permits.",
+      "evidenceRule": {
+        "requiredAll": ["PUBLIC_COVERAGE_SUMMARY"],
+        "requiredAny": [],
+        "predicate": "evidence_stale_v1"
+      }
+    },
+    {
+      "code": "ATTRIBUTION_UNCERTAIN",
+      "category": "coverage",
+      "dimension": "coverage",
+      "message": "GitHub attribution does not provide enough detail for a confident conclusion.",
+      "evidenceRule": {
+        "requiredAll": ["PUBLIC_COVERAGE_SUMMARY"],
+        "requiredAny": [],
+        "predicate": "attribution_uncertain_v1"
+      }
+    },
+    {
+      "code": "UNSUPPORTED_ACTOR_TYPE",
+      "category": "coverage",
+      "dimension": "coverage",
+      "message": "This GitHub actor type does not expose the public history required for a contributor assessment.",
+      "evidenceRule": {
+        "requiredAll": ["ACTOR_TYPE", "AUTHOR_AVAILABILITY", "PUBLIC_COVERAGE_SUMMARY"],
+        "requiredAny": [],
+        "predicate": "unsupported_actor_type_v1"
+      }
+    },
+    {
+      "code": "AUTHOR_UNAVAILABLE",
+      "category": "coverage",
+      "dimension": "coverage",
+      "message": "The pull-request author is unavailable, so contributor history cannot be attributed.",
+      "evidenceRule": {
+        "requiredAll": ["AUTHOR_AVAILABILITY", "PUBLIC_COVERAGE_SUMMARY"],
+        "requiredAny": [],
+        "predicate": "author_unavailable_v1"
+      }
+    },
+    {
+      "code": "INDEPENDENT_MERGES",
+      "category": "supporting",
+      "dimension": "independent_open_source_record",
+      "message": "Independent maintainers have merged attributable pull requests.",
+      "evidenceRule": {
+        "requiredAll": ["PULL_REQUEST_MERGED", "MERGE_ACTOR", "REPOSITORY_OWNERSHIP_RELATIONSHIP"],
+        "requiredAny": [],
+        "predicate": "independent_merges_v1"
+      }
+    },
+    {
+      "code": "MULTI_REPOSITORY_VALIDATION",
+      "category": "supporting",
+      "dimension": "independent_open_source_record",
+      "message": "Accepted work spans multiple independent repositories.",
+      "evidenceRule": {
+        "requiredAll": ["PULL_REQUEST_MERGED", "REPOSITORY_OWNERSHIP_RELATIONSHIP"],
+        "requiredAny": [],
+        "predicate": "multi_repository_validation_v1"
+      }
+    },
+    {
+      "code": "MERGE_FOLLOW_THROUGH",
+      "category": "supporting",
+      "dimension": "merge_follow_through",
+      "message": "Attributable pull requests repeatedly reach a merged outcome.",
+      "evidenceRule": {
+        "requiredAll": ["PULL_REQUEST_OPENED", "PULL_REQUEST_MERGED"],
+        "requiredAny": [],
+        "predicate": "merge_follow_through_v1"
+      }
+    },
+    {
+      "code": "REVIEW_FOLLOW_THROUGH",
+      "category": "supporting",
+      "dimension": "collaboration",
+      "message": "Requested changes are followed by additional commits or resolved review threads.",
+      "evidenceRule": {
+        "requiredAll": ["REVIEW_RECEIVED"],
+        "requiredAny": ["FOLLOW_UP_COMMIT", "REVIEW_THREAD_RESOLVED"],
+        "predicate": "review_follow_through_v1"
+      }
+    },
+    {
+      "code": "REVIEWS_CONTRIBUTED",
+      "category": "supporting",
+      "dimension": "collaboration",
+      "message": "The contributor has reviewed work by others.",
+      "evidenceRule": {
+        "requiredAll": ["REVIEW_GIVEN"],
+        "requiredAny": [],
+        "predicate": "reviews_contributed_v1"
+      }
+    },
+    {
+      "code": "RELEVANT_LANGUAGE_HISTORY",
+      "category": "supporting",
+      "dimension": "relevant_experience",
+      "message": "Prior public work uses languages found in the target pull request's changed paths.",
+      "evidenceRule": {
+        "requiredAll": ["CHANGED_PATH", "PATCH_FILESET_STATUS", "PULL_REQUEST_OPENED", "RELEVANCE_COMPARISON"],
+        "requiredAny": [],
+        "predicate": "relevant_language_history_v1"
+      }
+    },
+    {
+      "code": "RELEVANT_DOMAIN_HISTORY",
+      "category": "supporting",
+      "dimension": "relevant_experience",
+      "message": "Prior public work has evidence-backed domain similarity to the target repository.",
+      "evidenceRule": {
+        "requiredAll": ["PULL_REQUEST_OPENED", "RELEVANCE_COMPARISON"],
+        "requiredAny": ["REPOSITORY_TOPIC", "DEPENDENCY_ECOSYSTEM"],
+        "predicate": "relevant_domain_history_v1"
+      }
+    },
+    {
+      "code": "RELEVANT_PATH_HISTORY",
+      "category": "supporting",
+      "dimension": "relevant_experience",
+      "message": "Prior public work changed technically similar paths.",
+      "evidenceRule": {
+        "requiredAll": ["CHANGED_PATH", "PULL_REQUEST_OPENED", "RELEVANCE_COMPARISON"],
+        "requiredAny": [],
+        "predicate": "relevant_path_history_v1"
+      }
+    },
+    {
+      "code": "INDEPENDENCE_UNCLEAR",
+      "category": "caveat",
+      "dimension": "integrity_gaming_resistance",
+      "message": "Independent validation is unclear or concentrated in affiliated repositories.",
+      "evidenceRule": {
+        "requiredAll": ["REPOSITORY_OWNERSHIP_RELATIONSHIP"],
+        "requiredAny": [],
+        "predicate": "independence_unclear_v1"
+      }
+    },
+    {
+      "code": "SELF_MERGE_DOMINATED",
+      "category": "manual_inspection",
+      "dimension": "integrity_gaming_resistance",
+      "message": "Most apparent accepted work was merged by the contributor or a closely related account.",
+      "evidenceRule": {
+        "requiredAll": ["PULL_REQUEST_MERGED", "MERGE_ACTOR", "REPOSITORY_OWNERSHIP_RELATIONSHIP"],
+        "requiredAny": [],
+        "predicate": "self_merge_dominated_v1"
+      }
+    },
+    {
+      "code": "RECENT_ACTIVITY_ANOMALY",
+      "category": "manual_inspection",
+      "dimension": "integrity_gaming_resistance",
+      "message": "Recent activity is unusually concentrated relative to the account's history.",
+      "evidenceRule": {
+        "requiredAll": ["ACTIVITY_BURST", "ACTIVE_MONTH"],
+        "requiredAny": [],
+        "predicate": "recent_activity_anomaly_v1"
+      }
+    },
+    {
+      "code": "RECIPROCAL_PATTERN",
+      "category": "manual_inspection",
+      "dimension": "integrity_gaming_resistance",
+      "message": "Repeated reciprocal merge relationships reduce confidence in independence.",
+      "evidenceRule": {
+        "requiredAll": ["RECIPROCAL_MERGE_EDGE", "PULL_REQUEST_MERGED"],
+        "requiredAny": [],
+        "predicate": "reciprocal_pattern_v1"
+      }
+    },
+    {
+      "code": "TEMPLATED_ACTIVITY_PATTERN",
+      "category": "manual_inspection",
+      "dimension": "integrity_gaming_resistance",
+      "message": "Public contribution metadata contains an unusual repeated structure.",
+      "evidenceRule": {
+        "requiredAll": ["TEMPLATE_SIMILARITY", "PULL_REQUEST_OPENED", "REPOSITORY_OWNERSHIP_RELATIONSHIP"],
+        "requiredAny": [],
+        "predicate": "templated_activity_pattern_v1"
+      }
+    },
+    {
+      "code": "RECENT_BEHAVIOR_CHANGE",
+      "category": "manual_inspection",
+      "dimension": "integrity_gaming_resistance",
+      "message": "Recent activity materially differs from the account's own historical baseline.",
+      "evidenceRule": {
+        "requiredAll": ["BEHAVIOR_BASELINE_CHANGE", "ACTIVE_MONTH"],
+        "requiredAny": [],
+        "predicate": "recent_behavior_change_v1"
+      }
+    },
+    {
+      "code": "MODEL_EXPLANATION_UNAVAILABLE",
+      "category": "operational",
+      "dimension": "explanation",
+      "message": "The deterministic assessment completed but contextual explanation is temporarily unavailable.",
+      "evidenceRule": {
+        "requiredAll": ["CONTEXTUALIZER_STATUS"],
+        "requiredAny": [],
+        "predicate": "model_explanation_unavailable_v1"
+      }
+    },
+    {
+      "code": "CI_PASSING",
+      "category": "patch_context",
+      "dimension": "patch_context",
+      "message": "Reported checks for the current head SHA are passing.",
+      "evidenceRule": {
+        "requiredAll": ["CI_CHECK_STATE"],
+        "requiredAny": [],
+        "predicate": "ci_passing_v1"
+      }
+    },
+    {
+      "code": "CI_FAILING",
+      "category": "patch_context",
+      "dimension": "patch_context",
+      "message": "One or more reported checks for the current head SHA are failing.",
+      "evidenceRule": {
+        "requiredAll": ["CI_CHECK_STATE"],
+        "requiredAny": [],
+        "predicate": "ci_failing_v1"
+      }
+    },
+    {
+      "code": "CI_INCOMPLETE",
+      "category": "patch_context",
+      "dimension": "patch_context",
+      "message": "Checks are pending, missing, or unavailable.",
+      "evidenceRule": {
+        "requiredAll": ["CI_CHECK_STATE"],
+        "requiredAny": [],
+        "predicate": "ci_incomplete_v1"
+      }
+    },
+    {
+      "code": "PATCH_INVENTORY_INCOMPLETE",
+      "category": "patch_context",
+      "dimension": "patch_context",
+      "message": "The changed-file inventory is incomplete, so path-derived patch facts remain unknown.",
+      "evidenceRule": {
+        "requiredAll": ["PATCH_FILESET_STATUS", "TEST_PATH_CHANGE", "SENSITIVE_PATH_CHANGE"],
+        "requiredAny": [],
+        "predicate": "patch_inventory_incomplete_v1"
+      }
+    },
+    {
+      "code": "TESTS_CHANGED",
+      "category": "patch_context",
+      "dimension": "patch_context",
+      "message": "The target pull request changes configured test paths.",
+      "evidenceRule": {
+        "requiredAll": ["TEST_PATH_CHANGE"],
+        "requiredAny": [],
+        "predicate": "tests_changed_v1"
+      }
+    },
+    {
+      "code": "LINKED_ISSUE_PRESENT",
+      "category": "patch_context",
+      "dimension": "patch_context",
+      "message": "The pull request links to an issue or discussion.",
+      "evidenceRule": {
+        "requiredAll": ["LINKED_ISSUE"],
+        "requiredAny": [],
+        "predicate": "linked_issue_present_v1"
+      }
+    },
+    {
+      "code": "SENSITIVE_PATH_CHANGED",
+      "category": "patch_context",
+      "dimension": "patch_context",
+      "message": "The pull request changes a path declared sensitive by repository policy.",
+      "evidenceRule": {
+        "requiredAll": ["SENSITIVE_PATH_CHANGE"],
+        "requiredAny": [],
+        "predicate": "sensitive_path_changed_v1"
+      }
+    },
+    {
+      "code": "LARGE_PATCH_SCOPE",
+      "category": "patch_context",
+      "dimension": "patch_context",
+      "message": "The pull request exceeds the repository's configured scope threshold.",
+      "evidenceRule": {
+        "requiredAll": ["PATCH_SCOPE"],
+        "requiredAny": [],
+        "predicate": "large_patch_scope_v1"
+      }
+    }
+  ]
+}

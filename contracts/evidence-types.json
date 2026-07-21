@@ -1,0 +1,352 @@
+{
+  "version": "1.0.0",
+  "visibilityClasses": [
+    "PUBLIC_GLOBAL",
+    "PUBLIC_DERIVED",
+    "TARGET_REPOSITORY_PRIVATE",
+    "SUBJECT_VISIBLE",
+    "INTERNAL_OPERATIONAL"
+  ],
+  "types": [
+    {
+      "key": "ACCOUNT_CREATED",
+      "source": "github_graphql",
+      "description": "GitHub account creation timestamp.",
+      "dimensions": ["tenure_continuity"],
+      "allowedVisibility": ["PUBLIC_GLOBAL"],
+      "mutable": false
+    },
+    {
+      "key": "ACTOR_TYPE",
+      "source": "github_graphql",
+      "description": "The GitHub Actor implementation associated with the pull-request author.",
+      "dimensions": ["coverage"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "AUTHOR_AVAILABILITY",
+      "source": "github_graphql",
+      "description": "Whether GitHub exposes an attributable pull-request author and immutable actor node ID.",
+      "dimensions": ["coverage"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "CONTRIBUTION_YEAR",
+      "source": "github_graphql",
+      "description": "A calendar year in which GitHub reports attributable contributions.",
+      "dimensions": ["tenure_continuity"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "SUBJECT_VISIBLE"],
+      "mutable": true
+    },
+    {
+      "key": "ACTIVE_MONTH",
+      "source": "derived",
+      "description": "A month containing one or more attributable contribution events.",
+      "dimensions": ["tenure_continuity"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "active-month-v1", "requiredAll": ["CONTRIBUTION_YEAR"], "requiredAny": [], "optional": [], "minimumCounts": { "CONTRIBUTION_YEAR": 1 }, "predicate": "active_month_v1" },
+      "mutable": true
+    },
+    {
+      "key": "PULL_REQUEST_OPENED",
+      "source": "github_graphql",
+      "description": "A pull request attributed to the contributor with a bounded normalized metadata structure whose fingerprint is recomputed.",
+      "dimensions": ["independent_open_source_record", "merge_follow_through", "relevant_experience", "integrity_gaming_resistance"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "PULL_REQUEST_MERGED",
+      "source": "github_graphql",
+      "description": "A pull request with a GitHub-reported merged outcome.",
+      "dimensions": ["independent_open_source_record", "merge_follow_through"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "PULL_REQUEST_CLOSED_UNMERGED",
+      "source": "github_graphql",
+      "description": "A closed pull request without a merged outcome; context is required before interpretation.",
+      "dimensions": ["merge_follow_through"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "MERGE_ACTOR",
+      "source": "github_graphql",
+      "description": "The GitHub actor attributed as merging a pull request.",
+      "dimensions": ["independent_open_source_record", "integrity_gaming_resistance"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_OWNERSHIP_RELATIONSHIP",
+      "source": "derived",
+      "description": "A versioned classification of the contributor's relationship to the repository.",
+      "dimensions": ["independent_open_source_record", "integrity_gaming_resistance"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "repository-ownership-v1", "requiredAll": ["PULL_REQUEST_OPENED", "PULL_REQUEST_MERGED", "MERGE_ACTOR"], "requiredAny": [], "optional": [], "minimumCounts": { "PULL_REQUEST_OPENED": 1, "PULL_REQUEST_MERGED": 1, "MERGE_ACTOR": 1 }, "predicate": "repository_ownership_v1" },
+      "mutable": true
+    },
+    {
+      "key": "REVIEW_RECEIVED",
+      "source": "github_graphql",
+      "description": "A structured pull-request review received by the contributor.",
+      "dimensions": ["merge_follow_through", "collaboration"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REVIEW_GIVEN",
+      "source": "github_graphql",
+      "description": "A structured pull-request review authored by the contributor.",
+      "dimensions": ["collaboration"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "FOLLOW_UP_COMMIT",
+      "source": "github_graphql",
+      "description": "A pull-request commit used with structured review timestamps to determine follow-through.",
+      "dimensions": ["merge_follow_through", "collaboration"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REVIEW_THREAD_RESOLVED",
+      "source": "github_graphql",
+      "description": "A review thread reported as resolved.",
+      "dimensions": ["collaboration"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_LANGUAGE",
+      "source": "github_graphql",
+      "description": "A language and relative usage reported for a repository.",
+      "dimensions": ["relevant_experience"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_TOPIC",
+      "source": "github_graphql",
+      "description": "A repository topic declared on GitHub.",
+      "dimensions": ["relevant_experience"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "DEPENDENCY_ECOSYSTEM",
+      "source": "derived",
+      "description": "A dependency ecosystem deterministically inferred from repository manifests.",
+      "dimensions": ["relevant_experience"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "dependency-ecosystem-v1", "requiredAll": ["CHANGED_PATH"], "requiredAny": [], "optional": [], "minimumCounts": { "CHANGED_PATH": 1 }, "predicate": "dependency_ecosystem_v1" },
+      "mutable": true
+    },
+    {
+      "key": "CHANGED_PATH",
+      "source": "github_rest",
+      "description": "A path and versioned language classification changed by an attributed pull request at an exact head.",
+      "dimensions": ["relevant_experience"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "ACTIVITY_BURST",
+      "source": "derived",
+      "description": "A statistically unusual concentration of recent attributed activity.",
+      "dimensions": ["tenure_continuity", "integrity_gaming_resistance"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "activity-burst-v1", "requiredAll": ["ACTIVE_MONTH"], "requiredAny": [], "optional": [], "minimumCounts": { "ACTIVE_MONTH": 3 }, "predicate": "activity_burst_v1" },
+      "mutable": true
+    },
+    {
+      "key": "TEMPLATE_SIMILARITY",
+      "source": "derived",
+      "description": "High informative structural similarity across public contributions in distinct independently maintained repositories after repository templates are removed, without an authorship claim.",
+      "dimensions": ["integrity_gaming_resistance"],
+      "allowedVisibility": ["PUBLIC_DERIVED"],
+      "derivationRule": { "version": "template-similarity-v1", "requiredAll": ["PULL_REQUEST_OPENED", "REPOSITORY_OWNERSHIP_RELATIONSHIP"], "requiredAny": [], "optional": [], "minimumCounts": { "PULL_REQUEST_OPENED": 5, "REPOSITORY_OWNERSHIP_RELATIONSHIP": 5 }, "predicate": "template_similarity_v1" },
+      "mutable": true
+    },
+    {
+      "key": "RECIPROCAL_MERGE_EDGE",
+      "source": "derived",
+      "description": "A repeated public merge relationship between contributor accounts.",
+      "dimensions": ["integrity_gaming_resistance"],
+      "allowedVisibility": ["PUBLIC_DERIVED"],
+      "derivationRule": { "version": "reciprocal-merge-v1", "requiredAll": ["MERGE_RELATIONSHIP_EVENT"], "requiredAny": [], "optional": [], "minimumCounts": { "MERGE_RELATIONSHIP_EVENT": 2 }, "predicate": "reciprocal_merge_v1" },
+      "mutable": true
+    },
+    {
+      "key": "MERGE_RELATIONSHIP_EVENT",
+      "source": "github_graphql",
+      "description": "A public merged-pull-request event in which the assessed subject is either author or merge actor.",
+      "dimensions": ["integrity_gaming_resistance"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "BEHAVIOR_BASELINE_CHANGE",
+      "source": "derived",
+      "description": "A material recent deviation from the account's own historical activity baseline.",
+      "dimensions": ["integrity_gaming_resistance"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "behavior-baseline-v1", "requiredAll": ["ACTIVE_MONTH"], "requiredAny": [], "optional": [], "minimumCounts": { "ACTIVE_MONTH": 3 }, "predicate": "behavior_baseline_v1" },
+      "mutable": true
+    },
+    {
+      "key": "RELEVANCE_COMPARISON",
+      "source": "derived",
+      "description": "A versioned, target-bound comparison between historical work and the current repository and pull request.",
+      "dimensions": ["relevant_experience"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "relevance-comparison-v1", "requiredAll": ["PULL_REQUEST_OPENED", "CHANGED_PATH", "PATCH_FILESET_STATUS"], "requiredAny": ["REPOSITORY_LANGUAGE", "REPOSITORY_TOPIC", "DEPENDENCY_ECOSYSTEM"], "optional": [], "minimumCounts": { "PULL_REQUEST_OPENED": 1, "CHANGED_PATH": 2, "PATCH_FILESET_STATUS": 2 }, "predicate": "relevance_comparison_v1" },
+      "mutable": true
+    },
+    {
+      "key": "PATCH_FILESET_STATUS",
+      "source": "github_rest",
+      "description": "Completeness and immutable target identity for the changed-file inventory used by patch derivations.",
+      "dimensions": ["patch_context", "relevant_experience"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_ADMIN_PERMISSION",
+      "source": "github_rest",
+      "description": "A provider-observed installation-scoped repository permission proving that the dashboard policy actor held admin access.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_VISIBILITY_SNAPSHOT",
+      "source": "github_rest",
+      "description": "The provider-observed target repository visibility bound to an installation and repository node.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "DASHBOARD_POLICY_REVISION",
+      "source": "system",
+      "description": "The immutable target-repository dashboard revision whose digest supplied the active policy configuration.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["TARGET_REPOSITORY_PRIVATE"],
+      "mutable": false
+    },
+    {
+      "key": "DASHBOARD_POLICY_STREAM_HEAD",
+      "source": "system",
+      "description": "A serializable database high-water observation proving the complete dashboard policy revision stream used for authorization.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_DEFAULT_BRANCH",
+      "source": "github_rest",
+      "description": "The provider-observed default branch reference for a repository.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_REF_SNAPSHOT",
+      "source": "github_rest",
+      "description": "A provider-observed immutable mapping from a repository branch reference to its tip commit.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_BLOB_SNAPSHOT",
+      "source": "github_rest",
+      "description": "A provider-observed policy blob at an exact repository commit and path.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "REPOSITORY_RISK_POLICY",
+      "source": "derived",
+      "description": "The versioned repository path-risk policy derived from provider-observed default-branch configuration or an admin-authorized dashboard revision.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true,
+      "derivationRule": { "version": "repository-risk-policy-v1", "requiredAll": [], "requiredAny": ["REPOSITORY_DEFAULT_BRANCH", "REPOSITORY_REF_SNAPSHOT", "REPOSITORY_BLOB_SNAPSHOT", "DASHBOARD_POLICY_REVISION", "DASHBOARD_POLICY_STREAM_HEAD", "REPOSITORY_ADMIN_PERMISSION"], "optional": [], "minimumCounts": {}, "predicate": "repository_risk_policy_v1" }
+    },
+    {
+      "key": "CI_CHECK_STATE",
+      "source": "github_rest",
+      "description": "The current target pull request's check and status rollup.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "PATCH_SCOPE",
+      "source": "derived",
+      "description": "Changed file and line counts for the target pull request.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "patch-scope-v1", "requiredAll": ["CI_CHECK_STATE", "PATCH_FILESET_STATUS"], "requiredAny": [], "optional": ["CHANGED_PATH"], "minimumCounts": { "CI_CHECK_STATE": 1, "PATCH_FILESET_STATUS": 1 }, "predicate": "patch_scope_v1" },
+      "mutable": true
+    },
+    {
+      "key": "TEST_PATH_CHANGE",
+      "source": "derived",
+      "description": "Whether configured test paths changed in the target pull request.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "test-path-change-v1", "requiredAll": ["CI_CHECK_STATE", "PATCH_FILESET_STATUS"], "requiredAny": [], "optional": ["CHANGED_PATH"], "minimumCounts": { "CI_CHECK_STATE": 1, "PATCH_FILESET_STATUS": 1 }, "predicate": "test_path_change_v1" },
+      "mutable": true
+    },
+    {
+      "key": "LINKED_ISSUE",
+      "source": "github_graphql",
+      "description": "An issue or discussion linked to the target pull request.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["PUBLIC_GLOBAL", "TARGET_REPOSITORY_PRIVATE"],
+      "mutable": true
+    },
+    {
+      "key": "SENSITIVE_PATH_CHANGE",
+      "source": "derived",
+      "description": "A target pull-request path matching a versioned repository risk policy.",
+      "dimensions": ["patch_context"],
+      "allowedVisibility": ["PUBLIC_DERIVED", "TARGET_REPOSITORY_PRIVATE"],
+      "derivationRule": { "version": "sensitive-path-change-v1", "requiredAll": ["CI_CHECK_STATE", "PATCH_FILESET_STATUS", "REPOSITORY_RISK_POLICY"], "requiredAny": [], "optional": ["CHANGED_PATH"], "minimumCounts": { "CI_CHECK_STATE": 1, "PATCH_FILESET_STATUS": 1, "REPOSITORY_RISK_POLICY": 1 }, "predicate": "sensitive_path_change_v1" },
+      "mutable": true
+    },
+    {
+      "key": "PUBLIC_COVERAGE_SUMMARY",
+      "source": "system",
+      "description": "A publishable, collection-run result describing requested, completed, stale, or unavailable public-history coverage without restricted operational detail.",
+      "dimensions": ["coverage"],
+      "allowedVisibility": ["PUBLIC_DERIVED"],
+      "mutable": true
+    },
+    {
+      "key": "EVIDENCE_COLLECTION_GAP",
+      "source": "internal",
+      "description": "A documented source, pagination, authorization, deletion, or rate-limit gap.",
+      "dimensions": ["coverage"],
+      "allowedVisibility": ["INTERNAL_OPERATIONAL"],
+      "mutable": true
+    },
+    {
+      "key": "CONTEXTUALIZER_STATUS",
+      "source": "internal",
+      "description": "Operational status for the optional contextual explanation step.",
+      "dimensions": ["explanation"],
+      "allowedVisibility": ["INTERNAL_OPERATIONAL"],
+      "mutable": true
+    }
+  ]
+}

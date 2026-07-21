@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/contextualization-request-v1.json",
+  "title": "MergeSignal contextualization request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "requestAlias", "targetAlias", "safetyIdentifier", "versions", "versionDigests", "targetContext", "candidatePacket", "evidenceIndex", "requestDigest"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "requestAlias": { "type": "string", "format": "uuid" },
+    "targetAlias": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "safetyIdentifier": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine", "policy", "evidence", "features", "scoring", "prompt", "model"],
+      "properties": {
+        "engine": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "policy": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "evidence": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "features": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "scoring": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "prompt": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "model": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }
+      }
+    },
+    "versionDigests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine", "policy", "evidence", "features", "scoring", "prompt", "model"],
+      "properties": {
+        "engine": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "policy": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "evidence": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "features": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "scoring": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "prompt": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "model": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "targetContext": { "$ref": "#/$defs/technicalContext" },
+    "candidatePacket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "digest", "candidates"],
+      "properties": {
+        "version": { "const": "contextualization-candidates-v1" },
+        "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "candidates": {
+          "type": "array",
+          "maxItems": 24,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["claimId", "reasonCode", "populationEvidenceCount", "populationCommitment", "witnessMode", "witnessEvidenceIds", "evidenceIds"],
+            "properties": {
+              "claimId": { "type": "string", "pattern": "^[a-z][a-z0-9_-]+$" },
+              "reasonCode": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+              "populationEvidenceCount": { "type": "integer", "minimum": 1, "maximum": 50000 },
+              "populationCommitment": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "witnessMode": { "enum": ["bounded_witness", "full_population_commitment"] },
+              "witnessEvidenceIds": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 64,
+                "uniqueItems": true,
+                "items": { "type": "string", "pattern": "^ev_[0-9a-f]{64}$" }
+              },
+              "evidenceIds": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 64,
+                "uniqueItems": true,
+                "items": { "type": "string", "pattern": "^ev_[0-9a-f]{64}$" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "evidenceIndex": {
+      "type": "array",
+      "maxItems": 512,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidenceId", "evidenceType", "visibility", "technicalContext"],
+        "properties": {
+          "evidenceId": { "type": "string", "pattern": "^ev_[0-9a-f]{64}$" },
+          "evidenceType": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+          "visibility": { "enum": ["PUBLIC_GLOBAL", "PUBLIC_DERIVED"] },
+          "technicalContext": { "$ref": "#/$defs/technicalContext" }
+        }
+      }
+    },
+    "requestDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "$defs": {
+    "technicalContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sanitizerVersion", "available", "languages", "domains", "pathFamilies"],
+      "properties": {
+        "sanitizerVersion": { "const": "technical-context-sanitizer-v2" },
+        "available": { "type": "boolean" },
+        "languages": { "type": "array", "maxItems": 16, "uniqueItems": true, "items": { "enum": ["c", "c++", "c#", "css", "go", "html", "java", "javascript", "kotlin", "opaque", "php", "python", "ruby", "rust", "shell", "swift", "typescript"] } },
+        "domains": { "type": "array", "maxItems": 16, "uniqueItems": true, "items": { "enum": ["ai", "api", "cli", "database", "devtools", "github-app", "mobile", "npm", "opaque", "security", "web"] } },
+        "pathFamilies": { "type": "array", "maxItems": 16, "uniqueItems": true, "items": { "enum": ["ci", "configuration", "dependencies", "documentation", "generated", "source", "tests"] } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "available": { "const": false } } },
+          "then": {
+            "properties": {
+              "languages": { "type": "array", "maxItems": 0 },
+              "domains": { "type": "array", "maxItems": 0 },
+              "pathFamilies": { "type": "array", "maxItems": 0 }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

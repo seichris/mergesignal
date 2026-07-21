@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/database-uniqueness-receipt-v1.json",
+  "title": "MergeSignal trusted PostgreSQL uniqueness receipt",
+  "description": "A receipt emitted only by the trusted persistence adapter after a SERIALIZABLE transaction commits under a named UNIQUE constraint.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "relation",
+    "constraintName",
+    "keyDigest",
+    "rowIdentity",
+    "transactionId",
+    "databaseCommitToken",
+    "isolationLevel",
+    "outcome",
+    "committedAt",
+    "receiptDigest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "receiptId": { "type": "string", "format": "uuid" },
+    "relation": {
+      "enum": [
+        "contextualization_request_ledger",
+        "detailed_report_nonce_consumption",
+        "pr_output_cursor"
+      ]
+    },
+    "constraintName": {
+      "enum": [
+        "uq_contextualization_request_alias",
+        "uq_contextualization_request_nonce",
+        "uq_contextualization_provider_response_id",
+        "uq_detailed_report_session_nonce",
+        "uq_pr_output_cursor_scope"
+      ]
+    },
+    "keyDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "rowIdentity": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "transactionId": { "type": "string", "format": "uuid" },
+    "databaseCommitToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "isolationLevel": { "const": "serializable" },
+    "outcome": { "const": "committed" },
+    "committedAt": { "type": "string", "format": "date-time" },
+    "receiptDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

@@ -1,0 +1,527 @@
+{
+  "schemaVersion": "1.0.0",
+  "assessmentId": "11111111-1111-4111-8111-111111111111",
+  "subject": {
+    "availability": "available",
+    "githubNodeId": "U_fixture_established",
+    "loginAtAssessment": "established-contributor",
+    "actorType": "User",
+    "historySupport": "full"
+  },
+  "target": {
+    "installationId": 9001,
+    "repositoryNodeId": "R_fixture_target",
+    "repositoryVisibility": "public",
+    "pullRequestNodeId": "PR_target_42",
+    "pullRequestNumber": 42,
+    "headSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "generation": 7,
+    "riskPolicy": {
+      "installationId": 9001,
+      "policyId": "12121212-1212-4121-8121-121212121212",
+      "policyVersion": "target-risk-v1",
+      "policyDigest": "0c041a59e8120e48e58f6e7ffbe141efb6ec53eabcb627964a76670850b2aea1",
+      "reviewPriorityEnabled": true
+    },
+    "visibilityEvidenceId": "ev_repository_visibility"
+  },
+  "assessmentStatus": "complete",
+  "summaryState": "established_evidence",
+  "overallConfidence": {
+    "value": 0.91,
+    "label": "high",
+    "reasonCodes": []
+  },
+  "reviewPriority": "prioritize",
+  "reviewPriorityBasis": "reputation_and_patch",
+  "dimensions": {
+    "tenure_continuity": {
+      "score": 86,
+      "confidence": 0.95,
+      "state": "strong",
+      "reasonCodes": [
+        "ACCOUNT_TENURE_ESTABLISHED",
+        "SUSTAINED_ACTIVITY",
+        "MULTI_YEAR_CONTINUITY"
+      ],
+      "evidenceIds": [
+        "ev_account",
+        "ev_active",
+        "ev_active_mid",
+        "ev_active_old",
+        "ev_year",
+        "ev_year_mid",
+        "ev_year_recent"
+      ]
+    },
+    "independent_open_source_record": {
+      "score": 88,
+      "confidence": 0.9,
+      "state": "strong",
+      "reasonCodes": [
+        "INDEPENDENT_MERGES",
+        "MULTI_REPOSITORY_VALIDATION"
+      ],
+      "evidenceIds": [
+        "ev_merge_actor",
+        "ev_merge_actor_2",
+        "ev_owner",
+        "ev_owner_2",
+        "ev_pr",
+        "ev_pr_2"
+      ]
+    },
+    "merge_follow_through": {
+      "score": 81,
+      "confidence": 0.87,
+      "state": "strong",
+      "reasonCodes": [
+        "MERGE_FOLLOW_THROUGH"
+      ],
+      "evidenceIds": [
+        "ev_pr",
+        "ev_pr_2",
+        "ev_pr_opened",
+        "ev_pr_opened_2"
+      ]
+    },
+    "collaboration": {
+      "score": 80,
+      "confidence": 0.84,
+      "state": "strong",
+      "reasonCodes": [
+        "REVIEW_FOLLOW_THROUGH",
+        "REVIEWS_CONTRIBUTED"
+      ],
+      "evidenceIds": [
+        "ev_follow",
+        "ev_review",
+        "ev_review_given"
+      ]
+    },
+    "relevant_experience": {
+      "score": 83,
+      "confidence": 0.82,
+      "state": "strong",
+      "reasonCodes": [
+        "RELEVANT_LANGUAGE_HISTORY",
+        "RELEVANT_DOMAIN_HISTORY",
+        "RELEVANT_PATH_HISTORY"
+      ],
+      "evidenceIds": [
+        "ev_fileset",
+        "ev_historical_fileset",
+        "ev_path",
+        "ev_pr_opened",
+        "ev_relevance",
+        "ev_target_path",
+        "ev_target_topic",
+        "ev_topic"
+      ]
+    },
+    "integrity_gaming_resistance": {
+      "score": null,
+      "confidence": 0.86,
+      "state": "uncertain",
+      "reasonCodes": [],
+      "evidenceIds": [
+        "ev_merge_actor",
+        "ev_owner",
+        "ev_merge_actor_2",
+        "ev_owner_2"
+      ]
+    }
+  },
+  "patchContext": {
+    "ciState": "passing",
+    "scope": "medium",
+    "linkedIssue": true,
+    "testPathState": "changed",
+    "sensitivePathState": "unchanged",
+    "reasonCodes": [
+      "CI_PASSING",
+      "TESTS_CHANGED",
+      "LINKED_ISSUE_PRESENT"
+    ],
+    "evidenceIds": [
+      "ev_ci",
+      "ev_scope",
+      "ev_test",
+      "ev_sensitive",
+      "ev_issue",
+      "ev_fileset"
+    ]
+  },
+  "coverage": {
+    "requestedWindowYears": 5,
+    "completeYears": 5,
+    "partialSources": [],
+    "freshAsOf": "2026-07-21T00:00:00Z",
+    "confidence": 1,
+    "reasonCodes": [],
+    "evidenceIds": [
+      "ev_coverage",
+      "ev_author_available",
+      "ev_actor_type"
+    ]
+  },
+  "evidenceSnapshot": {
+    "snapshotId": "22222222-2222-4222-8222-222222222222",
+    "canonicalization": "RFC8785-JCS+SHA256",
+    "canonicalHash": "ea6c0aef77a85177fe5024acadd45d5c157762b0e8e112540dd89e60fefd6735",
+    "evidenceIds": [
+      "ev_author_available",
+      "ev_actor_type",
+      "ev_account",
+      "ev_year",
+      "ev_year_mid",
+      "ev_year_recent",
+      "ev_active_old",
+      "ev_active_mid",
+      "ev_active",
+      "ev_pr_opened",
+      "ev_pr",
+      "ev_merge_actor",
+      "ev_owner",
+      "ev_pr_opened_2",
+      "ev_pr_2",
+      "ev_merge_actor_2",
+      "ev_owner_2",
+      "ev_review",
+      "ev_review_given",
+      "ev_follow",
+      "ev_lang",
+      "ev_topic",
+      "ev_target_lang",
+      "ev_target_topic",
+      "ev_path",
+      "ev_target_path",
+      "ev_historical_fileset",
+      "ev_relevance",
+      "ev_fileset",
+      "ev_policy_admin",
+      "ev_policy_revision",
+      "ev_repository_visibility",
+      "ev_policy_head",
+      "ev_risk_policy",
+      "ev_ci",
+      "ev_scope",
+      "ev_test",
+      "ev_sensitive",
+      "ev_issue",
+      "ev_coverage"
+    ],
+    "capturedAt": "2026-07-21T00:00:00Z"
+  },
+  "explanation": {
+    "status": "complete",
+    "claims": [
+      {
+        "claimId": "claim-independent-merges",
+        "reasonCode": "INDEPENDENT_MERGES",
+        "populationEvidenceCount": 6,
+        "populationDigest": "5ec277788a692dd72131d5a327a2691c516c3667558fd72981aec7a260e35c29",
+        "witnessMode": "bounded_witness",
+        "witnessEvidenceIds": [
+          "ev_merge_actor",
+          "ev_owner",
+          "ev_pr"
+        ],
+        "evidenceIds": [
+          "ev_merge_actor",
+          "ev_merge_actor_2",
+          "ev_owner",
+          "ev_owner_2",
+          "ev_pr",
+          "ev_pr_2"
+        ]
+      },
+      {
+        "claimId": "claim-relevant-language-history",
+        "reasonCode": "RELEVANT_LANGUAGE_HISTORY",
+        "populationEvidenceCount": 6,
+        "populationDigest": "ea49855542cdc8e88c6c9bc736c767a84991d35feea88248aaa8957c284bb441",
+        "witnessMode": "bounded_witness",
+        "witnessEvidenceIds": [
+          "ev_fileset",
+          "ev_path",
+          "ev_pr_opened",
+          "ev_relevance"
+        ],
+        "evidenceIds": [
+          "ev_fileset",
+          "ev_historical_fileset",
+          "ev_path",
+          "ev_pr_opened",
+          "ev_relevance",
+          "ev_target_path"
+        ]
+      },
+      {
+        "claimId": "claim-relevant-path-history",
+        "reasonCode": "RELEVANT_PATH_HISTORY",
+        "populationEvidenceCount": 4,
+        "populationDigest": "881358b9260587127debc4ecefdf7b7c77f8958796a41854bba3a6ff39044bd6",
+        "witnessMode": "bounded_witness",
+        "witnessEvidenceIds": [
+          "ev_path",
+          "ev_pr_opened",
+          "ev_relevance"
+        ],
+        "evidenceIds": [
+          "ev_path",
+          "ev_pr_opened",
+          "ev_relevance",
+          "ev_target_path"
+        ]
+      }
+    ],
+    "caveatKeys": [
+      "PUBLIC_HISTORY_NOT_PATCH_CORRECTNESS",
+      "MODEL_INTERPRETATION"
+    ],
+    "reasonCodes": [],
+    "evidenceIds": [
+      "ev_merge_actor",
+      "ev_owner",
+      "ev_pr",
+      "ev_fileset",
+      "ev_path",
+      "ev_pr_opened",
+      "ev_relevance"
+    ],
+    "candidatePacket": {
+      "version": "contextualization-candidates-v1",
+      "candidates": [
+        {
+          "claimId": "claim-account-tenure-established",
+          "reasonCode": "ACCOUNT_TENURE_ESTABLISHED",
+          "populationEvidenceCount": 4,
+          "populationDigest": "abb9b8118c15fc2d6e44bb8ccab6279df08abfb460b46b4f20cc4949ec08a116",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_account",
+            "ev_year"
+          ],
+          "evidenceIds": [
+            "ev_account",
+            "ev_year",
+            "ev_year_mid",
+            "ev_year_recent"
+          ]
+        },
+        {
+          "claimId": "claim-multi-year-continuity",
+          "reasonCode": "MULTI_YEAR_CONTINUITY",
+          "populationEvidenceCount": 6,
+          "populationDigest": "b847141146dcde41c16230c6a5990fc7dcd1277e690aa98177ce735a77cad44d",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_active",
+            "ev_active_mid",
+            "ev_year",
+            "ev_year_mid",
+            "ev_year_recent"
+          ],
+          "evidenceIds": [
+            "ev_active",
+            "ev_active_mid",
+            "ev_active_old",
+            "ev_year",
+            "ev_year_mid",
+            "ev_year_recent"
+          ]
+        },
+        {
+          "claimId": "claim-sustained-activity",
+          "reasonCode": "SUSTAINED_ACTIVITY",
+          "populationEvidenceCount": 3,
+          "populationDigest": "a314d2acbeea99237bc21f81bdc7a5cd9a0e86faca65cd9d31ab1a99d14f5cc7",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_active",
+            "ev_active_mid",
+            "ev_active_old"
+          ],
+          "evidenceIds": [
+            "ev_active",
+            "ev_active_mid",
+            "ev_active_old"
+          ]
+        },
+        {
+          "claimId": "claim-independent-merges",
+          "reasonCode": "INDEPENDENT_MERGES",
+          "populationEvidenceCount": 6,
+          "populationDigest": "5ec277788a692dd72131d5a327a2691c516c3667558fd72981aec7a260e35c29",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_merge_actor",
+            "ev_owner",
+            "ev_pr"
+          ],
+          "evidenceIds": [
+            "ev_merge_actor",
+            "ev_merge_actor_2",
+            "ev_owner",
+            "ev_owner_2",
+            "ev_pr",
+            "ev_pr_2"
+          ]
+        },
+        {
+          "claimId": "claim-multi-repository-validation",
+          "reasonCode": "MULTI_REPOSITORY_VALIDATION",
+          "populationEvidenceCount": 4,
+          "populationDigest": "b01b8d1fbe61f0154128874814af140f0c7fb3f26f4241f6943f836143b2058a",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_owner",
+            "ev_owner_2",
+            "ev_pr"
+          ],
+          "evidenceIds": [
+            "ev_owner",
+            "ev_owner_2",
+            "ev_pr",
+            "ev_pr_2"
+          ]
+        },
+        {
+          "claimId": "claim-merge-follow-through",
+          "reasonCode": "MERGE_FOLLOW_THROUGH",
+          "populationEvidenceCount": 4,
+          "populationDigest": "74ae15a5565c2ff70f5c5b02700a2385450df3f5639b17e49cd7ee19193d576c",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_pr",
+            "ev_pr_2",
+            "ev_pr_opened",
+            "ev_pr_opened_2"
+          ],
+          "evidenceIds": [
+            "ev_pr",
+            "ev_pr_2",
+            "ev_pr_opened",
+            "ev_pr_opened_2"
+          ]
+        },
+        {
+          "claimId": "claim-reviews-contributed",
+          "reasonCode": "REVIEWS_CONTRIBUTED",
+          "populationEvidenceCount": 1,
+          "populationDigest": "38fd2c6b9dd2d12fb604554055bd94f60599be669b80a1cbdb5cad82d1bd3529",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_review_given"
+          ],
+          "evidenceIds": [
+            "ev_review_given"
+          ]
+        },
+        {
+          "claimId": "claim-review-follow-through",
+          "reasonCode": "REVIEW_FOLLOW_THROUGH",
+          "populationEvidenceCount": 2,
+          "populationDigest": "84c00b422d460d484a98667b2c12de906a493433cf24adf9db2ad28f1db53643",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_follow",
+            "ev_review"
+          ],
+          "evidenceIds": [
+            "ev_follow",
+            "ev_review"
+          ]
+        },
+        {
+          "claimId": "claim-relevant-domain-history",
+          "reasonCode": "RELEVANT_DOMAIN_HISTORY",
+          "populationEvidenceCount": 4,
+          "populationDigest": "da1e6b408898c8b3f529c72fc1e0c1350873e81681c3c459151d4ec80dcef000",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_pr_opened",
+            "ev_relevance",
+            "ev_target_topic"
+          ],
+          "evidenceIds": [
+            "ev_pr_opened",
+            "ev_relevance",
+            "ev_target_topic",
+            "ev_topic"
+          ]
+        },
+        {
+          "claimId": "claim-relevant-language-history",
+          "reasonCode": "RELEVANT_LANGUAGE_HISTORY",
+          "populationEvidenceCount": 6,
+          "populationDigest": "ea49855542cdc8e88c6c9bc736c767a84991d35feea88248aaa8957c284bb441",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_fileset",
+            "ev_path",
+            "ev_pr_opened",
+            "ev_relevance"
+          ],
+          "evidenceIds": [
+            "ev_fileset",
+            "ev_historical_fileset",
+            "ev_path",
+            "ev_pr_opened",
+            "ev_relevance",
+            "ev_target_path"
+          ]
+        },
+        {
+          "claimId": "claim-relevant-path-history",
+          "reasonCode": "RELEVANT_PATH_HISTORY",
+          "populationEvidenceCount": 4,
+          "populationDigest": "881358b9260587127debc4ecefdf7b7c77f8958796a41854bba3a6ff39044bd6",
+          "witnessMode": "bounded_witness",
+          "witnessEvidenceIds": [
+            "ev_path",
+            "ev_pr_opened",
+            "ev_relevance"
+          ],
+          "evidenceIds": [
+            "ev_path",
+            "ev_pr_opened",
+            "ev_relevance",
+            "ev_target_path"
+          ]
+        }
+      ],
+      "digest": "3e7fd2b4eff7619b1df07893d96d0372795ad623c419aca8d18a18157ce16652"
+    },
+    "modelRun": {
+      "requestAlias": "78787878-7878-4878-8878-787878787878",
+      "providerRequestDigest": "e9106f123d70edd7dd9e06f1453b3de0c15a579faee6719faba9ef9d1a4499fb",
+      "providerInvocationDigest": "57d3dd40c01c0b9395cfe2443767d65a331724b6bdc256167e7cb0b6cb931291",
+      "candidatePacketDigest": "d855254d7dde628904e1148e6207d0ddd7d76f85e9db95ba393c7fb34f98b17c",
+      "resolvedModel": "gpt-5.6-sol-2026-07-01",
+      "providerResponseId": "resp_phase0_fixture_001",
+      "providerOutputDigest": "d041235ca419f8d7a6650e897aebc7b793175bf0ea37800ad312a669917545aa",
+      "responseEnvelopeDigest": "6a48f5fd242a0fb8c470e519fcc791db514af2a3a80960be9ef675266890510c"
+    }
+  },
+  "versions": {
+    "policy": "policy-v1",
+    "evidence": "evidence-v1",
+    "features": "features-v1",
+    "scoring": "scoring-v1",
+    "prompt": "relevance-v1",
+    "model": "gpt-5.6-sol",
+    "engine": "engine-v1"
+  },
+  "createdAt": "2026-07-21T00:00:01Z",
+  "versionDigests": {
+    "policy": "a46f0cc5bf024f57933cd9cbad5ad5c7adc5308be8203472ac2a2408a2df5a94",
+    "evidence": "4bd90b7665322e88f9060cf795712bc94c1dc72e7e11a9400584280739ec9a05",
+    "features": "3d95e08075a934d1647c56c181c6c2e0c7d6d82661c6d6f4fbcf98c5c0a1f4f3",
+    "scoring": "51b70a9b58280a9eb55f8b0a2b23f5e2bd5ac959e001eae5fcca2d90226fb817",
+    "prompt": "77fab69fc68026529b99135d34620d21a3e76ebb8d7d1ded3574076a44d9a950",
+    "model": "119acaa3a30602db33f67a8c405e8bb7e14734181dda21ab26fdb5bb52ebdd37",
+    "engine": "09775a319223b237b406d8722117e95abb314375583bcb90c14ab8ecde8dad70"
+  }
+}

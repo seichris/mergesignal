@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/contextualization-request-ledger-head-v1.json",
+  "title": "MergeSignal contextualization request-ledger high-water receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "ledgerId", "assessmentId", "highWaterRevision", "eventCount", "state", "casToken", "streamDigest", "databaseSnapshotToken", "serializableReadAt"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "ledgerId": { "type": "string", "format": "uuid" },
+    "assessmentId": { "type": "string", "format": "uuid" },
+    "highWaterRevision": { "const": 2 },
+    "eventCount": { "const": 2 },
+    "state": { "const": "accepted" },
+    "casToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "streamDigest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "databaseSnapshotToken": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "serializableReadAt": { "type": "string", "format": "date-time" }
+  }
+}

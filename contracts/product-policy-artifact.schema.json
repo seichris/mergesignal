@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mergesignal.dev/schemas/product-policy-artifact-v1.json",
+  "title": "MergeSignal product policy artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "version", "githubApp", "surfaces", "reviewPriority", "streamIdentity", "publicationTransitions"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "version": { "type": "string", "pattern": "^policy-v[1-9][0-9]*$" },
+    "githubApp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "slug", "ownershipObservationMaxAgeSeconds"],
+      "properties": {
+        "appId": { "type": "integer", "minimum": 1 },
+        "slug": { "const": "mergesignal" },
+        "ownershipObservationMaxAgeSeconds": { "type": "integer", "minimum": 1, "maximum": 300 }
+      }
+    },
+    "surfaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["githubShowsNumericScores", "authenticatedDetailShowsNumericScores"],
+      "properties": {
+        "githubShowsNumericScores": { "const": false },
+        "authenticatedDetailShowsNumericScores": { "const": true }
+      }
+    },
+    "reviewPriority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["default", "advisory", "patchQualifiedLimitedHistoryAllowed", "patchQualifiedActorTypes", "reputationRequiredRelevantExperienceStates", "reputationAndPatchRequiredFacts", "patchOnlyRequiredFacts", "forbiddenPatchFacts"],
+      "properties": {
+        "default": { "const": "standard" },
+        "advisory": { "const": true },
+        "patchQualifiedLimitedHistoryAllowed": { "const": true },
+        "patchQualifiedActorTypes": {
+          "type": "array",
+          "const": ["User"]
+        },
+        "reputationRequiredRelevantExperienceStates": {
+          "type": "array",
+          "const": ["moderate", "strong"]
+        },
+        "reputationAndPatchRequiredFacts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ciState", "allowedScopes", "allowedTestPathStates", "sensitivePathState"],
+          "properties": {
+            "ciState": { "const": "passing" },
+            "allowedScopes": { "const": ["small", "medium"] },
+            "allowedTestPathStates": { "const": ["changed", "unchanged"] },
+            "sensitivePathState": { "const": "unchanged" }
+          }
+        },
+        "patchOnlyRequiredFacts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ciState", "scope", "testPathState", "sensitivePathState"],
+          "properties": {
+            "ciState": { "const": "passing" },
+            "scope": { "enum": ["small", "medium"] },
+            "testPathState": { "const": "changed" },
+            "sensitivePathState": { "const": "unchanged" }
+          }
+        },
+        "forbiddenPatchFacts": {
+          "type": "array",
+          "const": ["CI_FAILING", "LARGE_PATCH_SCOPE", "PATCH_INVENTORY_INCOMPLETE", "SENSITIVE_PATH_CHANGED"]
+        }
+      }
+    },
+    "streamIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publication", "retention", "commentRemoval", "outputCursor"],
+      "properties": {
+        "publication": {
+          "type": "array",
+          "const": ["installationId", "repositoryNodeId", "pullRequestNodeId", "generation"]
+        },
+        "retention": {
+          "type": "array",
+          "const": ["assessmentId"]
+        },
+        "commentRemoval": {
+          "type": "array",
+          "const": ["retentionTransitionId", "publicationId", "commentId"]
+        },
+        "outputCursor": {
+          "type": "array",
+          "const": ["installationId", "repositoryNodeId", "pullRequestNodeId"]
+        }
+      }
+    },
+    "publicationTransitions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["queued", "publishing", "published", "retrying", "repair_queued", "action_required", "stale", "failed"],
+      "properties": {
+        "queued": { "$ref": "#/$defs/publicationStateList" },
+        "publishing": { "$ref": "#/$defs/publicationStateList" },
+        "published": { "$ref": "#/$defs/publicationStateList" },
+        "retrying": { "$ref": "#/$defs/publicationStateList" },
+        "repair_queued": { "$ref": "#/$defs/publicationStateList" },
+        "action_required": { "$ref": "#/$defs/publicationStateList" },
+        "stale": { "$ref": "#/$defs/publicationStateList" },
+        "failed": { "$ref": "#/$defs/publicationStateList" }
+      }
+    }
+  },
+  "$defs": {
+    "publicationStateList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["queued", "publishing", "published", "retrying", "repair_queued", "action_required", "stale", "failed"] }
+    }
+  }
+}
